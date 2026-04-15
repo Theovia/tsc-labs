@@ -1297,14 +1297,14 @@ footer .right { color: var(--rust); }
   .proof-row .product { font-size: 11px; line-height: 1.35; }
 
   /* CALCULATOR — sin negative margin que causa overflow */
-  #calc .container { padding: 64px 0 40px !important; }
-  #calc .container .section-header { padding: 0 20px; }
-  .calc-wrapper { padding: 40px 20px; margin: 0; width: 100%; }
-  .calc-header { grid-template-columns: 1fr; gap: 16px; margin-bottom: 32px; padding-bottom: 28px; }
-  .calc-header h3 { font-size: 28px; }
-  .calc-header p { font-size: 13px; }
-  .calc-grid { gap: 32px; }
-  .calc-controls { gap: 28px; }
+  #calc .container { padding: 48px 0 24px !important; }
+  #calc .container .section-header { padding: 0 20px; margin-bottom: 24px; }
+  .calc-wrapper { padding: 32px 18px; margin: 0; width: 100%; }
+  .calc-header { grid-template-columns: 1fr; gap: 12px; margin-bottom: 24px; padding-bottom: 22px; }
+  .calc-header h3 { font-size: 26px; }
+  .calc-header p { font-size: 12px; line-height: 1.45; }
+  .calc-grid { gap: 24px; }
+  .calc-controls { gap: 22px; }
   .product-select { grid-template-columns: 1fr 1fr; gap: 6px; }
   .product-pill { padding: 12px 12px; font-size: 10px; }
   .product-pill .pill-cost { font-size: 9px; }
@@ -1367,6 +1367,12 @@ footer .right { color: var(--rust); }
   /* FOOTER */
   footer { padding: 24px 20px; flex-direction: column; gap: 10px; font-size: 9px; text-align: center; }
   footer .left, footer .right { width: 100%; }
+}
+
+/* Reveal animations OFF on mobile — evita que contenido quede invisible
+   si el IntersectionObserver no alcanza el threshold en wrappers altos */
+@media (max-width: 768px) {
+  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
 }
 
 /* Tiny phones (≤380px) */
