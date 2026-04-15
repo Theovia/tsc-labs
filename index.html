@@ -1202,6 +1202,173 @@ footer .right { color: var(--rust); }
   opacity: 1;
   transform: translateY(0);
 }
+
+/* ============ MOBILE OVERHAUL ============ */
+
+/* Tablet (≤1024px) */
+@media (max-width: 1024px) {
+  .section-header { grid-template-columns: 140px 1fr; gap: 32px; margin-bottom: 60px; }
+  .hero-grid { gap: 48px; }
+  .calc-header { margin-bottom: 40px; padding-bottom: 28px; }
+  .catalog-grid { grid-template-columns: repeat(2, 1fr); }
+  .creds-bar { padding: 28px 24px; gap: 20px; }
+}
+
+/* Small tablet & large mobile (≤768px) */
+@media (max-width: 768px) {
+  /* TOPBAR — tighter */
+  .topbar { padding: 12px 16px; font-size: 10px; }
+  .topbar-logo { font-size: 15px; }
+  .topbar-meta { gap: 10px; font-size: 9px; }
+
+  /* HERO — tighter spacing, no overlap */
+  .hero { padding: 90px 20px 48px; min-height: auto; }
+  .hero-grid { gap: 36px; }
+  .hero-title { font-size: clamp(40px, 11vw, 60px); line-height: 0.98; }
+  .hero-sub { font-size: 16px; line-height: 1.5; }
+  .hero-right { padding-top: 28px; gap: 20px; }
+  .hero-stat-num { font-size: 36px; }
+  .hero-stat-label { font-size: 9px; }
+  .hero-eyebrow { font-size: 10px; gap: 12px; }
+  .hero-eyebrow::before { width: 28px; }
+
+  /* MARQUEE */
+  .marquee { padding: 14px 0; }
+  .marquee-track { gap: 32px; font-size: 10px; }
+  .marquee-track span { gap: 32px; }
+
+  /* SECTIONS */
+  section { padding: 64px 20px; }
+  .section-header { grid-template-columns: 1fr; gap: 16px; margin-bottom: 40px; }
+  .section-num { font-size: 10px; }
+  .section-num .num { font-size: 40px; margin-bottom: 6px; }
+  .section-title { font-size: clamp(30px, 6.5vw, 44px); line-height: 1; }
+
+  /* OPPORTUNITY */
+  .opp-cell { padding: 32px 20px; }
+  .opp-cell .number { font-size: 48px; }
+  .opp-cell .number sup { font-size: 18px; }
+  .opp-cell .desc { font-size: 13px; }
+  .trends-row { margin-top: 48px; }
+  .trends-row h4 { font-size: 10px; }
+  .trend-item { grid-template-columns: 40px 1fr; gap: 16px; padding-bottom: 20px; }
+  .trend-item .num { font-size: 24px; }
+  .trend-item p { font-size: 17px; line-height: 1.35; }
+
+  /* WHY CARDS */
+  .why-card { padding: 36px 24px; gap: 20px; }
+  .why-card h3 { font-size: 30px; }
+  .why-card p { font-size: 14px; }
+
+  /* PROOF TABLE — clean stacked layout */
+  .proof-intro { font-size: 18px; margin-bottom: 40px; }
+  .proof-product { padding: 24px 0; }
+  .proof-product-title { font-size: 10px; margin-bottom: 16px; gap: 10px; }
+  .proof-product-title::before { width: 16px; }
+  .proof-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "brand price"
+      "verdict verdict";
+    gap: 6px 12px;
+    padding: 14px 0;
+    align-items: start;
+  }
+  .proof-row > div:first-child { grid-area: brand; }
+  .proof-row .price { grid-area: price; font-size: 20px; justify-self: end; }
+  .proof-row .per-ml { display: none; }
+  .proof-row .verdict { grid-area: verdict; font-size: 10px; padding-top: 4px; }
+  .proof-row.tsc { margin: 10px -12px; padding: 18px 12px; }
+  .proof-row .brand-name { font-size: 15px; }
+  .proof-row .product { font-size: 11px; line-height: 1.35; }
+
+  /* CALCULATOR */
+  #calc .container { padding: 64px 20px 40px !important; }
+  .calc-wrapper { padding: 40px 20px; margin: 0 -20px; }
+  .calc-header { grid-template-columns: 1fr; gap: 16px; margin-bottom: 32px; padding-bottom: 28px; }
+  .calc-header h3 { font-size: 28px; }
+  .calc-header p { font-size: 13px; }
+  .calc-grid { gap: 32px; }
+  .calc-controls { gap: 28px; }
+  .product-select { grid-template-columns: 1fr 1fr; gap: 6px; }
+  .product-pill { padding: 12px 12px; font-size: 10px; }
+  .product-pill .pill-cost { font-size: 9px; }
+  .calc-field label { font-size: 9px; flex-wrap: wrap; gap: 6px; }
+  .calc-field label .val { font-size: 15px; }
+  .calc-output { padding: 24px 20px; }
+  .calc-output::before { left: 16px; font-size: 8px; }
+  .calc-line .label { font-size: 9px; }
+  .calc-line .value { font-size: 18px; }
+  .calc-line.highlight .value { font-size: 30px; }
+  .calc-disclaimer { font-size: 8px; margin-top: 28px; padding-top: 18px; }
+
+  /* CATALOG — 1 column, tighter */
+  .catalog-grid { grid-template-columns: 1fr; }
+  .cat-item { padding: 28px 20px; min-height: auto; gap: 12px; }
+  .cat-item h4 { font-size: 22px; }
+
+  /* BLACKLIST */
+  .blacklist-intro { font-size: 19px; margin-bottom: 36px; }
+  .bl-row { padding: 18px 0; gap: 4px; }
+  .bl-bad { font-size: 17px; }
+  .bl-bad::after { right: 20%; height: 1.5px; }
+  .bl-use { font-size: 11px; }
+  .bl-good { font-size: 15px; }
+
+  /* SERVICES */
+  .svc { padding: 28px 0; gap: 10px; }
+  .svc-num { padding-top: 0; }
+  .svc-title { font-size: 30px; }
+  .svc-desc { font-size: 14px; }
+  .svc-best { font-size: 9px; }
+
+  /* PROCESS — single column on mobile */
+  .process { grid-template-columns: 1fr; }
+  .proc-step { padding: 28px 20px; border-right: none; border-bottom: 1px solid var(--line); }
+  .proc-step:last-child { border-bottom: none; }
+  .proc-step .num { font-size: 40px; margin-bottom: 10px; }
+  .proc-step h5 { font-size: 20px; }
+  .proc-step p { font-size: 13px; }
+
+  /* TEAM */
+  .team-grid { gap: 16px; }
+  .team-card { padding: 28px 22px; min-height: auto; }
+  .team-card h4 { font-size: 28px; }
+  .team-card .credentials { font-size: 12px; }
+  .creds-bar { flex-direction: column; padding: 24px; gap: 18px; margin-top: 40px; }
+  .creds-bar div { font-size: 10px; }
+  .creds-bar div strong { font-size: 20px; margin-bottom: 2px; }
+
+  /* CTA */
+  .cta { padding: 80px 20px; }
+  .cta::before { font-size: 60px; top: 24px; right: 24px; }
+  .cta-eyebrow { font-size: 10px; margin-bottom: 24px; }
+  .cta h2 { font-size: clamp(40px, 10vw, 56px); line-height: 0.95; margin-bottom: 40px; }
+  .cta-channels { padding-top: 32px; gap: 12px; }
+  .channel { padding: 22px 20px; }
+  .channel .ch-label { font-size: 9px; margin-bottom: 8px; }
+  .channel .ch-value { font-size: 18px; }
+
+  /* FOOTER */
+  footer { padding: 24px 20px; flex-direction: column; gap: 10px; font-size: 9px; text-align: center; }
+  footer .left, footer .right { width: 100%; }
+}
+
+/* Tiny phones (≤380px) */
+@media (max-width: 380px) {
+  .topbar { padding: 10px 14px; }
+  .topbar-meta { gap: 8px; }
+  .hero { padding: 82px 16px 40px; }
+  section { padding: 56px 16px; }
+  .hero-title { font-size: clamp(34px, 12vw, 44px); }
+  .section-title { font-size: 26px; }
+  .calc-header h3 { font-size: 24px; }
+  .cta h2 { font-size: 36px; }
+  .why-card h3 { font-size: 26px; }
+  .svc-title { font-size: 26px; }
+  .hero-stat-num { font-size: 32px; }
+}
 </style>
 </head>
 <body>
