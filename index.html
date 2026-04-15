@@ -1,0 +1,1920 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TSC LABS — Dossier Confidencial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #F2EDE4;
+  --cream-deep: #EAE3D5;
+  --cream-shadow: #D9D0BD;
+  --ink: #0A0A0A;
+  --ink-soft: #1A1A1A;
+  --rust: #C44536;
+  --rust-deep: #9A2E22;
+  --moss: #4A5A3A;
+  --paper: #FBF8F2;
+  --line: rgba(10, 10, 10, 0.12);
+  --line-strong: rgba(10, 10, 10, 0.35);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter Tight', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  font-weight: 400;
+  line-height: 1.5;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Grain overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.04;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Typography classes */
+.serif { font-family: 'Fraunces', serif; font-optical-sizing: auto; }
+.mono { font-family: 'JetBrains Mono', monospace; }
+.uppercase { text-transform: uppercase; letter-spacing: 0.08em; }
+.tight { letter-spacing: -0.04em; }
+.tighter { letter-spacing: -0.06em; }
+
+/* ============ TOP BAR ============ */
+.topbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 18px 40px;
+  background: rgba(242, 237, 228, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.topbar-logo {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+  text-transform: none;
+}
+.topbar-logo span { color: var(--rust); }
+
+.topbar-meta { display: flex; gap: 32px; align-items: center; }
+.topbar-meta .dot {
+  width: 6px; height: 6px;
+  background: var(--rust);
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+@media (max-width: 768px) {
+  .topbar { padding: 14px 20px; }
+  .topbar-meta { gap: 16px; font-size: 9px; }
+  .topbar-meta .meta-hide { display: none; }
+}
+
+/* ============ HERO ============ */
+.hero {
+  min-height: 100vh;
+  padding: 120px 40px 60px;
+  display: grid;
+  grid-template-columns: 1fr;
+  position: relative;
+  border-bottom: 1px solid var(--ink);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: end;
+  max-width: 1600px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.hero-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: var(--ink);
+}
+
+.hero-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: clamp(48px, 8vw, 132px);
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  font-variation-settings: "opsz" 144;
+}
+.hero-title em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--rust);
+}
+.hero-title .strike {
+  position: relative;
+  display: inline-block;
+}
+.hero-title .strike::after {
+  content: '';
+  position: absolute;
+  left: -2%;
+  right: -2%;
+  top: 52%;
+  height: 4px;
+  background: var(--rust);
+  transform: rotate(-2deg);
+}
+
+.hero-sub {
+  font-size: 19px;
+  line-height: 1.45;
+  max-width: 540px;
+  color: var(--ink-soft);
+  font-weight: 400;
+}
+
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  border-left: 1px solid var(--line-strong);
+  padding-left: 40px;
+  align-self: stretch;
+  justify-content: flex-end;
+  padding-bottom: 8px;
+}
+
+.hero-stat-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.hero-stat-num {
+  font-family: 'Fraunces', serif;
+  font-size: 56px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+.hero-stat-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-soft);
+  max-width: 280px;
+  line-height: 1.5;
+}
+
+.hero-corner {
+  position: absolute;
+  top: 100px;
+  right: 40px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: right;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.hero-corner .doc-id {
+  color: var(--rust);
+  font-weight: 500;
+}
+
+@media (max-width: 900px) {
+  .hero { padding: 100px 20px 40px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  .hero-right {
+    border-left: none;
+    border-top: 1px solid var(--line-strong);
+    padding-left: 0;
+    padding-top: 32px;
+  }
+  .hero-corner { display: none; }
+  .hero-stat-num { font-size: 42px; }
+}
+
+/* ============ MARQUEE ============ */
+.marquee {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 18px 0;
+  overflow: hidden;
+  border-bottom: 1px solid var(--ink);
+}
+.marquee-track {
+  display: flex;
+  gap: 48px;
+  white-space: nowrap;
+  animation: scroll 40s linear infinite;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.marquee-track span { display: flex; align-items: center; gap: 48px; }
+.marquee-track span::after {
+  content: '✶';
+  color: var(--rust);
+  font-size: 14px;
+}
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ============ SECTION SCAFFOLD ============ */
+section {
+  padding: 120px 40px;
+  border-bottom: 1px solid var(--ink);
+  position: relative;
+}
+.container {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.section-header {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 60px;
+  margin-bottom: 80px;
+  align-items: start;
+}
+.section-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.section-num .num {
+  display: block;
+  font-family: 'Fraunces', serif;
+  font-size: 64px;
+  font-weight: 300;
+  color: var(--rust);
+  line-height: 1;
+  margin-bottom: 12px;
+  font-style: italic;
+}
+.section-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: clamp(36px, 5vw, 72px);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  max-width: 1100px;
+}
+.section-title em {
+  font-style: italic;
+  color: var(--rust);
+}
+
+@media (max-width: 768px) {
+  section { padding: 80px 20px; }
+  .section-header { grid-template-columns: 1fr; gap: 24px; margin-bottom: 50px; }
+  .section-num .num { font-size: 48px; }
+}
+
+/* ============ OPPORTUNITY (Section 1) ============ */
+.opp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+.opp-cell {
+  padding: 48px 32px;
+  border-right: 1px solid var(--line);
+  position: relative;
+}
+.opp-cell:last-child { border-right: none; }
+.opp-cell .label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-soft);
+  margin-bottom: 16px;
+}
+.opp-cell .number {
+  font-family: 'Fraunces', serif;
+  font-size: 72px;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin-bottom: 12px;
+}
+.opp-cell .number sup {
+  font-size: 24px;
+  vertical-align: super;
+  color: var(--rust);
+}
+.opp-cell .desc {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: 280px;
+}
+
+.trends-row {
+  margin-top: 80px;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 60px;
+}
+.trends-row h4 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.trends-list {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.trend-item {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 24px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--line);
+  align-items: baseline;
+}
+.trend-item:last-child { border-bottom: none; }
+.trend-item .num {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 32px;
+  color: var(--rust);
+  font-weight: 400;
+}
+.trend-item p {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  line-height: 1.4;
+  font-weight: 400;
+}
+.trend-item p strong { color: var(--rust); font-style: italic; font-weight: 500; }
+
+@media (max-width: 900px) {
+  .opp-grid { grid-template-columns: 1fr; }
+  .opp-cell { border-right: none; border-bottom: 1px solid var(--line); }
+  .opp-cell:last-child { border-bottom: none; }
+  .opp-cell .number { font-size: 56px; }
+  .trends-row { grid-template-columns: 1fr; gap: 24px; }
+  .trend-item p { font-size: 18px; }
+}
+
+/* ============ WHY TSC (Section 2) ============ */
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line-strong);
+  border: 1px solid var(--line-strong);
+}
+.why-card {
+  background: var(--cream);
+  padding: 48px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  min-height: 380px;
+  position: relative;
+  transition: background 0.4s ease;
+}
+.why-card:hover { background: var(--paper); }
+.why-card .tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--rust);
+}
+.why-card h3 {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 38px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.why-card h3 em { font-style: italic; color: var(--rust); }
+.why-card p {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.why-card .footer {
+  margin-top: auto;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+@media (max-width: 900px) {
+  .why-grid { grid-template-columns: 1fr; }
+  .why-card { min-height: auto; }
+}
+
+/* ============ PROOF (Section 3 - The Skin Club) ============ */
+.proof-intro {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(20px, 2.4vw, 28px);
+  line-height: 1.45;
+  font-weight: 300;
+  max-width: 900px;
+  margin-bottom: 60px;
+  color: var(--ink-soft);
+}
+.proof-intro em { font-style: italic; color: var(--rust); }
+
+.proof-table {
+  border-top: 2px solid var(--ink);
+  border-bottom: 2px solid var(--ink);
+}
+
+.proof-product {
+  border-bottom: 1px solid var(--line);
+  padding: 36px 0;
+}
+.proof-product:last-child { border-bottom: none; }
+
+.proof-product-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--rust);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.proof-product-title::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--rust);
+}
+
+.proof-row {
+  display: grid;
+  grid-template-columns: 2.2fr 1fr 1fr 2fr;
+  gap: 24px;
+  padding: 16px 0;
+  align-items: center;
+  border-bottom: 1px dashed var(--line);
+}
+.proof-row:last-child { border-bottom: none; }
+.proof-row.tsc {
+  background: var(--ink);
+  color: var(--cream);
+  margin: 12px -16px 12px;
+  padding: 24px 16px;
+  border-bottom: none;
+  border-radius: 0;
+}
+.proof-row.tsc .brand-name { color: var(--rust); }
+.proof-row.tsc .price { color: var(--cream); }
+
+.proof-row .brand-name {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 18px;
+  font-style: italic;
+}
+.proof-row .product {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-top: 4px;
+}
+.proof-row.tsc .product { color: rgba(242, 237, 228, 0.6); }
+.proof-row .price {
+  font-family: 'Fraunces', serif;
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+.proof-row .per-ml {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+.proof-row.tsc .per-ml { color: rgba(242, 237, 228, 0.6); }
+.proof-row .verdict {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--rust);
+  line-height: 1.5;
+}
+.proof-row.tsc .verdict { color: var(--cream); }
+
+@media (max-width: 768px) {
+  .proof-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .proof-row .verdict { grid-column: 1 / -1; }
+  .proof-row .price { font-size: 22px; }
+}
+
+/* ============ CALCULATOR (Section 4) ============ */
+.calc-wrapper {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 60px;
+  margin: 0 -40px;
+  position: relative;
+}
+@media (max-width: 768px) {
+  .calc-wrapper { padding: 40px 20px; margin: 0 -20px; }
+}
+
+.calc-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.calc-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 60px;
+  align-items: end;
+  border-bottom: 1px solid rgba(242, 237, 228, 0.2);
+  padding-bottom: 40px;
+}
+.calc-header h3 {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: clamp(32px, 4vw, 56px);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+.calc-header h3 em { font-style: italic; color: var(--rust); }
+.calc-header p {
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(242, 237, 228, 0.7);
+  max-width: 400px;
+}
+
+.calc-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 60px;
+}
+@media (max-width: 900px) {
+  .calc-grid { grid-template-columns: 1fr; gap: 40px; }
+  .calc-header { grid-template-columns: 1fr; gap: 20px; }
+}
+
+.calc-controls { display: flex; flex-direction: column; gap: 36px; }
+
+.calc-field {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.calc-field label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.calc-field label .val {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 18px;
+  color: var(--rust);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.product-select {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+.product-pill {
+  background: transparent;
+  border: 1px solid rgba(242, 237, 228, 0.25);
+  color: var(--cream);
+  padding: 14px 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-align: left;
+  line-height: 1.4;
+}
+.product-pill:hover { border-color: var(--rust); color: var(--rust); }
+.product-pill.active {
+  background: var(--rust);
+  border-color: var(--rust);
+  color: var(--cream);
+}
+.product-pill .pill-cost {
+  display: block;
+  font-size: 9px;
+  opacity: 0.7;
+  margin-top: 4px;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 2px;
+  background: rgba(242, 237, 228, 0.2);
+  outline: none;
+  border-radius: 0;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: var(--rust);
+  cursor: pointer;
+  border-radius: 50%;
+  border: 3px solid var(--cream);
+  transition: transform 0.2s;
+}
+input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  background: var(--rust);
+  cursor: pointer;
+  border-radius: 50%;
+  border: 3px solid var(--cream);
+}
+
+.calc-output {
+  border: 1px solid rgba(242, 237, 228, 0.2);
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: relative;
+}
+.calc-output::before {
+  content: 'OUTPUT';
+  position: absolute;
+  top: -8px;
+  left: 24px;
+  background: var(--ink);
+  padding: 0 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  color: var(--rust);
+}
+
+.calc-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px dashed rgba(242, 237, 228, 0.15);
+  padding-bottom: 16px;
+}
+.calc-line:last-child { border-bottom: none; padding-bottom: 0; }
+.calc-line .label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(242, 237, 228, 0.6);
+}
+.calc-line .value {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+}
+.calc-line.highlight .value {
+  font-size: 38px;
+  color: var(--rust);
+  font-style: italic;
+}
+.calc-line.highlight {
+  padding-top: 12px;
+  border-top: 1px solid rgba(242, 237, 228, 0.3);
+  border-bottom: none;
+  margin-top: 8px;
+}
+
+.calc-disclaimer {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(242, 237, 228, 0.15);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(242, 237, 228, 0.4);
+  line-height: 1.6;
+}
+
+/* ============ CATALOG (Section 5) ============ */
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line-strong);
+  border: 1px solid var(--line-strong);
+}
+@media (max-width: 900px) { .catalog-grid { grid-template-columns: 1fr; } }
+
+.cat-item {
+  background: var(--cream);
+  padding: 36px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 240px;
+  transition: background 0.3s;
+}
+.cat-item:hover { background: var(--paper); }
+.cat-item .cat-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--rust);
+  text-transform: uppercase;
+}
+.cat-item h4 {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+.cat-item .cat-actives {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  text-transform: lowercase;
+  letter-spacing: 0.02em;
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px dashed var(--line);
+}
+.cat-item .cat-variants {
+  font-size: 11px;
+  font-family: 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+}
+
+/* ============ INGREDIENTS BLACKLIST (Section 6) ============ */
+.blacklist-intro {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(22px, 2.6vw, 32px);
+  line-height: 1.4;
+  font-weight: 300;
+  max-width: 900px;
+  margin-bottom: 60px;
+}
+.blacklist-intro em { font-style: italic; color: var(--rust); }
+
+.blacklist-table {
+  border-top: 2px solid var(--ink);
+}
+.bl-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr;
+  gap: 32px;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: center;
+}
+.bl-row.head {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 16px 0;
+  color: var(--ink-soft);
+  border-bottom: 1px solid var(--ink);
+}
+.bl-bad {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 22px;
+  position: relative;
+}
+.bl-bad::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 30%;
+  top: 50%;
+  height: 2px;
+  background: var(--rust);
+  transform: rotate(-1deg);
+}
+.bl-use {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-soft);
+}
+.bl-good {
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+  color: var(--rust);
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .bl-row { grid-template-columns: 1fr; gap: 8px; padding: 20px 0; }
+  .bl-row.head { display: none; }
+  .bl-bad { font-size: 18px; }
+}
+
+/* ============ SERVICES (Section 7) ============ */
+.services-list {
+  display: flex;
+  flex-direction: column;
+}
+.svc {
+  display: grid;
+  grid-template-columns: 80px 1.2fr 2fr 200px;
+  gap: 40px;
+  padding: 40px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: start;
+  cursor: pointer;
+  transition: padding 0.3s ease;
+}
+.svc:hover { padding-left: 16px; }
+.svc:hover .svc-title { color: var(--rust); }
+.svc:first-child { border-top: 2px solid var(--ink); }
+.svc:last-child { border-bottom: 2px solid var(--ink); }
+
+.svc-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--rust);
+  padding-top: 8px;
+}
+.svc-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 42px;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  transition: color 0.3s;
+}
+.svc-title em { font-style: italic; }
+.svc-desc {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 460px;
+}
+.svc-best {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-align: right;
+  line-height: 1.6;
+}
+.svc-best .label { color: var(--ink-soft); display: block; margin-bottom: 4px; }
+.svc-best .who { color: var(--rust); }
+
+@media (max-width: 900px) {
+  .svc { grid-template-columns: 1fr; gap: 12px; padding: 32px 0; }
+  .svc:hover { padding-left: 0; }
+  .svc-title { font-size: 32px; }
+  .svc-best { text-align: left; }
+}
+
+/* ============ PROCESS (Section 8) ============ */
+.process {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+.proc-step {
+  padding: 40px 24px;
+  border-right: 1px solid var(--line);
+  position: relative;
+}
+.proc-step:last-child { border-right: none; }
+.proc-step .week {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--rust);
+  margin-bottom: 16px;
+}
+.proc-step .num {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 56px;
+  font-weight: 300;
+  line-height: 1;
+  margin-bottom: 16px;
+}
+.proc-step h5 {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+  line-height: 1.1;
+}
+.proc-step p {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 900px) {
+  .process { grid-template-columns: 1fr 1fr; }
+  .proc-step { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+}
+
+/* ============ TEAM (Section 9) ============ */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+@media (max-width: 768px) { .team-grid { grid-template-columns: 1fr; } }
+.team-card {
+  border: 1px solid var(--line-strong);
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 260px;
+}
+.team-card .role {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--rust);
+}
+.team-card h4 {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.team-card .credentials {
+  margin-top: auto;
+  padding-top: 24px;
+  border-top: 1px dashed var(--line);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+.creds-bar {
+  margin-top: 60px;
+  padding: 32px;
+  background: var(--ink);
+  color: var(--cream);
+  display: flex;
+  justify-content: space-around;
+  gap: 32px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.creds-bar div {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  text-align: center;
+}
+.creds-bar div strong {
+  display: block;
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 24px;
+  color: var(--rust);
+  text-transform: none;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+
+/* ============ CTA / CONTACT ============ */
+.cta {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 140px 40px;
+  border-bottom: none;
+  position: relative;
+  overflow: hidden;
+}
+.cta::before {
+  content: '✦';
+  position: absolute;
+  top: 60px;
+  right: 60px;
+  font-size: 120px;
+  color: var(--rust);
+  opacity: 0.3;
+  font-family: 'Fraunces', serif;
+  animation: spin 30s linear infinite;
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.cta-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+.cta-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--rust);
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.cta-eyebrow::before {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: var(--rust);
+}
+.cta h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: clamp(48px, 8vw, 132px);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  margin-bottom: 60px;
+  max-width: 1100px;
+}
+.cta h2 em { font-style: italic; color: var(--rust); }
+
+.cta-channels {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  border-top: 1px solid rgba(242, 237, 228, 0.2);
+  padding-top: 60px;
+}
+@media (max-width: 768px) { .cta-channels { grid-template-columns: 1fr; gap: 16px; } }
+
+.channel {
+  display: block;
+  padding: 32px;
+  border: 1px solid rgba(242, 237, 228, 0.2);
+  text-decoration: none;
+  color: var(--cream);
+  transition: all 0.3s ease;
+}
+.channel:hover {
+  background: var(--rust);
+  border-color: var(--rust);
+  transform: translateY(-4px);
+}
+.channel .ch-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(242, 237, 228, 0.6);
+  margin-bottom: 12px;
+}
+.channel:hover .ch-label { color: rgba(242, 237, 228, 0.9); }
+.channel .ch-value {
+  font-family: 'Fraunces', serif;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+/* ============ FOOTER ============ */
+footer {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 40px;
+  border-top: 1px solid rgba(242, 237, 228, 0.15);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+footer .left { color: rgba(242, 237, 228, 0.5); }
+footer .right { color: var(--rust); }
+
+/* ============ REVEAL ANIMATIONS ============ */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-logo">TSC<span>·</span>LABS</div>
+  <div class="topbar-meta">
+    <span class="meta-hide"><span class="dot"></span>DOSSIER ABIERTO</span>
+    <span>ZAPOPAN / MX</span>
+    <span class="meta-hide">CONFIDENCIAL</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-corner">
+    <div>DOC <span class="doc-id">№ TSC-2026/01</span></div>
+    <div>VERSIÓN 1.0</div>
+    <div>USO INTERNO</div>
+  </div>
+  <div class="hero-grid">
+    <div class="hero-left">
+      <div class="hero-eyebrow">DOSSIER PARA MANAGEMENT DE TALENTO</div>
+      <h1 class="hero-title tighter">
+        Lanza la marca<br>
+        de skincare<br>
+        de tu talento.<br>
+        <em>Desde la fórmula</em><br>
+        <em>hasta el frasco.</em>
+      </h1>
+      <p class="hero-sub">
+        Somos los biotecnólogos que ya están haciendo lo que las grandes marcas mexicanas no pueden ofrecer: fórmulas limpias, científicas, y a precio competitivo. Esta es la propuesta de cómo construimos juntos una marca de cuidado personal con los talentos que representas.
+      </p>
+    </div>
+    <div class="hero-right">
+      <div class="hero-stat-block">
+        <div class="hero-stat-num tight">$11.3<sub style="font-size:24px;color:var(--rust);">B</sub></div>
+        <div class="hero-stat-label">Mercado mexicano de belleza y cuidado personal — 2024 (USD)</div>
+      </div>
+      <div class="hero-stat-block">
+        <div class="hero-stat-num tight">+6.05%</div>
+        <div class="hero-stat-label">CAGR proyectado al 2029 — Mordor Intelligence</div>
+      </div>
+      <div class="hero-stat-block">
+        <div class="hero-stat-num tight">3<span style="font-size:24px;color:var(--rust);">×</span></div>
+        <div class="hero-stat-label">Ingenieros en Biotecnología del ITESM detrás de cada fórmula</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span>FORMULACIÓN</span><span>MAQUILA</span><span>MARCA BLANCA</span><span>ENVASADO</span><span>BIOTECNOLOGÍA NATURAL</span><span>COFEPRIS</span><span>NOM-259-SSA1-2022</span><span>FORMULACIÓN</span><span>MAQUILA</span><span>MARCA BLANCA</span><span>ENVASADO</span><span>BIOTECNOLOGÍA NATURAL</span><span>COFEPRIS</span><span>NOM-259-SSA1-2022</span>
+  </div>
+</div>
+
+<!-- SECTION 01: OPPORTUNITY -->
+<section id="opportunity">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-num"><span class="num">01</span>EL MOMENTO</div>
+      <h2 class="section-title">El skincare mexicano <em>nunca</em> había sido un negocio tan grande, ni con consumidores tan exigentes.</h2>
+    </div>
+
+    <div class="opp-grid reveal">
+      <div class="opp-cell">
+        <div class="label">Tamaño 2024</div>
+        <div class="number">$11.3<sup>B</sup></div>
+        <div class="desc">Mercado mexicano de belleza y cuidado personal en USD, según Mordor Intelligence.</div>
+      </div>
+      <div class="opp-cell">
+        <div class="label">Proyección 2029</div>
+        <div class="number">$15.2<sup>B</sup></div>
+        <div class="desc">Crecimiento sostenido del 6.05% CAGR. El consumidor mexicano gasta $215 USD anuales en estos productos.</div>
+      </div>
+      <div class="opp-cell">
+        <div class="label">Marcas analizadas</div>
+        <div class="number">40<sup>/60</sup></div>
+        <div class="desc">De 60 productos analizados en Palacio de Hierro y Sephora, 40 contenían al menos un ingrediente tóxico o cuestionable.</div>
+      </div>
+    </div>
+
+    <div class="trends-row reveal">
+      <h4>3 TENDENCIAS<br>QUE DEFINEN<br>LA DECISIÓN<br>DE COMPRA</h4>
+      <div class="trends-list">
+        <div class="trend-item">
+          <div class="num">i.</div>
+          <p>El consumidor migra a un movimiento de <strong>"menos productos, mejores productos"</strong> — multifuncionales, eficaces, sin exceso.</p>
+        </div>
+        <div class="trend-item">
+          <div class="num">ii.</div>
+          <p>Busca activamente ingredientes específicos: <strong>ácido hialurónico, ceramidas, niacinamida, péptidos, retinol</strong>.</p>
+        </div>
+        <div class="trend-item">
+          <div class="num">iii.</div>
+          <p>Demanda etiquetas <strong>"limpias": vegano, libre de crueldad, libre de químicos</strong>, ingredientes naturales con eficacia comprobada.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 02: WHY TSC -->
+<section id="why">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-num"><span class="num">02</span>POR QUÉ NOSOTROS</div>
+      <h2 class="section-title">No somos una maquila más. Somos un <em>laboratorio</em> con marca propia ya validada en el mercado.</h2>
+    </div>
+
+    <div class="why-grid reveal">
+      <div class="why-card">
+        <div class="tag">→ INGENIERÍA</div>
+        <h3>Biotecnólogos <em>del ITESM</em></h3>
+        <p>Los 3 fundadores son ingenieros en biotecnología graduados del Tec de Monterrey. Cada fórmula se desarrolla desde la interacción molecular de los activos: estabilidad, sinergia, eficacia comprobada. No copiamos formulaciones genéricas — las diseñamos.</p>
+        <div class="footer">→ R&D PROPIO · INVESTIGACIÓN CONSTANTE</div>
+      </div>
+      <div class="why-card">
+        <div class="tag">→ TRACK RECORD</div>
+        <h3>Marca propia <em>en mercado</em></h3>
+        <p>Operamos The Skin Club desde 2021 — nuestra propia línea de skincare que compite directamente con Kiehl's, Clinique, L'Oréal y The Ordinary, ganándoles en formulación y precio. Lo que proponemos para tu talento, ya lo demostramos con nosotros mismos.</p>
+        <div class="footer">→ +18 FÓRMULAS VALIDADAS · 4 AÑOS EN MERCADO</div>
+      </div>
+      <div class="why-card">
+        <div class="tag">→ COMPLIANCE</div>
+        <h3>Permisos <em>COFEPRIS</em></h3>
+        <p>Instalaciones que cumplen NOM-259-SSA1-2022 (Buenas Prácticas de Fabricación), NOM-141-SSA1/SCFI-2012 (Etiquetado) y NOM-089-SSA1-1994 (Contenido microbiano). Te asesoramos en todo el cumplimiento regulatorio para que tu marca pueda venderse legalmente.</p>
+        <div class="footer">→ 3 NOMs · LISTOS PARA RETAIL</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 03: PROOF -->
+<section id="proof">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-num"><span class="num">03</span>LA PRUEBA</div>
+      <h2 class="section-title">No te lo decimos. Te lo <em>demostramos</em>.</h2>
+    </div>
+
+    <p class="proof-intro reveal">Tomamos los productos hero de las marcas de skincare más vendidas en México y los comparamos contra <em>The Skin Club</em> — la marca que nosotros mismos formulamos y vendemos al consumidor final. Mismas categorías, mismos activos, mismos resultados. La diferencia está en el costo por mililitro y en lo que <em>no</em> incluimos en la fórmula.</p>
+
+    <div class="proof-table reveal">
+
+      <!-- HYDROGLOW -->
+      <div class="proof-product">
+        <div class="proof-product-title">CATEGORÍA → SUERO DE ÁCIDO HIALURÓNICO</div>
+        <div class="proof-row tsc">
+          <div>
+            <div class="brand-name">The Skin Club · HydroGlow</div>
+            <div class="product">2 tipos de ác. hialurónico + niacinamida + jojoba · airless</div>
+          </div>
+          <div class="price">$650</div>
+          <div class="per-ml">$21.6 / mL</div>
+          <div class="verdict">★ Fórmula equivalente a $1,800 — al precio de Kiehl's</div>
+        </div>
+        <div class="proof-row">
+          <div>
+            <div class="brand-name">Clinique</div>
+            <div class="product">Suero facial antiedad SMART</div>
+          </div>
+          <div class="price">$1,800</div>
+          <div class="per-ml">$60 / mL</div>
+          <div class="verdict">No publican lista completa de ingredientes</div>
+        </div>
+        <div class="proof-row">
+          <div>
+            <div class="brand-name">Kiehl's</div>
+            <div class="product">Ultra Pure High-Potency Serum 1.5%</div>
+          </div>
+          <div class="price">$650</div>
+          <div class="per-ml">$21.6 / mL</div>
+          <div class="verdict">Sin niacinamida · gotero básico</div>
+        </div>
+        <div class="proof-row">
+          <div>
+            <div class="brand-name">L'Oréal</div>
+            <div class="product">Suero Revitalift</div>
+          </div>
+          <div class="price">$198</div>
+          <div class="per-ml">$7 / mL</div>
+          <div class="verdict">Contiene fenoxietanol + clorfenesina</div>
+        </div>
+      </div>
+
+      <!-- CREMA NOCHE -->
+      <div class="proof-product">
+        <div class="proof-product-title">CATEGORÍA → CREMA DE NOCHE / REGENERADORA</div>
+        <div class="proof-row tsc">
+          <div>
+            <div class="brand-name">The Skin Club · HydroGlow Noche</div>
+            <div class="product">Tetrapéptidos + vigna aconitifolia (= retinol 2.5% sin irritar)</div>
+          </div>
+          <div class="price">$699</div>
+          <div class="per-ml">$13.98 / mL</div>
+          <div class="verdict">★ 5× más barato que Lancôme · activos superiores</div>
+        </div>
+        <div class="proof-row">
+          <div>
+            <div class="brand-name">Lancôme</div>
+            <div class="product">Advanced Génifique Night</div>
+          </div>
+          <div class="price">$2,200</div>
+          <div class="per-ml">$44 / mL</div>
+          <div class="verdict">Buenos activos · presentación lujo</div>
+        </div>
+        <div class="proof-row">
+          <div>
+            <div class="brand-name">Clinique</div>
+            <div class="product">Superdefense Night</div>
+          </div>
+          <div class="price">$1,399</div>
+          <div class="per-ml">$27.98 / mL</div>
+          <div class="verdict">Contiene fenoxietanol</div>
+        </div>
+        <div class="proof-row">
+          <div>
+            <div class="brand-name">Mario Badescu</div>
+            <div class="product">Seaweed Night Cream</div>
+          </div>
+          <div class="price">$374</div>
+          <div class="per-ml">$13.35 / mL</div>
+          <div class="verdict">Parabenos + fenoxietanol + colorantes</div>
+        </div>
+      </div>
+
+      <!-- DERMOLIMPIADOR -->
+      <div class="proof-product">
+        <div class="proof-product-title">CATEGORÍA → DERMOLIMPIADOR FACIAL ESPUMADOR</div>
+        <div class="proof-row tsc">
+          <div>
+            <div class="brand-name">The Skin Club · DeepCleanse</div>
+            <div class="product">3 versiones por tipo de piel · sin sulfatos</div>
+          </div>
+          <div class="price">$359</div>
+          <div class="per-ml">$2.40 / mL</div>
+          <div class="verdict">★ La mitad del precio de Clarins · sin sulfatos</div>
+        </div>
+        <div class="proof-row">
+          <div>
+            <div class="brand-name">Clarins</div>
+            <div class="product">Espuma Limpiadora</div>
+          </div>
+          <div class="price">$700</div>
+          <div class="per-ml">$4.60 / mL</div>
+          <div class="verdict">Buena fórmula · no segmenta por tipo de piel</div>
+        </div>
+        <div class="proof-row">
+          <div>
+            <div class="brand-name">Clinique</div>
+            <div class="product">All About Clean</div>
+          </div>
+          <div class="price">$590</div>
+          <div class="per-ml">$2.95 / mL</div>
+          <div class="verdict">Contiene sulfatos irritantes</div>
+        </div>
+        <div class="proof-row">
+          <div>
+            <div class="brand-name">Mario Badescu</div>
+            <div class="product">Glycolic Foaming Cleanser</div>
+          </div>
+          <div class="price">$449</div>
+          <div class="per-ml">$2.53 / mL</div>
+          <div class="verdict">Sulfatos + fenoxietanol + polímeros</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 04: CALCULATOR -->
+<section id="calc" style="padding: 0; border-bottom: 1px solid var(--ink);">
+  <div class="container" style="padding: 120px 40px 80px;">
+    <div class="section-header reveal">
+      <div class="section-num"><span class="num">04</span>UNIT ECONOMICS</div>
+      <h2 class="section-title">El número que te importa: <em>cuánto deja</em>.</h2>
+    </div>
+  </div>
+
+  <div class="calc-wrapper reveal">
+    <div class="calc-inner">
+      <div class="calc-header">
+        <h3>Calcula <em>el margen real</em><br>de un lanzamiento.</h3>
+        <p>Selecciona un producto del catálogo, ajusta el volumen de producción y el markup que quieras aplicar al precio público. Las cifras se actualizan en tiempo real sobre nuestros precios reales de mayoreo.</p>
+      </div>
+
+      <div class="calc-grid">
+        <div class="calc-controls">
+
+          <div class="calc-field">
+            <label>↳ PRODUCTO</label>
+            <div class="product-select" id="productSelect">
+              <button class="product-pill active" data-name="Suero Vitamina C 30mL" data-cost="60" data-suggested="450">
+                Suero Vitamina C
+                <span class="pill-cost">30 mL · $60 costo</span>
+              </button>
+              <button class="product-pill" data-name="Suero Hialurónico 30mL" data-cost="79" data-suggested="650">
+                Suero Hialurónico
+                <span class="pill-cost">30 mL · $79 costo</span>
+              </button>
+              <button class="product-pill" data-name="Crema Gel Facial 60mL" data-cost="49" data-suggested="425">
+                Crema Gel Facial
+                <span class="pill-cost">60 mL · $49 costo</span>
+              </button>
+              <button class="product-pill" data-name="Crema de Noche 60mL" data-cost="108" data-suggested="699">
+                Crema de Noche
+                <span class="pill-cost">60 mL · $108 costo</span>
+              </button>
+              <button class="product-pill" data-name="Dermolimpiador 150mL" data-cost="47" data-suggested="359">
+                Dermolimpiador
+                <span class="pill-cost">150 mL · $47 costo</span>
+              </button>
+              <button class="product-pill" data-name="Tónico 150mL" data-cost="68" data-suggested="349">
+                Tónico Refrescante
+                <span class="pill-cost">150 mL · $68 costo</span>
+              </button>
+              <button class="product-pill" data-name="Mascarilla Arcilla 60mL" data-cost="32" data-suggested="299">
+                Mascarilla Arcilla
+                <span class="pill-cost">60 mL · $32 costo</span>
+              </button>
+              <button class="product-pill" data-name="Bálsamo Barba 30mL" data-cost="44" data-suggested="349">
+                Bálsamo de Barba
+                <span class="pill-cost">30 mL · $44 costo</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="calc-field">
+            <label>↳ VOLUMEN DE PRODUCCIÓN <span class="val" id="volVal">1,000 unidades</span></label>
+            <input type="range" id="volume" min="400" max="10000" value="1000" step="100">
+          </div>
+
+          <div class="calc-field">
+            <label>↳ PRECIO PÚBLICO SUGERIDO <span class="val" id="priceVal">$450 MXN</span></label>
+            <input type="range" id="price" min="100" max="1500" value="450" step="10">
+          </div>
+
+        </div>
+
+        <div class="calc-output">
+          <div class="calc-line">
+            <div class="label">Producto</div>
+            <div class="value" id="outProduct" style="font-size:16px;">Suero Vitamina C 30mL</div>
+          </div>
+          <div class="calc-line">
+            <div class="label">Inversión total</div>
+            <div class="value" id="outInvest">$60,000</div>
+          </div>
+          <div class="calc-line">
+            <div class="label">Ingreso bruto potencial</div>
+            <div class="value" id="outRevenue">$450,000</div>
+          </div>
+          <div class="calc-line">
+            <div class="label">Utilidad bruta</div>
+            <div class="value" id="outProfit">$390,000</div>
+          </div>
+          <div class="calc-line highlight">
+            <div class="label">Margen bruto</div>
+            <div class="value" id="outMargin">86.7%</div>
+          </div>
+        </div>
+      </div>
+
+      <p class="calc-disclaimer">
+        Cálculo de unit economics referencial sobre precios reales de mayoreo TSC LABS (+400 piezas). No incluye costos de envase personalizado, etiqueta, branding, marketing ni distribución. Los costos finales se confirman tras la reunión de scoping. Disponemos de tarifas escalonadas adicionales por kilo para volúmenes superiores.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 05: CATALOG -->
+<section id="catalog">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-num"><span class="num">05</span>CATÁLOGO BASE</div>
+      <h2 class="section-title">+18 fórmulas <em>ya validadas</em> — listas para etiquetar con tu marca, o reformular a la medida.</h2>
+    </div>
+
+    <div class="catalog-grid reveal">
+      <div class="cat-item">
+        <div class="cat-num">№ 01</div>
+        <h4>Espuma Dermolimpiadora</h4>
+        <div class="cat-variants">3 versiones · piel grasa / normal / seca</div>
+        <div class="cat-actives">ácido salicílico · árbol de té · pantenol · centella asiática · niacinamida · urea</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-num">№ 02</div>
+        <h4>Tónico Refrescante</h4>
+        <div class="cat-variants">3 versiones · sin alcohol</div>
+        <div class="cat-actives">agua de hamamelis · hidrolato de arroz · sodium PCA · niacinamida</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-num">№ 03</div>
+        <h4>Suero Ultra Hidratante</h4>
+        <div class="cat-variants">todo tipo de piel · 30mL airless</div>
+        <div class="cat-actives">ácido hialurónico · hialuronato de sodio · niacinamida · jojoba</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-num">№ 04</div>
+        <h4>Crema Gel Facial</h4>
+        <div class="cat-variants">5 versiones · día / noche / reparadora</div>
+        <div class="cat-actives">ceramidas III · tetrapéptidos · ácido glicólico · vigna aconitifolia · vit. E</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-num">№ 05</div>
+        <h4>Suero de Vitamina C</h4>
+        <div class="cat-variants">todo tipo de piel · estabilizado</div>
+        <div class="cat-actives">ascorbil fosfato de sodio · ác. hialurónico · activo BASF Vita-A</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-num">№ 06</div>
+        <h4>Mascarillas de Arcilla</h4>
+        <div class="cat-variants">3 versiones · matcha / carbón / aloe</div>
+        <div class="cat-actives">arcilla · árbol de té · ácido mandélico · carbón activado · marula</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-num">№ 07</div>
+        <h4>Contorno de Ojos</h4>
+        <div class="cat-variants">2 texturas · crema gel / suero</div>
+        <div class="cat-actives">cafeína · laminaria digitata · ác. hialurónico · silicio orgánico · pepino</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-num">№ 08</div>
+        <h4>Crema Corporal</h4>
+        <div class="cat-variants">todo tipo de piel · 250mL</div>
+        <div class="cat-actives">manteca de karité · semilla de uva · urea</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-num">№ 09</div>
+        <h4>Desmaquillante Bifásico</h4>
+        <div class="cat-variants">todo tipo de piel · 100mL</div>
+        <div class="cat-actives">agua de rosas · pantenol · rosa mosqueta · isododecano</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-num">№ 10</div>
+        <h4>Jabón Facial Líquido</h4>
+        <div class="cat-variants">piel grasa · 120mL</div>
+        <div class="cat-actives">ácido glicólico · agua de hamamelis · vit. E · alantoína · pantenol</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-num">№ 11</div>
+        <h4>Bálsamo Crecimiento Barba</h4>
+        <div class="cat-variants">línea masculina · 30mL</div>
+        <div class="cat-actives">minoxidil · cafeína anhidra · centella asiática · romero</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-num">№ 12</div>
+        <h4>Reformulación a medida</h4>
+        <div class="cat-variants">tu fórmula · 100% confidencial</div>
+        <div class="cat-actives">→ diseñamos desde cero según el brief de tu talento e investigación R&D</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 06: BLACKLIST -->
+<section id="blacklist">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-num"><span class="num">06</span>LO QUE <em>NO</em> USAMOS</div>
+      <h2 class="section-title">La diferencia <em>no</em> está en lo que añadimos. Está en lo que <em>nos negamos</em> a poner.</h2>
+    </div>
+
+    <p class="blacklist-intro reveal">Las grandes marcas siguen usando ingredientes baratos asociados a alergias, disrupción hormonal y daño ambiental — solo porque <em>reducen el costo de fabricación</em>. Nosotros sustituimos cada uno por alternativas que pueden ser hasta 10× más caras, sin negociarlo.</p>
+
+    <div class="blacklist-table reveal">
+      <div class="bl-row head">
+        <div>↳ INGREDIENTE TÓXICO</div>
+        <div>↳ FUNCIÓN</div>
+        <div>↳ NUESTRA ALTERNATIVA</div>
+      </div>
+      <div class="bl-row">
+        <div class="bl-bad">Parabenos</div>
+        <div class="bl-use">Conservador</div>
+        <div class="bl-good">Sorbato de potasio · alcohol bencílico</div>
+      </div>
+      <div class="bl-row">
+        <div class="bl-bad">Lauret sulfato de sodio</div>
+        <div class="bl-use">Agente espumante</div>
+        <div class="bl-good">Sulfoacetato de sodio (10× más caro)</div>
+      </div>
+      <div class="bl-row">
+        <div class="bl-bad">Ciclopentasiloxano · Dimeticonas</div>
+        <div class="bl-use">Viscosidad y textura</div>
+        <div class="bl-good">Capril caprilato triglicer · gomas naturales · hialurónico</div>
+      </div>
+      <div class="bl-row">
+        <div class="bl-bad">Fragancias sintéticas</div>
+        <div class="bl-use">Olor</div>
+        <div class="bl-good">Extractos naturales funcionales</div>
+      </div>
+      <div class="bl-row">
+        <div class="bl-bad">Fenoxietanol · Clorfenesina</div>
+        <div class="bl-use">Conservador agresivo</div>
+        <div class="bl-good">Sistemas conservantes ECOCERT compatibles</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 07: SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-num"><span class="num">07</span>MODELOS DE COLABORACIÓN</div>
+      <h2 class="section-title">Cuatro caminos para construir <em>la marca</em> de tu talento.</h2>
+    </div>
+
+    <div class="services-list reveal">
+      <div class="svc">
+        <div class="svc-num">01 →</div>
+        <div class="svc-title"><em>Marca</em> Blanca</div>
+        <div class="svc-desc">Eliges productos directamente de nuestro catálogo de fórmulas validadas y los envasamos con tu marca. El camino más rápido al mercado: arrancas con fórmulas que ya sabemos que funcionan.</div>
+        <div class="svc-best"><span class="label">Ideal para</span><span class="who">Talentos que quieren lanzar rápido y validar mercado</span></div>
+      </div>
+      <div class="svc">
+        <div class="svc-num">02 →</div>
+        <div class="svc-title"><em>Formulación</em> a medida</div>
+        <div class="svc-desc">Diseñamos desde cero la fórmula exacta que tu talento necesita: textura, activos, claims, tipo de piel. Investigación, prototipado, iteración hasta llegar al producto perfecto. La fórmula te pertenece.</div>
+        <div class="svc-best"><span class="label">Ideal para</span><span class="who">Talentos con concept claro o necesidades únicas</span></div>
+      </div>
+      <div class="svc">
+        <div class="svc-num">03 →</div>
+        <div class="svc-title"><em>Maquila</em> exclusiva</div>
+        <div class="svc-desc">Ya tienes la fórmula (propia o de un químico previo) y necesitas producirla con calidad y escala. Fabricamos respetando confidencialidad total y manteniendo nuestros estándares de calidad.</div>
+        <div class="svc-best"><span class="label">Ideal para</span><span class="who">Marcas con IP propia que necesitan capacidad de producción</span></div>
+      </div>
+      <div class="svc">
+        <div class="svc-num">04 →</div>
+        <div class="svc-title"><em>Envasado</em> integral</div>
+        <div class="svc-desc">Te apoyamos en la búsqueda y selección de envases primarios, secundarios, etiquetas, cumplimiento NOM-141 — todo el proceso para que el producto salga listo para vender en retail o e-commerce.</div>
+        <div class="svc-best"><span class="label">Ideal para</span><span class="who">Marcas que requieren acompañamiento end-to-end</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 08: PROCESS -->
+<section id="process">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-num"><span class="num">08</span>EL PROCESO</div>
+      <h2 class="section-title">De primera reunión a <em>producto en almacén</em>.</h2>
+    </div>
+
+    <div class="process reveal">
+      <div class="proc-step">
+        <div class="week">SEMANA 01</div>
+        <div class="num">i</div>
+        <h5>Reunión inicial</h5>
+        <p>Brief del talento, posicionamiento, audiencia, objetivos comerciales, presupuesto y timing de lanzamiento.</p>
+      </div>
+      <div class="proc-step">
+        <div class="week">SEMANA 01—03</div>
+        <div class="num">ii</div>
+        <h5>Investigación</h5>
+        <p>Análisis de mercado y competencia. Propuesta de fórmula con activos, costos de producción y volúmenes recomendados.</p>
+      </div>
+      <div class="proc-step">
+        <div class="week">SEMANA 03—07</div>
+        <div class="num">iii</div>
+        <h5>Prototipado</h5>
+        <p>Entregamos muestras físicas. Iteramos textura, aroma, sensoriales y eficacia hasta tu visto bueno.</p>
+      </div>
+      <div class="proc-step">
+        <div class="week">SEMANA 07—10</div>
+        <div class="num">iv</div>
+        <h5>Producción</h5>
+        <p>Fabricación en lote, control de calidad, envasado con tu marca, etiquetado bajo cumplimiento NOM.</p>
+      </div>
+      <div class="proc-step">
+        <div class="week">SEMANA 10—12</div>
+        <div class="num">v</div>
+        <h5>Entrega</h5>
+        <p>Producto terminado en almacén o destino final. Soporte para futuras reposiciones y ampliación de catálogo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 09: TEAM -->
+<section id="team">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-num"><span class="num">09</span>EL EQUIPO</div>
+      <h2 class="section-title">Tres ingenieros. Una <em>obsesión</em> por la formulación honesta.</h2>
+    </div>
+
+    <div class="team-grid reveal">
+      <div class="team-card">
+        <div class="role">COFUNDADORA</div>
+        <h4>Kaori Fonseca</h4>
+        <div class="credentials">Ingeniera en Biotecnología por el ITESM. Cofundó The Skin Club en 2021 con el objetivo de demostrar que el skincare honesto y científico podía competir con las grandes marcas internacionales en México.</div>
+      </div>
+      <div class="team-card">
+        <div class="role">COFUNDADORA</div>
+        <h4>Natalia Carrillo</h4>
+        <div class="credentials">Ingeniera en Biotecnología por el ITESM. Lidera la investigación de activos y el desarrollo de nuevas formulaciones a partir de combinaciones naturales con eficacia comprobada.</div>
+      </div>
+      <div class="team-card">
+        <div class="role">COFUNDADOR</div>
+        <h4>Diego Nuño</h4>
+        <div class="credentials">Ingeniero en Biotecnología por el ITESM. Responsable del cumplimiento regulatorio, escalado de producción y relaciones con proveedores de materias primas certificadas.</div>
+      </div>
+    </div>
+
+    <div class="creds-bar reveal">
+      <div><strong>2021</strong>AÑO DE FUNDACIÓN</div>
+      <div><strong>ITESM</strong>FORMACIÓN TÉCNICA</div>
+      <div><strong>COFEPRIS</strong>CUMPLIMIENTO</div>
+      <div><strong>NOM-259</strong>BUENAS PRÁCTICAS</div>
+      <div><strong>+18</strong>FÓRMULAS PROPIAS</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="cta-inner">
+    <div class="cta-eyebrow reveal">SIGUIENTE PASO →</div>
+    <h2 class="reveal">Agenda una reunión.<br>Lleguemos al <em>brief</em><br>de tu talento.</h2>
+    <div class="cta-channels reveal">
+      <a href="tel:+523333016642" class="channel">
+        <div class="ch-label">→ TELÉFONO DIRECTO</div>
+        <div class="ch-value">33 3301 6642</div>
+      </a>
+      <a href="https://wa.me/523311438587" class="channel" target="_blank" rel="noopener">
+        <div class="ch-label">→ WHATSAPP</div>
+        <div class="ch-value">33 1143 8587</div>
+      </a>
+      <a href="mailto:contacto@theskinclub.mx" class="channel">
+        <div class="ch-label">→ EMAIL</div>
+        <div class="ch-value">contacto@theskinclub.mx</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="left">TSC LABS · BOCANA 2692 · ZAPOPAN, JALISCO · MÉXICO</div>
+  <div class="right">DOSSIER № TSC-2026/01 · CONFIDENCIAL</div>
+</footer>
+
+<script>
+// ============ CALCULATOR ============
+const pills = document.querySelectorAll('.product-pill');
+const volSlider = document.getElementById('volume');
+const priceSlider = document.getElementById('price');
+const volVal = document.getElementById('volVal');
+const priceVal = document.getElementById('priceVal');
+const outProduct = document.getElementById('outProduct');
+const outInvest = document.getElementById('outInvest');
+const outRevenue = document.getElementById('outRevenue');
+const outProfit = document.getElementById('outProfit');
+const outMargin = document.getElementById('outMargin');
+
+let currentCost = 60;
+let currentName = 'Suero Vitamina C 30mL';
+
+function fmt(n) {
+  return '$' + Math.round(n).toLocaleString('en-US');
+}
+
+function recalc() {
+  const vol = parseInt(volSlider.value);
+  const price = parseInt(priceSlider.value);
+  const invest = vol * currentCost;
+  const revenue = vol * price;
+  const profit = revenue - invest;
+  const margin = revenue > 0 ? (profit / revenue) * 100 : 0;
+
+  volVal.textContent = vol.toLocaleString('en-US') + ' unidades';
+  priceVal.textContent = '$' + price + ' MXN';
+  outProduct.textContent = currentName;
+  outInvest.textContent = fmt(invest);
+  outRevenue.textContent = fmt(revenue);
+  outProfit.textContent = fmt(profit);
+  outMargin.textContent = margin.toFixed(1) + '%';
+}
+
+pills.forEach(pill => {
+  pill.addEventListener('click', () => {
+    pills.forEach(p => p.classList.remove('active'));
+    pill.classList.add('active');
+    currentCost = parseFloat(pill.dataset.cost);
+    currentName = pill.dataset.name;
+    const suggested = parseInt(pill.dataset.suggested);
+    priceSlider.value = suggested;
+    recalc();
+  });
+});
+
+volSlider.addEventListener('input', recalc);
+priceSlider.addEventListener('input', recalc);
+recalc();
+
+// ============ REVEAL ON SCROLL ============
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
