@@ -85,13 +85,16 @@ body::before {
 }
 
 .topbar-logo {
-  font-family: 'Fraunces', serif;
-  font-weight: 700;
-  font-size: 18px;
-  letter-spacing: -0.02em;
+  font-family: 'Inter', -apple-system, system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  letter-spacing: -0.05em;
   text-transform: none;
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
 }
-.topbar-logo span { color: var(--rust); }
+.topbar-logo strong { font-weight: 900; letter-spacing: -0.06em; }
 
 .topbar-meta { display: flex; gap: 32px; align-items: center; }
 .topbar-meta .dot {
@@ -480,6 +483,18 @@ section {
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
+.why-card-link {
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  cursor: pointer;
+}
+.why-card-link:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px -12px rgba(58, 28, 18, 0.18);
+  border-color: var(--rust);
+}
+.why-card-link .footer { color: var(--rust); }
 
 @media (max-width: 900px) {
   .why-grid { grid-template-columns: 1fr; }
@@ -1471,7 +1486,7 @@ footer .right { color: var(--rust); }
 
 <!-- TOP BAR -->
 <div class="topbar">
-  <div class="topbar-logo">TSC<span>·</span>LABS</div>
+  <div class="topbar-logo"><strong>TSC</strong>LABS</div>
   <div class="topbar-meta">
     <span class="meta-hide"><span class="dot"></span>DOSSIER ABIERTO</span>
     <span>ZAPOPAN / MX</span>
@@ -1585,12 +1600,12 @@ footer .right { color: var(--rust); }
         <p>Los 3 fundadores son ingenieros en biotecnología graduados del Tec de Monterrey. Cada fórmula se desarrolla desde la interacción molecular de los activos: estabilidad, sinergia, eficacia comprobada. No copiamos formulaciones genéricas — las diseñamos.</p>
         <div class="footer">→ R&D PROPIO · INVESTIGACIÓN CONSTANTE</div>
       </div>
-      <div class="why-card">
+      <a class="why-card why-card-link" href="#" target="_blank" rel="noopener" data-skinclub>
         <div class="tag">→ TRACK RECORD</div>
         <h3>Marca propia <em>en mercado</em></h3>
         <p>Operamos The Skin Club desde 2021 — nuestra propia línea de skincare que compite directamente con Kiehl's, Clinique, L'Oréal y The Ordinary, ganándoles en formulación y precio. Lo que proponemos para tu talento, ya lo demostramos con nosotros mismos.</p>
-        <div class="footer">→ +18 FÓRMULAS VALIDADAS · 4 AÑOS EN MERCADO</div>
-      </div>
+        <div class="footer">→ VER ECOMMERCE THE SKIN CLUB</div>
+      </a>
       <div class="why-card">
         <div class="tag">→ COMPLIANCE</div>
         <h3>Permisos <em>COFEPRIS</em></h3>
@@ -1609,7 +1624,7 @@ footer .right { color: var(--rust); }
       <h2 class="section-title">No te lo decimos. Te lo <em>demostramos</em>.</h2>
     </div>
 
-    <p class="proof-intro reveal">Tomamos los productos hero de las marcas de skincare más vendidas en México y los comparamos contra <em>The Skin Club</em> — la marca que nosotros mismos formulamos y vendemos al consumidor final. Mismas categorías, mismos activos, mismos resultados. La diferencia está en el costo por mililitro y en lo que <em>no</em> incluimos en la fórmula.</p>
+    <p class="proof-intro reveal">Tomamos los productos estrella de las marcas de skincare más vendidas en México y los comparamos contra <em>The Skin Club</em> — la marca que nosotros mismos formulamos y vendemos al consumidor final. Mismas categorías, mismos activos, mismos resultados. La diferencia está en el costo por mililitro y en lo que <em>no</em> incluimos en la fórmula.</p>
 
     <div class="proof-table reveal">
 
@@ -1929,7 +1944,7 @@ footer .right { color: var(--rust); }
       <h2 class="section-title">La diferencia <em>no</em> está en lo que añadimos. Está en lo que <em>nos negamos</em> a poner.</h2>
     </div>
 
-    <p class="blacklist-intro reveal">Las grandes marcas siguen usando ingredientes baratos asociados a alergias, disrupción hormonal y daño ambiental — solo porque <em>reducen el costo de fabricación</em>. Nosotros sustituimos cada uno por alternativas que pueden ser hasta 10× más caras, sin negociarlo.</p>
+    <p class="blacklist-intro reveal">Las grandes marcas siguen usando ingredientes baratos asociados a alergias, disrupción hormonal y daño ambiental — solo porque <em>reducen el costo de fabricación</em>. Nosotros los sustituimos por alternativas más seguras, sin negociar la calidad de la fórmula.</p>
 
     <div class="blacklist-table reveal">
       <div class="bl-row head">
@@ -1945,7 +1960,7 @@ footer .right { color: var(--rust); }
       <div class="bl-row">
         <div class="bl-bad">Lauret sulfato de sodio</div>
         <div class="bl-use">Agente espumante</div>
-        <div class="bl-good">Sulfoacetato de sodio (10× más caro)</div>
+        <div class="bl-good">Sulfoacetato de sodio</div>
       </div>
       <div class="bl-row">
         <div class="bl-bad">Ciclopentasiloxano · Dimeticonas</div>
@@ -1984,7 +1999,7 @@ footer .right { color: var(--rust); }
       <div class="svc">
         <div class="svc-num">02 →</div>
         <div class="svc-title"><em>Formulación</em> a medida</div>
-        <div class="svc-desc">Diseñamos desde cero la fórmula exacta que tu talento necesita: textura, activos, claims, tipo de piel. Investigación, prototipado, iteración hasta llegar al producto perfecto. La fórmula te pertenece.</div>
+        <div class="svc-desc">Diseñamos desde cero la fórmula exacta que tu talento necesita: textura, activos, claims, tipo de piel. Investigación, prototipado, iteración hasta llegar al producto perfecto.</div>
         <div class="svc-best"><span class="label">Ideal para</span><span class="who">Talentos con concept claro o necesidades únicas</span></div>
       </div>
       <div class="svc">
@@ -2092,9 +2107,9 @@ footer .right { color: var(--rust); }
         <div class="ch-label">→ TELÉFONO DIRECTO</div>
         <div class="ch-value">33 3301 6642</div>
       </a>
-      <a href="https://wa.me/523311438587" class="channel" target="_blank" rel="noopener">
+      <a href="https://wa.me/523333016642" class="channel" target="_blank" rel="noopener">
         <div class="ch-label">→ WHATSAPP</div>
-        <div class="ch-value">33 1143 8587</div>
+        <div class="ch-value">33 3301 6642</div>
       </a>
       <a href="mailto:contacto@theskinclub.mx" class="channel">
         <div class="ch-label">→ EMAIL</div>
