@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#f6f1e7">
-<title>TSC LABS — Dossier para management de talento</title>
-<meta name="description" content="Skincare formulado en México por biotecnólogos del ITESM. Listo para etiquetarse con la marca de tu próximo lanzamiento, o para diseñarse desde cero según el brief de tu talento.">
+<title>TSC LABS — Dossier comercial para figuras con audiencia</title>
+<meta name="description" content="TSC Labs formula, produce, envasa y documenta skincare bajo la marca de una figura: desde fórmula validada hasta desarrollo desde cero.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -113,6 +113,37 @@ em.disp {
 }
 
 a { color: inherit; text-decoration: none; }
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 26px;
+  flex-wrap: wrap;
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 42px;
+  padding: 12px 18px 11px;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--mono);
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition: transform 0.24s ease, background 0.24s ease, color 0.24s ease;
+}
+
+.hero-cta:hover {
+  transform: translateY(-2px);
+  background: var(--rust);
+  border-color: var(--rust);
+}
 
 /* ============ LAYOUT GRID ============ */
 .container {
@@ -3306,12 +3337,6 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
 </head>
 
 <body class="v2-mode">
-<div style="position:fixed;bottom:22px;right:22px;z-index:9998;display:flex;gap:6px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;">
-  <a href="/" style="background:#8b3a1f;color:#fff;padding:8px 12px;text-decoration:none;border-radius:999px;">V1</a>
-  <span style="background:#0c0c0d;color:#fff;padding:8px 12px;border-radius:999px;">V2 SLATE</span>
-  <a href="/v3/" style="background:#4f3fbd;color:#fff;padding:8px 12px;text-decoration:none;border-radius:999px;">V3</a>
-  <a href="/v4/" style="background:#d4537a;color:#fff;padding:8px 12px;text-decoration:none;border-radius:999px;">V4</a>
-</div>
 
 <!-- ============ TOPBAR ============ -->
 <header class="topbar">
@@ -3340,7 +3365,7 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
   <div class="hero-eyebrow">
     <span class="seg active">DOSSIER № 01</span>
     <span class="seg">·</span>
-    <span class="seg">DOSSIER PARA MANAGEMENT DE TALENTO</span>
+    <span class="seg">DOSSIER PARA MANAGEMENT COMERCIAL</span>
   </div>
 
   <div class="hero-grid">
@@ -3357,15 +3382,19 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
       </svg>
 
       <h1 class="hero-title">
-        Una nueva<br>
-        categoría de negocio<br>
-        <em>para los talentos</em><br>
-        <em>que ya representas.</em>
+        Convierte<br>
+        una audiencia<br>
+        <em>en skincare</em><br>
+        <em>listo para vender.</em>
       </h1>
 
       <p class="hero-abstract">
-        <span class="first-letter">S</span>kincare formulado en México por biotecnólogos del ITESM. Listo para etiquetarse con la marca de tu próximo lanzamiento, o para diseñarse desde cero según el brief de tu talento. Con la investigación, los activos, la regulación y la producción cubiertas por nosotros.
+        <span class="first-letter">S</span>kincare formulado y producido en México por biotecnólogos del ITESM. TSC Labs desarrolla la fórmula, produce, envasa, etiqueta y documenta el producto bajo la marca de la figura: desde una fórmula validada hasta un desarrollo desde cero según brief, canal y ticket objetivo.
       </p>
+
+      <div class="hero-actions">
+        <a class="hero-cta" href="#contact">Explorar primer lanzamiento →</a>
+      </div>
 
       <div class="hero-meta-row">
         <div><span class="key">DESTINATARIO</span> <span class="val">DIRECCIÓN COMERCIAL</span></div>
@@ -3407,7 +3436,7 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
         <div class="cyl-text">
           <div class="cyl-figure"><span class="counter" data-target="17.6" data-decimals="1" data-prefix="$">$0.0</span><span class="unit">B</span></div>
           <div>
-            <div class="cyl-label">Mercado mexicano de belleza y cuidado personal — proyección 2026 (USD)</div>
+            <div class="cyl-label">Mercado mexicano de belleza 2026: suficiente tamaño para lanzar por venta directa antes de escalar a retail.</div>
             <div class="cyl-source">FUENTE / MORDOR INTELLIGENCE</div>
           </div>
         </div>
@@ -3449,7 +3478,7 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
         <div class="cyl-text">
           <div class="cyl-figure"><span class="counter" data-target="2.7" data-decimals="1" data-prefix="$">$0.0</span><span class="unit">B</span></div>
           <div>
-            <div class="cyl-label">Valuación 2025 de Rare Beauty · Rhode vendió a e.l.f. por $1B</div>
+            <div class="cyl-label">Rare Beauty y Rhode prueban el upside: producto propio puede valer más que años de deals.</div>
             <div class="cyl-source">FUENTE / BEAUTY INDUSTRY REPORTS</div>
           </div>
         </div>
@@ -3491,7 +3520,7 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
         <div class="cyl-text">
           <div class="cyl-figure"><span class="counter" data-target="57.8" data-decimals="1" data-prefix="+">+0.0</span><span class="unit">%</span></div>
           <div>
-            <div class="cyl-label">Crecimiento anual de marcas celebrity-led vs +11% del mercado general</div>
+            <div class="cyl-label">Las marcas con figura detrás crecen más rápido cuando la fórmula sostiene la promesa.</div>
             <div class="cyl-source">FUENTE / BEAUTY INDUSTRY REPORTS</div>
           </div>
         </div>
@@ -3540,15 +3569,15 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
         <span class="sub">Nueva categoría de ingreso</span>
       </div>
       <div>
-        <h2 class="section-title">Una <em>nueva categoría</em> de ingreso para tu agencia y para tus talentos.</h2>
+        <h2 class="section-title">Una <em>nueva categoría</em> de ingreso para figuras con audiencia propia.</h2>
       </div>
     </div>
 
     <div class="deck-split reveal">
       <div class="deck-copy">
-        <p>Los talentos que ya representas tienen acceso a una audiencia, una estética y una credibilidad que las grandes marcas pagan millones por construir desde cero. Esa misma credibilidad — la que tú ayudaste a construir con cada deal y cada decisión de carrera — puede convertirse en una marca propia.</p>
+        <p>Las figuras que ya representas tienen acceso a una audiencia, una estética y una credibilidad que las grandes marcas pagan millones por construir desde cero. Esa misma credibilidad — la que tú ayudaste a construir con cada deal y cada decisión de carrera — puede convertirse en una marca propia.</p>
         <p><strong>Rhode</strong> se vendió a e.l.f. por mil millones de dólares en 2025. <strong>Rare Beauty</strong> está valuada en $2.7 mil millones. <strong>Fenty</strong> redefinió Sephora. Las marcas celebrity-led crecen seis veces más rápido que el mercado general.</p>
-        <p>Lo que esos casos comprobaron es que <em>cuando un talento es dueño de la marca</em>, el upside ya no se compara con un brand deal puntual. Y la conversación con su audiencia cambia: deja de ser embajadora pagada y se vuelve fundadora.</p>
+        <p>Lo que esos casos comprobaron es que <em>cuando una figura es dueña de la marca</em>, el upside ya no se compara con un brand deal puntual. Y la conversación con su audiencia cambia: deja de ser embajadora pagada y se vuelve fundadora.</p>
       </div>
       <div>
         <div class="deck-stat-grid" style="margin-top:0; grid-template-columns:1fr;">
@@ -3586,7 +3615,7 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
       <div class="why-card">
         <div class="why-num">→ DISTRIBUCIÓN</div>
         <h3>TikTok Shop <em>aterrizó</em> en México.</h3>
-        <p>Lanzó en 2025. Convirtió a Sarelly Sarelly y Aora en casos virales. e.l.f. comprobó que el contenido en español con creators mexicanos convierte 22% mejor que las versiones traducidas del inglés. Una marca diseñada y formulada en MX, con un talento mexicano detrás, no compite contra L'Oréal: <em>la jerarquía cambió</em>.</p>
+        <p>Lanzó en 2025. Convirtió a Sarelly Sarelly y Aora en casos virales. e.l.f. comprobó que el contenido en español con creators mexicanos convierte 22% mejor que las versiones traducidas del inglés. Una marca diseñada y formulada en MX, con una figura mexicana detrás, no compite contra L'Oréal: <em>la jerarquía cambió</em>.</p>
         <div class="foot">→ FUENTE: MERCA20, BOF MEXICO REPORT 2025</div>
       </div>
       <div class="why-card">
@@ -3613,7 +3642,7 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
       </div>
     </div>
 
-    <p class="proof-deck reveal">Cada una de estas marcas existe porque un talento tuvo detrás un equipo de formulación capaz de convertir demanda en producto. La diferencia entre las que valen miles de millones y las que cerraron no fue la fama — fue la <em>calidad de la formulación</em> y el momento del lanzamiento. Este es el patrón que estamos replicando para el mercado mexicano.</p>
+    <p class="proof-deck reveal">Cada una de estas marcas existe porque una figura tuvo detrás un equipo de formulación capaz de convertir demanda en producto. La diferencia entre las que valen miles de millones y las que cerraron no fue la fama — fue la <em>calidad de la formulación</em> y el momento del lanzamiento. Este es el patrón que estamos replicando para el mercado mexicano.</p>
 
     <div class="proof-tbl case-table reveal">
       <div class="cat-head"><div>↳ Marca / Fundadora</div><div>↳ Año</div><div>↳ Status 2026</div><div>↳ Aprendizaje</div></div>
@@ -3624,7 +3653,7 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
       <div class="tbl-row"><div><div class="brand">Gxve Beauty</div><div class="case-founder">Gwen Stefani</div></div><div class="price">2022</div><div class="case-value">Cerrada</div><div class="verdict">Cerrada en 2025. Producto sin claims defendibles. Lanzamiento agresivo sin substance — el mercado ya no perdona eso.</div></div>
     </div>
 
-    <p class="proof-deck reveal" style="margin-top:40px;"><em>Las marcas que ganan</em> tienen un laboratorio detrás que puede defender cada fórmula. Un talento + una audiencia + un buen laboratorio es la combinación reproducible. Lo único que México no ha tenido hasta ahora es esa pieza del laboratorio operando bajo los más altos estándares de la normativa mexicana, con enfoque en clean beauty. Eso es lo que → TSC LABS APORTA.</p>
+    <p class="proof-deck reveal" style="margin-top:40px;"><em>Las marcas que ganan</em> tienen un laboratorio detrás que puede defender cada fórmula. Una figura + una audiencia + un buen laboratorio es la combinación reproducible. Lo único que México no ha tenido hasta ahora es esa pieza del laboratorio operando bajo los más altos estándares de la normativa mexicana, con enfoque en clean beauty. Eso es lo que → TSC LABS APORTA.</p>
   </div>
 </section>
 
@@ -3658,7 +3687,7 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
         <div class="why-num">№ 02 · TRACK RECORD</div>
         <h3>Marca propia <em>en mercado</em></h3>
         <p>
-          Operamos The Skin Club desde 2021 — nuestra propia línea de skincare que compite directamente con Kiehl&apos;s, Clinique, L&apos;Oréal y The Ordinary, ganándoles en formulación y precio. <strong>Lo que proponemos para tu talento, ya lo demostramos con nosotros mismos.</strong> No es teoría: es producto que se vende cada día.
+          Operamos The Skin Club desde 2021 — nuestra propia línea de skincare que compite directamente con Kiehl&apos;s, Clinique, L&apos;Oréal y The Ordinary, ganándoles en formulación y precio. <strong>Lo que proponemos para una figura, ya lo demostramos con nosotros mismos.</strong> No es teoría: es producto que se vende cada día.
         </p>
         <div class="foot">→ VER ECOMMERCE THE SKIN CLUB</div>
       </a>
@@ -3695,7 +3724,7 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
       </div>
     </div>
 
-    <p class="proof-deck reveal">Tomamos los productos estrella de las marcas más vendidas en México y los comparamos contra <strong>The Skin Club</strong> — la marca que nosotros mismos formulamos y vendemos al consumidor final. Mismas categorías. Mismos activos. Mejores resultados. <em>Esta es la calidad de fórmula que vamos a poder hacer para tu talento.</em></p>
+    <p class="proof-deck reveal">Tomamos los productos estrella de las marcas más vendidas en México y los comparamos contra <strong>The Skin Club</strong> — la marca que nosotros mismos formulamos y vendemos al consumidor final. Mismas categorías. Mismos activos. Mejores resultados. <em>Esta es la calidad de fórmula que podemos hacer para una figura con audiencia.</em></p>
 
     <div class="proof-tbl reveal">
 
@@ -4076,7 +4105,7 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
         <div class="cat-num">№ 12</div>
         <h4>Reformulación a medida</h4>
         <div class="cat-variants">tu fórmula · 100% confidencial</div>
-        <div class="cat-actives">→ diseñamos desde cero según el brief de tu talento e investigación R&amp;D</div>
+        <div class="cat-actives">→ diseñamos desde cero según el brief de la figura e investigación R&amp;D</div>
       </div>
     </div>
   </div>
@@ -4096,7 +4125,7 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
       </div>
     </div>
 
-    <p class="blacklist-deck reveal">Las grandes marcas siguen usando ingredientes baratos asociados a alergias, disrupción hormonal y daño ambiental — solo porque <em>reducen el costo de fabricación</em>. Nosotros los sustituimos por alternativas más seguras y defendibles, sin negociar la calidad. Esto es lo que protege a tu talento de un escándalo de reputación a futuro.</p>
+    <p class="blacklist-deck reveal">Las grandes marcas siguen usando ingredientes baratos asociados a alergias, disrupción hormonal y daño ambiental — solo porque <em>reducen el costo de fabricación</em>. Nosotros los sustituimos por alternativas más seguras y defendibles, sin negociar la calidad. Esto es lo que protege a la figura de un escándalo de reputación a futuro.</p>
 
     <div class="periodic reveal">
 
@@ -4230,7 +4259,7 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
         <span class="sub">Modelos de colaboración</span>
       </div>
       <div>
-        <h2 class="section-title">Cuatro caminos para construir <em>la marca</em> de tu talento.</h2>
+        <h2 class="section-title">Cuatro caminos para construir <em>la marca</em> de una figura.</h2>
       </div>
     </div>
 
@@ -4240,8 +4269,8 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
         <div class="svc-num">01</div>
         <div class="svc-body">
           <h4><em>Marca</em> Blanca</h4>
-          <p>Eliges productos directamente de nuestro catálogo de fórmulas validadas y los envasamos con la marca del talento. El camino más rápido al mercado: arrancas con fórmulas que ya sabemos que funcionan.</p>
-          <div class="ideal"><strong>IDEAL PARA →</strong><span class="who">Talentos que quieren validar mercado en 90 días</span></div>
+          <p>Eliges productos directamente de nuestro catálogo de fórmulas validadas y los envasamos con la marca de la figura. El camino más rápido al mercado: arrancas con fórmulas que ya sabemos que funcionan.</p>
+          <div class="ideal"><strong>IDEAL PARA →</strong><span class="who">Figuras que quieren validar mercado en 90 días</span></div>
         </div>
       </div>
 
@@ -4249,8 +4278,8 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
         <div class="svc-num">02</div>
         <div class="svc-body">
           <h4><em>Formulación</em> a medida</h4>
-          <p>Diseñamos desde cero la fórmula exacta que el talento necesita: textura, activos, claims, tipo de piel. Investigación, prototipado, iteración hasta llegar al producto perfecto.</p>
-          <div class="ideal"><strong>IDEAL PARA →</strong><span class="who">Talentos con concept claro o necesidades únicas</span></div>
+          <p>Diseñamos desde cero la fórmula exacta que la figura necesita: textura, activos, claims, tipo de piel. Investigación, prototipado, iteración hasta llegar al producto perfecto.</p>
+          <div class="ideal"><strong>IDEAL PARA →</strong><span class="who">Figuras con concepto claro o necesidades únicas</span></div>
         </div>
       </div>
 
@@ -4288,7 +4317,7 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
       <div class="why-card">
         <div class="why-num">+ 03</div>
         <h3>Confidencialidad <em>total</em></h3>
-        <p>Mantenemos exclusividad y confidencialidad absolutas durante toda la operación. Nuestro nombre puede o no aparecer en la historia de la marca, según prefieras posicionarla. La fórmula es desarrollada y resguardada por TSC LABS; si el talento la requiere en propiedad, se cotiza aparte con su respectivo estudio de mercado.</p>
+        <p>Mantenemos exclusividad y confidencialidad absolutas durante toda la operación. Nuestro nombre puede o no aparecer en la historia de la marca, según prefieras posicionarla. La fórmula es desarrollada y resguardada por TSC LABS; si la figura la requiere en propiedad, se cotiza aparte con su respectivo estudio de mercado.</p>
       </div>
     </div>
   </div>
@@ -4313,7 +4342,7 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
         <div class="week">SEMANA 01</div>
         <div class="num">i</div>
         <h5>Reunión inicial</h5>
-        <p>Brief del talento, posicionamiento, audiencia, objetivos comerciales, presupuesto y timing de lanzamiento.</p>
+        <p>Brief de la figura, posicionamiento, audiencia, objetivos comerciales, presupuesto y timing de lanzamiento.</p>
       </div>
       <div class="proc-step">
         <div class="week">SEMANA 01—03</div>
