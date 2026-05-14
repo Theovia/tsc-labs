@@ -2656,7 +2656,8 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
   will-change: transform;
   animation: heroDrift2 44s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
-.v2-mode .hero > * { position: relative; z-index: 1; }
+.v2-mode .hero > :not(.hero-doc-stamp) { position: relative; z-index: 1; }
+.v2-mode .hero-doc-stamp { position: absolute; z-index: 2; }
 
 @keyframes heroDrift1 {
   0%   { transform: translate(0, 0) scale(1) rotate(0deg); }
