@@ -2583,6 +2583,21 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
   font-weight: 400 !important;
 }
 
+@media (min-width: 981px) {
+  .v2-mode .hero .hero-grid {
+    margin-top: 30px;
+  }
+  .v2-mode .hero h1 {
+    font-size: clamp(48px, 6.9vw, 100px) !important;
+  }
+  .v2-mode .hero-abstract {
+    margin-top: 20px;
+  }
+  .v2-mode .cyl-card {
+    padding: 28px 0 !important;
+  }
+}
+
 /* Stat ledger — fluid horizontal row, no card boxes */
 .v2-mode .stat-ledger {
   display: flex !important;
