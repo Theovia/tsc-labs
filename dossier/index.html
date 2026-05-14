@@ -641,6 +641,108 @@ section.paper {
 }
 .deck-split .deck-copy strong,
 .deck-split .deck-copy em { color: var(--rust); font-style: italic; font-weight: 400; }
+.opportunity-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 0.72fr);
+  gap: 0;
+  border-top: 1px solid var(--ink);
+  border-left: 1px solid var(--line);
+}
+.opportunity-copy,
+.opportunity-proof {
+  padding: 44px 42px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.opportunity-copy p {
+  font-family: var(--serif-body);
+  font-size: clamp(18px, 1.35vw, 22px);
+  line-height: 1.58;
+  color: var(--ink-soft);
+  margin: 0 0 24px;
+  max-width: 62ch;
+}
+.opportunity-copy p:last-child { margin-bottom: 0; }
+.opportunity-copy strong,
+.opportunity-copy em {
+  color: var(--rust);
+  font-style: italic;
+  font-weight: 400;
+}
+.opportunity-proof {
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--rust) 5%, transparent), transparent 42%),
+    var(--paper);
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+.proof-kicker {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--rust);
+}
+.proof-thesis {
+  font-family: var(--serif-disp);
+  font-size: clamp(30px, 2.6vw, 48px);
+  line-height: 1.06;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin: 0;
+}
+.proof-thesis em {
+  color: var(--rust);
+  font-style: italic;
+  font-weight: 300;
+}
+.proof-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+.proof-metric {
+  min-height: 148px;
+  padding: 24px 22px 22px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.proof-metric .num {
+  font-family: var(--serif-disp);
+  font-size: clamp(46px, 4.6vw, 76px);
+  line-height: 0.9;
+  letter-spacing: -0.045em;
+  color: var(--rust);
+  font-style: italic;
+}
+.proof-metric .num sup {
+  font-size: 0.34em;
+  position: relative;
+  top: -0.72em;
+}
+.proof-metric .label {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  line-height: 1.45;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-top: 16px;
+}
+.proof-footnote {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  line-height: 1.6;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin: 0;
+}
 .case-table .tbl-row {
   grid-template-columns: 1.1fr 0.38fr 0.55fr 1.9fr;
 }
@@ -709,6 +811,9 @@ section.paper {
 @media (max-width: 980px) {
   .deck-stat-grid { grid-template-columns: repeat(2, 1fr); }
   .deck-split, .division-grid { grid-template-columns: 1fr; }
+  .opportunity-layout { grid-template-columns: 1fr; }
+  .opportunity-copy,
+  .opportunity-proof { padding: 34px 28px; }
   .case-table .cat-head { display: none; }
   .case-table .tbl-row { grid-template-columns: 1fr; gap: 8px; }
   .case-table .case-value, .case-table .price, .case-table .perml { text-align: left; }
@@ -716,6 +821,11 @@ section.paper {
 @media (max-width: 600px) {
   .deck-stat-grid { grid-template-columns: 1fr; }
   .deck-stat { min-height: auto; }
+  .proof-metrics { grid-template-columns: 1fr; }
+  .opportunity-copy,
+  .opportunity-proof { padding: 28px 20px; }
+  .opportunity-copy p { font-size: 17px; }
+  .proof-metric { min-height: 118px; }
 }
 
 /* ============ § 02 — POR QUÉ TSC ============ */
@@ -3588,20 +3698,23 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
       </div>
     </div>
 
-    <div class="deck-split reveal">
-      <div class="deck-copy">
+    <div class="opportunity-layout reveal">
+      <div class="opportunity-copy">
         <p>Las figuras que ya representas tienen acceso a una audiencia, una estética y una credibilidad que las grandes marcas pagan millones por construir desde cero. Esa misma credibilidad — la que tú ayudaste a construir con cada deal y cada decisión de carrera — puede convertirse en una marca propia.</p>
         <p><strong>Rhode</strong> se vendió a e.l.f. por mil millones de dólares en 2025. <strong>Rare Beauty</strong> está valuada en $2.7 mil millones. <strong>Fenty</strong> redefinió Sephora. Las marcas celebrity-led crecen seis veces más rápido que el mercado general.</p>
         <p>Lo que esos casos comprobaron es que <em>cuando una figura es dueña de la marca</em>, el upside ya no se compara con un brand deal puntual. Y la conversación con su audiencia cambia: deja de ser embajadora pagada y se vuelve fundadora.</p>
       </div>
-      <div>
-        <div class="deck-stat-grid" style="margin-top:0; grid-template-columns:1fr;">
-          <div class="deck-stat"><div class="num">$1<sup>B</sup></div><div class="label">Exit de Rhode a e.l.f. Beauty · 2025</div></div>
-          <div class="deck-stat"><div class="num">$2.7<sup>B</sup></div><div class="label">Valuación Rare Beauty (Selena Gomez) · 2025</div></div>
-          <div class="deck-stat"><div class="num">5.2<sup>×</sup></div><div class="label">Crecimiento celebrity beauty vs mercado general</div></div>
-          <div class="deck-stat"><div class="num">$17.6<sup>B</sup></div><div class="label">Mercado mexicano de belleza · proyección 2026</div></div>
+      <aside class="opportunity-proof" aria-label="Prueba de oportunidad comercial">
+        <div class="proof-kicker">Prueba de mercado</div>
+        <p class="proof-thesis">El valor no está en una publicación. Está en crear un <em>activo vendible</em>.</p>
+        <div class="proof-metrics">
+          <div class="proof-metric"><div class="num">$1<sup>B</sup></div><div class="label">Exit de Rhode a e.l.f. Beauty · 2025</div></div>
+          <div class="proof-metric"><div class="num">$2.7<sup>B</sup></div><div class="label">Valuación Rare Beauty · Selena Gomez · 2025</div></div>
+          <div class="proof-metric"><div class="num">5.2<sup>×</sup></div><div class="label">Crecimiento celebrity beauty vs mercado general</div></div>
+          <div class="proof-metric"><div class="num">$17.6<sup>B</sup></div><div class="label">Mercado mexicano de belleza · proyección 2026</div></div>
         </div>
-      </div>
+        <p class="proof-footnote">La oportunidad: convertir atención ya existente en producto propio, formulado y producido con estándar de laboratorio.</p>
+      </aside>
     </div>
   </div>
 </section>
