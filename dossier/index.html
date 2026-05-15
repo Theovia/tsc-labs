@@ -4,16 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#f6f1e7">
-<title>TSC LABS — Dossier comercial de skincare en México</title>
-<meta name="description" content="Dossier comercial de TSC Labs: marca blanca, formulación a medida, maquila, envasado, etiqueta y documentación para lanzar skincare propio en México.">
+<title>TSC LABS — Dossier comercial de skincare</title>
+<meta name="description" content="TSC Labs formula, produce, envasa y documenta skincare para marcas, clínicas, ecommerce y proyectos comerciales: desde fórmula validada hasta desarrollo desde cero.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;700;900&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
 
 <style>
 /* ============================================================
-   TSC LABS · LABORATORIO COMERCIAL
+   TSC LABS · DOSSIER № TSC-2026/01
    Aesthetic: Technical Bulletin / Scientific Paper
    ============================================================ */
 
@@ -58,6 +59,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   position: relative;
+}
+
+html.js body.v2-mode .hero .hero-grid,
+html.js body.v2-mode .hero .hero-doc-stamp {
+  opacity: 0;
+}
+html.js.hero-ready body.v2-mode .hero .hero-grid,
+html.js.hero-ready body.v2-mode .hero .hero-doc-stamp {
+  opacity: 1;
+  transition: opacity 0.32s ease;
 }
 
 /* ============ FILM GRAIN OVERLAY (perf-friendly: no blend mode) ============ */
@@ -719,11 +730,22 @@ section.paper {
   letter-spacing: -0.045em;
   color: var(--rust);
   font-style: italic;
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
 }
-.proof-metric .num sup {
-  font-size: 0.34em;
-  position: relative;
-  top: -0.72em;
+.proof-metric .metric-unit {
+  display: inline-block;
+  margin-bottom: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-style: normal;
+  font-weight: 600;
+  white-space: nowrap;
 }
 .proof-metric .label {
   font-family: var(--mono);
@@ -1497,7 +1519,13 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
   .hero-title { font-size: clamp(38px, 12vw, 60px); line-height: 0.98; }
   .hero-eyebrow { font-size: 10px; gap: 12px; margin-bottom: 24px; }
   .hero-eyebrow::before { width: 32px; }
-  .hero-abstract { font-size: 16px; text-align: left; hyphens: none; }
+  .hero-abstract {
+    font-size: 16px;
+    text-align: left;
+    hyphens: none;
+    word-break: normal;
+    overflow-wrap: normal;
+  }
   .cyl-figure { font-size: clamp(32px, 9vw, 48px); }
   section.paper { padding: 56px 0; }
   .section-num .n { font-size: 40px; }
@@ -2656,7 +2684,8 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
   will-change: transform;
   animation: heroDrift2 44s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
-.v2-mode .hero > * { position: relative; z-index: 1; }
+.v2-mode .hero > :not(.hero-doc-stamp) { position: relative; z-index: 1; }
+.v2-mode .hero-doc-stamp { position: absolute; z-index: 2; }
 
 @keyframes heroDrift1 {
   0%   { transform: translate(0, 0) scale(1) rotate(0deg); }
@@ -2855,16 +2884,9 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
 }
 
 @media (min-width: 981px) {
-  .v2-mode .hero {
-    padding: calc(var(--topbar-h) + 18px) 0 46px !important;
-  }
   .v2-mode .hero .hero-grid {
-    grid-template-columns: minmax(0, 1.08fr) minmax(390px, 0.82fr) !important;
+    grid-template-columns: minmax(0, 1.08fr) minmax(390px, 0.82fr);
     gap: 54px !important;
-    margin-top: 18px !important;
-  }
-  .v2-mode .hero h1 {
-    font-size: clamp(46px, 6.1vw, 88px) !important;
   }
   .v2-mode .hero-right {
     gap: 0 !important;
@@ -3085,8 +3107,6 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
   font-size: 15px !important;
   line-height: 1.6 !important;
   color: var(--ink-soft) !important;
-  text-align: left !important;
-  hyphens: none !important;
 }
 .v2-mode .ideal {
   border-top: 1px solid var(--line);
@@ -3258,6 +3278,13 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
   margin-bottom: 12px !important;
 }
 .v2-mode .cat-title::before { content: none; }
+.v2-mode .proof-tbl {
+  border-top: none !important;
+  border-bottom: none !important;
+}
+.v2-mode .cat-head {
+  display: none !important;
+}
 
 /* §03 VS layout — TSC dominant card + competitor mini cards */
 .v2-mode .tbl-row.vs-hidden { display: none !important; }
@@ -3268,6 +3295,19 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
   margin-top: 16px;
   align-items: stretch;
 }
+.v2-mode .vs-lane {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.v2-mode .vs-lane-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
 .v2-mode .vs-tsc {
   background: color-mix(in srgb, var(--rust) 7%, var(--paper));
   border: 1px solid color-mix(in srgb, var(--rust) 35%, transparent);
@@ -3277,6 +3317,7 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
   display: flex;
   flex-direction: column;
   justify-content: center;
+  flex: 1;
 }
 .v2-mode .vs-badge {
   font-family: var(--mono);
@@ -3305,12 +3346,25 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
   line-height: 1.5;
 }
 .v2-mode .vs-prices {
-  display: flex;
-  align-items: baseline;
-  gap: 14px;
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: end;
+  gap: 24px;
   margin-bottom: 16px;
   border-top: 1px solid color-mix(in srgb, var(--rust) 25%, transparent);
   padding-top: 16px;
+}
+.v2-mode .vs-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.v2-mode .vs-metric-label {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
 }
 .v2-mode .vs-price {
   font-family: var(--serif-disp);
@@ -3339,6 +3393,7 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
   display: flex;
   flex-direction: column;
   gap: 10px;
+  flex: 1;
 }
 .v2-mode .vs-mini {
   background: var(--paper-deep);
@@ -3386,8 +3441,20 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
 .v2-mode .vs-mini-prices {
   display: flex;
   align-items: baseline;
-  gap: 10px;
+  gap: 16px;
   margin-bottom: 6px;
+}
+.v2-mode .vs-mini-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.v2-mode .vs-mini-label {
+  font-family: var(--mono);
+  font-size: 7px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
 }
 .v2-mode .vs-mini-price {
   font-family: var(--serif-disp);
@@ -3414,6 +3481,8 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
 @media (max-width: 720px) {
   .v2-mode .vs-grid { grid-template-columns: 1fr; gap: 18px; }
   .v2-mode .vs-tsc { padding: 22px 20px 24px; }
+  .v2-mode .cat-head { grid-template-columns: 1fr !important; gap: 14px !important; }
+  .v2-mode .vs-prices { grid-template-columns: 1fr 1fr; gap: 16px; }
 }
 .v2-mode .cat-block {
   border-bottom: none !important;
@@ -3524,484 +3593,6 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
     padding-right: 16px !important;
   }
 }
-
-/* ============================================================
-   GENERAL V2 · COMMERCIAL ROUTER
-   ============================================================ */
-section[id],
-#diagnostic {
-  scroll-margin-top: calc(var(--topbar-h) + 28px);
-}
-
-.route-lab .route-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  border-top: 1px solid var(--ink);
-  border-left: 1px solid var(--line);
-}
-.route-card {
-  min-height: 390px;
-  padding: 30px 28px;
-  border-right: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  color: var(--ink);
-  background:
-    radial-gradient(circle at 78% 14%, color-mix(in srgb, var(--route-color, var(--rust)) 16%, transparent) 0 2px, transparent 3px),
-    linear-gradient(135deg, color-mix(in srgb, var(--route-color, var(--rust)) 6%, transparent), transparent 44%),
-    var(--paper);
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: background 0.28s ease, color 0.28s ease, transform 0.28s ease;
-}
-.route-card::before,
-.route-card::after {
-  content: '';
-  position: absolute;
-  background: var(--route-color, var(--rust));
-  opacity: 0.45;
-  transition: transform 0.35s ease, opacity 0.35s ease;
-}
-.route-card::before { width: 64px; height: 1px; top: 28px; right: 28px; transform-origin: right center; }
-.route-card::after { width: 1px; height: 64px; top: 28px; right: 28px; transform-origin: top center; }
-.route-card:hover,
-.route-card:focus-visible {
-  transform: translateY(-6px);
-  color: var(--ink);
-  outline: none;
-}
-.route-card:hover::before,
-.route-card:focus-visible::before { transform: scaleX(1.55); opacity: 1; }
-.route-card:hover::after,
-.route-card:focus-visible::after { transform: scaleY(1.55); opacity: 1; }
-.route-card .route-num {
-  font-family: var(--serif-disp);
-  font-style: italic;
-  font-size: clamp(44px, 4.6vw, 68px);
-  line-height: 0.92;
-  color: var(--route-color, var(--rust));
-}
-.route-card .route-kicker,
-.path-card .path-kicker {
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--route-color, var(--rust));
-}
-.route-card h3 {
-  font-family: var(--serif-disp);
-  font-size: clamp(30px, 3vw, 46px);
-  line-height: 0.98;
-  letter-spacing: -0.035em;
-  font-weight: 300;
-  margin: 28px 0 22px;
-}
-.route-card h3 em { color: var(--route-color, var(--rust)); font-weight: 300; }
-.route-card p {
-  font-family: var(--serif-body);
-  color: var(--ink-soft);
-  font-size: 16px;
-  line-height: 1.48;
-}
-.route-card .route-meta {
-  display: grid;
-  gap: 10px;
-  margin-top: 28px;
-  padding-top: 18px;
-  border-top: 1px solid var(--line);
-  font-family: var(--mono);
-  font-size: 9px;
-  line-height: 1.45;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-}
-.route-card .route-arrow {
-  margin-top: 24px;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--route-color, var(--rust));
-}
-
-.journey-board {
-  border-top: 1px solid var(--ink);
-  border-left: 1px solid var(--line);
-  background: var(--paper);
-}
-.journey-rail {
-  display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
-}
-.journey-node {
-  min-height: 255px;
-  padding: 26px 20px 24px;
-  border-right: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  position: relative;
-  overflow: hidden;
-}
-.journey-node::before {
-  content: '';
-  position: absolute;
-  top: 64px;
-  left: 20px;
-  right: -20px;
-  height: 1px;
-  background: var(--line);
-}
-.journey-node::after {
-  content: '';
-  position: absolute;
-  top: 58px;
-  right: -7px;
-  width: 13px;
-  height: 13px;
-  border-top: 1px solid var(--rust);
-  border-right: 1px solid var(--rust);
-  transform: rotate(45deg);
-}
-.journey-node:last-child::before,
-.journey-node:last-child::after { display: none; }
-.journey-node .stamp {
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--rust);
-  display: inline-flex;
-  padding: 4px 8px;
-  border: 1px solid color-mix(in srgb, var(--rust) 40%, transparent);
-  transform: rotate(-2deg);
-  background: var(--paper);
-}
-.journey-node h3 {
-  font-family: var(--serif-disp);
-  font-weight: 300;
-  font-size: clamp(24px, 2vw, 34px);
-  line-height: 1;
-  letter-spacing: -0.025em;
-  margin: 72px 0 14px;
-}
-.journey-node p {
-  font-family: var(--serif-body);
-  font-size: 14px;
-  line-height: 1.48;
-  color: var(--ink-soft);
-}
-.journey-output {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  border-bottom: 1px solid var(--line);
-}
-.journey-output > div {
-  padding: 30px 34px;
-  border-right: 1px solid var(--line);
-}
-.journey-output h4 {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--rust);
-  margin-bottom: 10px;
-}
-.journey-output p {
-  font-family: var(--serif-disp);
-  font-size: clamp(26px, 2.8vw, 42px);
-  line-height: 1.05;
-  letter-spacing: -0.03em;
-}
-
-.visual-proof {
-  display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  border-top: 1px solid var(--ink);
-  border-left: 1px solid var(--line);
-}
-.proof-lab,
-.proof-specimen {
-  min-height: 560px;
-  border-right: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  padding: 38px;
-  position: relative;
-  overflow: hidden;
-}
-.proof-lab {
-  background:
-    linear-gradient(120deg, rgba(255,255,255,0.38), transparent 50%),
-    repeating-linear-gradient(90deg, transparent 0 35px, rgba(26,22,18,0.035) 36px),
-    var(--paper-deep);
-}
-.shelf {
-  position: absolute;
-  left: 38px;
-  right: 38px;
-  bottom: 66px;
-  height: 1px;
-  background: var(--ink);
-}
-.bottle-row {
-  position: absolute;
-  left: 64px;
-  right: 64px;
-  bottom: 66px;
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-}
-.bottle {
-  width: var(--w, 72px);
-  height: var(--h, 238px);
-  border: 1px solid var(--ink);
-  border-radius: 6px 6px 12px 12px;
-  background:
-    linear-gradient(90deg, rgba(255,255,255,0.62), transparent 38%),
-    linear-gradient(to top, color-mix(in srgb, var(--c, var(--rust)) 26%, transparent) var(--fill, 62%), transparent var(--fill, 62%)),
-    var(--paper);
-  position: relative;
-  box-shadow: 0 22px 46px rgba(26,22,18,0.08);
-}
-.bottle::before {
-  content: '';
-  position: absolute;
-  left: 16%;
-  right: 16%;
-  top: -28px;
-  height: 28px;
-  border: 1px solid var(--ink);
-  border-bottom: 0;
-  border-radius: 4px 4px 0 0;
-  background: var(--paper);
-}
-.bottle::after {
-  content: attr(data-label);
-  position: absolute;
-  left: 14px;
-  right: 14px;
-  top: 46%;
-  font-family: var(--mono);
-  font-size: 8px;
-  line-height: 1.35;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-}
-.texture-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0;
-  border-top: 1px solid var(--line);
-  border-left: 1px solid var(--line);
-  margin-top: 34px;
-}
-.texture {
-  min-height: 150px;
-  border-right: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  padding: 18px;
-  background:
-    radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--c, var(--rust)) 22%, transparent) 0 16px, transparent 17px),
-    radial-gradient(circle at 70% 58%, color-mix(in srgb, var(--c, var(--rust)) 14%, transparent) 0 30px, transparent 31px),
-    var(--paper);
-}
-.texture span {
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-}
-.proof-specimen h3 {
-  font-family: var(--serif-disp);
-  font-size: clamp(42px, 5.2vw, 86px);
-  line-height: 0.98;
-  letter-spacing: -0.055em;
-  font-weight: 300;
-  max-width: 9ch;
-}
-.proof-specimen h3 em { color: var(--rust); font-weight: 300; }
-.spec-lines {
-  margin-top: 42px;
-  border-top: 1px solid var(--line);
-}
-.spec-line {
-  display: grid;
-  grid-template-columns: 0.35fr 1fr;
-  gap: 22px;
-  padding: 18px 0;
-  border-bottom: 1px solid var(--line);
-}
-.spec-line strong {
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--rust);
-}
-.spec-line span {
-  font-family: var(--serif-body);
-  font-size: 18px;
-  line-height: 1.45;
-  color: var(--ink-soft);
-}
-
-.risk-grid,
-.fit-grid,
-.institution-grid,
-.diagnostic-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  border-top: 1px solid var(--ink);
-  border-left: 1px solid var(--line);
-}
-.risk-card,
-.fit-card,
-.institution-card,
-.diagnostic-card {
-  min-height: 230px;
-  padding: 28px 26px;
-  border-right: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  background: var(--paper);
-  position: relative;
-}
-.risk-card::before {
-  content: 'RIESGO';
-  font-family: var(--mono);
-  font-size: 8px;
-  letter-spacing: 0.16em;
-  color: var(--rust);
-}
-.risk-card h3,
-.fit-card h3,
-.institution-card h3,
-.diagnostic-card h3 {
-  font-family: var(--serif-disp);
-  font-size: clamp(25px, 2.4vw, 36px);
-  line-height: 1.02;
-  letter-spacing: -0.03em;
-  font-weight: 300;
-  margin: 18px 0 16px;
-}
-.risk-card p,
-.fit-card p,
-.institution-card p,
-.diagnostic-card p {
-  font-family: var(--serif-body);
-  font-size: 15px;
-  line-height: 1.48;
-  color: var(--ink-soft);
-}
-.fit-card[data-no="true"] {
-  background:
-    linear-gradient(135deg, color-mix(in srgb, var(--ink) 5%, transparent), transparent),
-    var(--paper-deep);
-}
-.fit-card .fit-tag,
-.institution-card .inst-tag,
-.diagnostic-card .diag-tag {
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--rust);
-}
-.institution-card {
-  min-height: 190px;
-  background:
-    radial-gradient(circle at 86% 16%, color-mix(in srgb, var(--rust) 14%, transparent) 0 3px, transparent 4px),
-    var(--paper);
-}
-.institution-card strong {
-  display: block;
-  font-family: var(--serif-disp);
-  font-size: clamp(42px, 4vw, 64px);
-  line-height: 0.9;
-  font-style: italic;
-  font-weight: 300;
-  color: var(--rust);
-  margin: 22px 0 16px;
-}
-
-.decision-module {
-  margin-bottom: 42px;
-}
-.diagnostic-card {
-  cursor: pointer;
-  transition: background 0.24s ease, transform 0.24s ease, color 0.24s ease;
-}
-.diagnostic-card.is-active,
-.diagnostic-card:hover,
-.diagnostic-card:focus-visible {
-  background: var(--ink);
-  color: var(--paper);
-  outline: none;
-  transform: translateY(-4px);
-}
-.diagnostic-card.is-active p,
-.diagnostic-card:hover p,
-.diagnostic-card:focus-visible p { color: color-mix(in srgb, var(--paper) 78%, transparent); }
-.diagnostic-output {
-  display: grid;
-  grid-template-columns: 0.7fr 1fr;
-  border-left: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
-.diagnostic-output > div {
-  padding: 28px 30px;
-  border-right: 1px solid var(--line);
-}
-.diagnostic-output .route-name {
-  font-family: var(--serif-disp);
-  font-size: clamp(34px, 3.8vw, 58px);
-  line-height: 1;
-  letter-spacing: -0.04em;
-  color: var(--rust);
-  font-style: italic;
-}
-.diagnostic-output p {
-  font-family: var(--serif-body);
-  font-size: 18px;
-  line-height: 1.5;
-  color: var(--ink-soft);
-}
-
-@media (max-width: 1120px) {
-  .route-lab .route-grid,
-  .journey-rail { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .visual-proof { grid-template-columns: 1fr; }
-  .risk-grid,
-  .fit-grid,
-  .institution-grid,
-  .diagnostic-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-@media (max-width: 640px) {
-  .route-lab .route-grid,
-  .journey-rail,
-  .journey-output,
-  .risk-grid,
-  .fit-grid,
-  .institution-grid,
-  .diagnostic-grid,
-  .diagnostic-output { grid-template-columns: 1fr; }
-  .route-card { min-height: 320px; padding: 26px 20px; }
-  .journey-node { min-height: 220px; }
-  .journey-node::before,
-  .journey-node::after { display: none; }
-  .proof-lab,
-  .proof-specimen { min-height: auto; padding: 28px 20px; }
-  .proof-lab { min-height: 470px; }
-  .bottle-row { left: 36px; right: 36px; }
-  .bottle { --w: 54px; --h: 190px; }
-  .texture-grid { grid-template-columns: 1fr; }
-  .spec-line { grid-template-columns: 1fr; gap: 6px; }
-}
 </style>
 </head>
 
@@ -4012,11 +3603,11 @@ section[id],
   <div class="topbar-inner">
     <div class="topbar-logo"><strong>TSC</strong>LABS</div>
     <div class="topbar-meta">
-      <span>LABORATORIO COMERCIAL</span>
+      <span>DOSSIER № TSC-2026/01</span>
       <span class="sep hide-sm">·</span>
       <span class="hide-sm">ZAPOPAN/MX</span>
       <span class="sep">·</span>
-      <span class="conf">TSC LABS</span>
+      <span class="conf">CONFIDENCIAL</span>
     </div>
   </div>
 </header>
@@ -4025,10 +3616,10 @@ section[id],
 <section class="hero">
 
   <div class="hero-doc-stamp">
-    <div><span class="lbl">LAB</span> <span class="val">TSC LABS</span></div>
+    <div><span class="lbl">DOC</span> <span class="val">№ TSC-2026/01</span></div>
     <div><span class="lbl">VER.</span> <span class="val">1.0 · ABR 2026</span></div>
-    <div><span class="lbl">ÁREA</span> <span class="conf">SKINCARE</span></div>
-    <div><span class="lbl">USO</span> <span class="val">DESARROLLO COMERCIAL</span></div>
+    <div><span class="lbl">CLASIF.</span> <span class="conf">CONFIDENCIAL</span></div>
+    <div><span class="lbl">USO</span> <span class="val">PROPUESTA COMERCIAL</span></div>
   </div>
 
   <div class="hero-eyebrow">
@@ -4054,11 +3645,11 @@ section[id],
         Lanza<br>
         skincare<br>
         <em>propio</em><br>
-        <em>sin montar laboratorio.</em>
+        <em>listo para vender.</em>
       </h1>
 
       <p class="hero-abstract">
-        <span class="first-letter">S</span>kincare formulado y producido en México por ingenieros del ITESM especializados en biotecnología. TSC Labs convierte una intención comercial en línea propia: fórmula, muestra, lote, envase, etiqueta y documentación bajo tu marca, desde marca blanca hasta desarrollos a medida.
+        <span class="first-letter">S</span>kincare formulado y producido en México por Ingenieros en Biotecnología egresados del ITESM. TSC Labs desarrolla la fórmula, produce, envasa, etiqueta y documenta el producto bajo tu marca: desde una fórmula validada hasta un desarrollo desde cero según brief, canal y ticket objetivo.
       </p>
 
       <div class="hero-actions">
@@ -4228,274 +3819,37 @@ section[id],
 </div>
 
 
-<!-- ============ V2 · SELECTOR DE RUTA ============ -->
-<section class="paper route-lab" id="routes">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="section-num">
-        <span class="n">№ 01</span>
-        <span class="lbl">Elige tu ruta</span>
-        <span class="sub">Diagnóstico inicial</span>
-      </div>
-      <div>
-        <h2 class="section-title">Elige tu punto de partida. Nosotros armamos <em>la ruta técnica</em>.</h2>
-      </div>
-    </div>
-
-    <div class="route-grid reveal">
-      <a class="route-card" href="#journey" style="--route-color:#8b3a1f;">
-        <div>
-          <div class="route-kicker">Ruta A · desde cero</div>
-          <div class="route-num">01</div>
-          <h3>Lanzar mi <em>marca</em> desde cero.</h3>
-          <p>Tienes concepto, canal o mercado claro, pero todavía falta bajar el producto, costo, empaque y cumplimiento.</p>
-        </div>
-        <div>
-          <div class="route-meta">
-            <span>Brief → muestra → lote inicial</span>
-            <span>Para construir el primer SKU con cabeza</span>
-          </div>
-          <div class="route-arrow">Ver ruta →</div>
-        </div>
-      </a>
-
-      <a class="route-card" href="#services" style="--route-color:#3a7da8;">
-        <div>
-          <div class="route-kicker">Ruta B · maquila</div>
-          <div class="route-num">02</div>
-          <h3>Maquilar una <em>fórmula</em> que ya tengo.</h3>
-          <p>Ya existe una base técnica. El reto es producirla bien, documentarla y dejarla lista para vender.</p>
-        </div>
-        <div>
-          <div class="route-meta">
-            <span>IP propia · confidencialidad</span>
-            <span>Escalado con control de lote</span>
-          </div>
-          <div class="route-arrow">Ver modelo →</div>
-        </div>
-      </a>
-
-      <a class="route-card" href="#fit" style="--route-color:#5a8a6b;">
-        <div>
-          <div class="route-kicker">Ruta C · canal profesional</div>
-          <div class="route-num">03</div>
-          <h3>Crear línea para <em>clínica</em>, spa o tienda.</h3>
-          <p>Ya tienes clientes, pacientes o tráfico. Diseñamos una línea corta para recomendación, recompra y margen propio.</p>
-        </div>
-        <div>
-          <div class="route-meta">
-            <span>Dermocosmética · retail · consulta</span>
-            <span>Portafolio inicial sin inflar SKUs</span>
-          </div>
-          <div class="route-arrow">Ver encaje →</div>
-        </div>
-      </a>
-
-      <a class="route-card" href="#catalog" style="--route-color:#c8782e;">
-        <div>
-          <div class="route-kicker">Ruta D · marca blanca</div>
-          <div class="route-num">04</div>
-          <h3>Producir marca blanca <em>rápido</em>.</h3>
-          <p>Quieres validar demanda sin esperar desarrollo completo. Partimos de fórmulas base y las vestimos para tu canal.</p>
-        </div>
-        <div>
-          <div class="route-meta">
-            <span>+18 bases · ajustes opcionales</span>
-            <span>La vía rápida para vender y aprender</span>
-          </div>
-          <div class="route-arrow">Ver catálogo →</div>
-        </div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ============ V2 · IDEA A PRODUCTO ============ -->
-<section class="paper" id="journey">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="section-num">
-        <span class="n">№ 02</span>
-        <span class="lbl">De idea a producto</span>
-        <span class="sub">Expediente técnico</span>
-      </div>
-      <div>
-        <h2 class="section-title">De brief a lote: esto es lo que realmente <em>contratas</em>.</h2>
-      </div>
-    </div>
-
-    <div class="journey-board reveal">
-      <div class="journey-rail">
-        <div class="journey-node">
-          <span class="stamp">01 · Brief</span>
-          <h3>Aterrizamos la decisión.</h3>
-          <p>Consumidor, canal, ticket, promesa, volumen inicial y restricciones que sí cambian el costo.</p>
-        </div>
-        <div class="journey-node">
-          <span class="stamp">02 · Fórmula</span>
-          <h3>Elegimos el camino.</h3>
-          <p>Marca blanca, reformulación o desarrollo propio, según diferenciación necesaria y tiempo disponible.</p>
-        </div>
-        <div class="journey-node">
-          <span class="stamp">03 · Muestra</span>
-          <h3>Probamos en físico.</h3>
-          <p>Textura, aroma, absorción, acabado, viscosidad y compatibilidad con el envase.</p>
-        </div>
-        <div class="journey-node">
-          <span class="stamp">04 · Ajustes</span>
-          <h3>Iteramos sin perder el norte.</h3>
-          <p>Ajustamos sensorial, activos o costo hasta que el SKU pueda defender precio y recompra.</p>
-        </div>
-        <div class="journey-node">
-          <span class="stamp">05 · Producción</span>
-          <h3>Fabricamos lote controlado.</h3>
-          <p>Materia prima, proceso, control de calidad, trazabilidad y registro del lote.</p>
-        </div>
-        <div class="journey-node">
-          <span class="stamp">06 · Etiqueta</span>
-          <h3>Lo dejamos presentable.</h3>
-          <p>INCI, claims, leyendas, datos regulatorios y revisión de etiqueta para vender sin improvisar.</p>
-        </div>
-        <div class="journey-node">
-          <span class="stamp">07 · Entrega</span>
-          <h3>Producto terminado.</h3>
-          <p>Piezas listas para e-commerce, clínica, retail, distribuidor, activación o almacén.</p>
-        </div>
-      </div>
-
-      <div class="journey-output">
-        <div>
-          <h4>Salida comercial</h4>
-          <p>Un SKU o portafolio corto con precio, canal y margen proyectado.</p>
-        </div>
-        <div>
-          <h4>Salida técnica</h4>
-          <p>Muestra, lote, etiqueta y expediente listos para reposición.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ V2 · PRUEBA VISUAL ============ -->
-<section class="paper" id="visual-proof">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="section-num">
-        <span class="n">№ 03</span>
-        <span class="lbl">Prueba física</span>
-        <span class="sub">Producto · textura · lote</span>
-      </div>
-      <div>
-        <h2 class="section-title">Antes de prometer, hay que aterrizar: <em>textura, envase, etiqueta y lote</em>.</h2>
-      </div>
-    </div>
-
-    <div class="visual-proof reveal">
-      <div class="proof-lab">
-        <div class="proof-kicker">Render técnico de línea</div>
-        <div class="bottle-row" aria-hidden="true">
-          <div class="bottle" data-label="Serum 30 mL" style="--c:#3a7da8; --fill:72%; --w:64px; --h:226px;"></div>
-          <div class="bottle" data-label="Crema 60 mL" style="--c:#5a8a6b; --fill:56%; --w:88px; --h:176px;"></div>
-          <div class="bottle" data-label="Tónico 150 mL" style="--c:#c8782e; --fill:68%; --w:72px; --h:260px;"></div>
-          <div class="bottle" data-label="Mascarilla" style="--c:#9a6c3e; --fill:48%; --w:94px; --h:150px;"></div>
-        </div>
-        <div class="shelf"></div>
-      </div>
-
-      <div class="proof-specimen">
-        <div class="proof-kicker">Archivo de formulación</div>
-        <h3>De <em>muestra</em> a lote repetible.</h3>
-        <div class="texture-grid" aria-hidden="true">
-          <div class="texture" style="--c:#3a7da8;"><span>Gel · serum</span></div>
-          <div class="texture" style="--c:#5a8a6b;"><span>Crema · barrera</span></div>
-          <div class="texture" style="--c:#c8782e;"><span>Arcilla · tratamiento</span></div>
-        </div>
-        <div class="spec-lines">
-          <div class="spec-line"><strong>Control</strong><span>Sensorial, viscosidad, pH, estabilidad y compatibilidad con envase.</span></div>
-          <div class="spec-line"><strong>Promesa</strong><span>Etiqueta, claims y activos que sostienen lo que la marca va a decir.</span></div>
-          <div class="spec-line"><strong>Operación</strong><span>Costo unitario, mínimos, tiempos, documentos y reposición de lote.</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
 <!-- ============ § 02 — LA OPORTUNIDAD ============ -->
 <section class="paper" id="opportunity">
   <div class="container">
     <div class="section-head reveal">
       <div class="section-num">
-        <span class="n">№ 04</span>
+        <span class="n">№ 01</span>
         <span class="lbl">La oportunidad</span>
-        <span class="sub">Margen propio</span>
+        <span class="sub">Nueva categoría de ingreso</span>
       </div>
       <div>
-        <h2 class="section-title">La oportunidad no es vender skincare. Es capturar <em>margen propio</em>.</h2>
+        <h2 class="section-title">Una <em>nueva categoría</em> de ingreso para marcas con canal propio.</h2>
       </div>
     </div>
 
     <div class="opportunity-layout reveal">
       <div class="opportunity-copy">
-        <p>Si ya existe canal, tráfico, comunidad, consulta, tienda o una marca con permiso de venta, depender solo de productos de terceros limita el upside. Una línea propia permite controlar margen, experiencia y recompra.</p>
-        <p><strong>TSC Labs</strong> baja esa oportunidad a algo ejecutable: qué SKU lanzar primero, cuánto cuesta producirlo, qué puede prometer y qué volumen tiene sentido antes de escalar.</p>
-        <p>No se trata de “sacar skincare” porque está de moda. Se trata de poner en anaquel un producto que el mercado entienda, compre y vuelva a pedir.</p>
+        <p>Una marca, clínica, ecommerce o proyecto con canal propio ya tiene algo difícil de comprar desde cero: confianza, contexto comercial y acceso al cliente. Esa ventaja puede convertirse en una línea propia de skincare si el producto sostiene la promesa.</p>
+        <p>El mercado mexicano de belleza proyecta $17.6B USD para 2026. El consumidor compara activos, precio, textura, evidencia y reputación. La oportunidad no es vender “otro producto”; es capturar margen propio con una fórmula que pueda defenderse.</p>
+        <p>La lectura es sencilla: cuando el cliente controla la marca del producto, el valor deja de quedarse en el proveedor externo. Hay margen, recompra, datos de cliente y posibilidad de extender línea sin montar un laboratorio interno.</p>
       </div>
       <aside class="opportunity-proof" aria-label="Prueba de oportunidad comercial">
         <div class="proof-kicker">Prueba de mercado</div>
-        <p class="proof-thesis">Si ya tienes canal o mercado, el siguiente activo puede ser <em>una línea propia</em>.</p>
+        <p class="proof-thesis">El valor no está solo en comprar producto terminado. Está en construir <em>propiedad sobre la marca</em>.</p>
         <div class="proof-metrics">
-          <div class="proof-metric"><div class="num">18<sup>+</sup></div><div class="label">Bases para validar rápido o ajustar a canal</div></div>
-          <div class="proof-metric"><div class="num">400<sup>+</sup></div><div class="label">Unidades para tarifa mayoreo en producción inicial</div></div>
-          <div class="proof-metric"><div class="num">12<sup>sem</sup></div><div class="label">Ruta típica de brief a primer lote</div></div>
-          <div class="proof-metric"><div class="num">$17.6<sup>B</sup></div><div class="label">Mercado mexicano de belleza · proyección 2026</div></div>
+          <div class="proof-metric"><div class="num">$17.6<span class="metric-unit">B USD</span></div><div class="label">Mercado mexicano de belleza · proyección 2026</div></div>
+          <div class="proof-metric"><div class="num">+18<span class="metric-unit">fórmulas</span></div><div class="label">Catálogo base validado para acelerar primeros lanzamientos</div></div>
+          <div class="proof-metric"><div class="num">12<span class="metric-unit">sem</span></div><div class="label">Ruta típica de brief a producto terminado</div></div>
+          <div class="proof-metric"><div class="num">400<span class="metric-unit">uds</span></div><div class="label">Producción inicial viable para validar canal y recompra</div></div>
         </div>
-        <p class="proof-footnote">Primero se valida demanda. Después se amplía portafolio con datos, no con intuición.</p>
+        <p class="proof-footnote">Lectura: canal existente + producto propio + operación técnica reducen el costo de construir una línea desde cero.</p>
       </aside>
-    </div>
-  </div>
-</section>
-
-<!-- ============ V2 · RIESGOS QUE EVITAMOS ============ -->
-<section class="paper" id="risks">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="section-num">
-        <span class="n">№ 05</span>
-        <span class="lbl">Riesgos evitados</span>
-        <span class="sub">Lo caro de improvisar</span>
-      </div>
-      <div>
-        <h2 class="section-title">Lo caro no es fabricar. Es descubrir tarde que el SKU <em>no aguanta</em>.</h2>
-      </div>
-    </div>
-
-    <div class="risk-grid reveal">
-      <div class="risk-card">
-        <h3>Fórmula inestable.</h3>
-        <p>Separación de fases, cambio de color, olor extraño, textura inconsistente o producto que no sobrevive al envase.</p>
-      </div>
-      <div class="risk-card">
-        <h3>Etiqueta mal planteada.</h3>
-        <p>Claims que no se pueden defender, INCI incompleto, leyendas débiles o materiales que frenan retail y distribución.</p>
-      </div>
-      <div class="risk-card">
-        <h3>Margen mal calculado.</h3>
-        <p>Precio atractivo, pero costo unitario, envase, canal, IVA y descuento comercial destruyen la utilidad real.</p>
-      </div>
-      <div class="risk-card">
-        <h3>Producción sin trazabilidad.</h3>
-        <p>Lote sin respaldo documental, sin control de materias primas y sin proceso repetible para reposición.</p>
-      </div>
-      <div class="risk-card">
-        <h3>Producto bonito que no recompra.</h3>
-        <p>Buen empaque, pero sensorial mediocre, activos irrelevantes o promesa que el consumidor no siente en la piel.</p>
-      </div>
-      <div class="risk-card">
-        <h3>Portafolio inflado.</h3>
-        <p>Demasiados SKUs desde el día uno. Mejor empezar con productos hero, validar demanda y ampliar con datos reales.</p>
-      </div>
     </div>
   </div>
 </section>
@@ -4505,32 +3859,32 @@ section[id],
   <div class="container">
     <div class="section-head reveal">
       <div class="section-num">
-        <span class="n">№ 06</span>
+        <span class="n">№ 02</span>
         <span class="lbl">Por qué ahora</span>
         <span class="sub">Tres fuerzas alineadas</span>
       </div>
       <div>
-        <h2 class="section-title">El mercado ya está listo. La diferencia es entrar con <em>disciplina</em>.</h2>
+        <h2 class="section-title">Hay una <em>ventana</em> abierta. Tres fuerzas alineadas, este año, en este mercado.</h2>
       </div>
     </div>
 
     <div class="why-grid reveal">
       <div class="why-card">
         <div class="why-num">→ MERCADO</div>
-        <h3>El consumidor mexicano <em>lee etiquetas</em>.</h3>
-        <p>El mercado de belleza en México pasó de $11.3B en 2024 a una proyección de $17.6B en 2026. La compra ya no se decide solo por empaque: se comparan activos, claims y precio.</p>
+        <h3>El consumidor mexicano ha <em>elevado su estándar</em>.</h3>
+        <p>El mercado de belleza en México pasó de $11.3B en 2024 a un proyectado $17.6B en 2026. Las ventas de skincare en MX crecieron 17% en 2023. El consumidor mexicano ya no acepta cualquier producto: lee etiquetas, busca activos específicos (ácido hialurónico, niacinamida, péptidos, ceramidas) y pide evidencia que respalde la promesa de fórmula, seguridad y resultado.</p>
         <div class="foot">→ FUENTE: MORDOR INTELLIGENCE 2024–26</div>
       </div>
       <div class="why-card">
-        <div class="why-num">→ CANALES</div>
-        <h3>Ya se puede validar antes de <em>retail</em>.</h3>
-        <p>E-commerce, marketplaces, clínicas, consultorios, spas, tiendas especializadas y venta social permiten probar demanda antes de comprometer inventario grande.</p>
-        <div class="foot">→ D2C · RETAIL · MAYOREO · CANAL PROFESIONAL</div>
+        <div class="why-num">→ DISTRIBUCIÓN</div>
+        <h3>La venta social ya <em>compite</em> con retail.</h3>
+        <p>La compra de skincare se mueve entre ecommerce, retail, recomendación profesional y contenido social. El referente ya no es solo la marca global: pesan la afinidad local, la fórmula, la transparencia y la capacidad de explicar el producto.</p>
+        <div class="foot">→ FUENTE: MERCA20, BOF MEXICO REPORT 2025</div>
       </div>
       <div class="why-card">
         <div class="why-num">→ MOMENTO INDUSTRIA</div>
-        <h3>La recompra depende de <em>la experiencia</em>.</h3>
-        <p>El consumidor prueba textura, absorción, resultado y coherencia de precio. Si el producto no se siente bien, la pauta solo compra una primera venta.</p>
+        <h3>El consumidor ya pide <em>evidencia</em> que respalde la promesa.</h3>
+        <p>McKinsey lo confirma: el consumidor 2026 ya no compra solo porque el empaque se ve bonito. Compra cuando hay formulación científica defendible. Las marcas que sobreviven son las que pueden justificar cada ingrediente. Por eso es esencial entrar al mercado con un laboratorio detrás, no con una maquila genérica que solo llena frascos.</p>
         <div class="foot">→ FUENTE: BEAUTY INDEPENDENT, MCKINSEY 2025</div>
       </div>
     </div>
@@ -4542,27 +3896,27 @@ section[id],
   <div class="container">
     <div class="section-head reveal">
       <div class="section-num">
-        <span class="n">№ 07</span>
-        <span class="lbl">Los patrones</span>
-        <span class="sub">Qué sí se repite</span>
+        <span class="n">№ 03</span>
+        <span class="lbl">Los precedentes</span>
+        <span class="sub">Patrón global</span>
       </div>
       <div>
-        <h2 class="section-title">El patrón no es “branding bonito”. Es <em>SKU hero + canal + recompra</em>.</h2>
+        <h2 class="section-title">Las marcas que <em>marcaron</em> el patrón.</h2>
       </div>
     </div>
 
-    <p class="proof-deck reveal">Las marcas que escalan no empiezan con treinta productos. Empiezan con una promesa concreta, pocos SKUs, precio coherente y una operación capaz de repetir calidad lote tras lote.</p>
+    <p class="proof-deck reveal">Los casos relevantes no se explican solo por branding. Se explican por timing, selección de categoría, fórmula defendible, precio coherente y capacidad de sostener la calidad después del lanzamiento. Esa es la parte replicable para el mercado mexicano.</p>
 
     <div class="proof-tbl case-table reveal">
-      <div class="cat-head"><div>↳ Marca / Enfoque</div><div>↳ Año</div><div>↳ Resultado</div><div>↳ Aprendizaje</div></div>
-      <div class="tbl-row"><div><div class="brand">The Ordinary</div><div class="case-founder">Transparencia radical</div></div><div class="price">2016</div><div class="case-value">Escaló global</div><div class="verdict">Hizo del ingrediente el mensaje: producto entendible, precio claro y promesa técnica.</div></div>
-      <div class="tbl-row"><div><div class="brand">Rhode</div><div class="case-founder">Pocos SKUs hero</div></div><div class="price">2022</div><div class="case-value">$1.0B</div><div class="verdict">Vendida a e.l.f. en 2025. Línea inicial de <strong>3 productos estrella</strong>, no 30.</div></div>
-      <div class="tbl-row"><div><div class="brand">Fenty Beauty</div><div class="case-founder">Problema real</div></div><div class="price">2017</div><div class="case-value">$2.8B+</div><div class="verdict">Resolvió una necesidad concreta: <strong>40 tonos desde día uno</strong>.</div></div>
-      <div class="tbl-row"><div><div class="brand">Marcas sin sustancia</div><div class="case-founder">Branding primero</div></div><div class="price">—</div><div class="case-value">Riesgo alto</div><div class="verdict">Si no hay diferencia sensorial o técnica, el lanzamiento depende de pauta y descuento.</div></div>
-      <div class="tbl-row"><div><div class="brand">Marca blanca bien hecha</div><div class="case-founder">Velocidad + control</div></div><div class="price">—</div><div class="case-value">Ruta viable</div><div class="verdict">Permite probar mercado rápido si se elige el SKU correcto y se documenta desde el primer lote.</div></div>
+      <div class="cat-head"><div>↳ Marca / Caso</div><div>↳ Año</div><div>↳ Status 2026</div><div>↳ Aprendizaje</div></div>
+      <div class="tbl-row"><div><div class="brand">Rare Beauty</div><div class="case-founder">R&amp;D antes del lanzamiento</div></div><div class="price">2020</div><div class="case-value">$2.7B</div><div class="verdict">Esperó <strong>2 años</strong> de R&amp;D antes de lanzar. Fórmulas defendibles. Misión clara. Producto que cumple los claims que promete.</div></div>
+      <div class="tbl-row"><div><div class="brand">Rhode</div><div class="case-founder">Portafolio corto</div></div><div class="price">2022</div><div class="case-value">$1.0B</div><div class="verdict">Vendida a e.l.f. en 2025. Línea inicial de <strong>3 productos estrella</strong>, no 30. Concepto claro. Sold out en días.</div></div>
+      <div class="tbl-row"><div><div class="brand">Fenty Beauty</div><div class="case-founder">Diferenciación real</div></div><div class="price">2017</div><div class="case-value">$2.8B+</div><div class="verdict">Posicionamiento que ningún otro tenía: <strong>40 tonos desde día uno</strong>. Resolvió un problema real del mercado, no inventó uno.</div></div>
+      <div class="tbl-row"><div><div class="brand">Flower Beauty</div><div class="case-founder">Diferenciación insuficiente</div></div><div class="price">2013</div><div class="case-value">Cerrada</div><div class="verdict">Cerrada en 2025. Sin diferenciación científica fuerte. El reconocimiento de marca <strong>ya no era suficiente</strong> para el consumidor 2025.</div></div>
+      <div class="tbl-row"><div><div class="brand">Gxve Beauty</div><div class="case-founder">Claims débiles</div></div><div class="price">2022</div><div class="case-value">Cerrada</div><div class="verdict">Cerrada en 2025. Producto sin claims defendibles. Lanzamiento agresivo sin sustento técnico — el mercado castiga lanzamientos sin diferenciación real.</div></div>
     </div>
 
-    <p class="proof-deck reveal" style="margin-top:40px;"><em>La combinación reproducible:</em> concepto claro, canal real y producción que puede sostener la segunda compra.</p>
+    <p class="proof-deck reveal" style="margin-top:40px;">La función de TSC Labs es reducir el riesgo técnico del lanzamiento: formular con criterio, producir con capacidad operativa, documentar cada lote y cumplir normativa mexicana. Para cualquier proyecto comercial, eso cambia el punto de partida: la marca no depende solo del diseño o la campaña, sino de un producto consistente, repetible y defendible.</p>
   </div>
 </section>
 
@@ -4572,12 +3926,12 @@ section[id],
   <div class="container">
     <div class="section-head reveal">
       <div class="section-num">
-        <span class="n">№ 08</span>
+        <span class="n">№ 04</span>
         <span class="lbl">El laboratorio</span>
         <span class="sub">Credenciales · Track record</span>
       </div>
       <div>
-        <h2 class="section-title">La razón para elegir TSC: ya formulamos, vendemos y operamos <em>skincare real</em>.</h2>
+        <h2 class="section-title">No somos una maquila. Somos un laboratorio con <em>marca propia</em> ya validada en retail.</h2>
       </div>
     </div>
 
@@ -4587,7 +3941,7 @@ section[id],
         <div class="why-num">№ 01 · INGENIERÍA</div>
         <h3>Ingenieros en <em>Biotecnología</em></h3>
         <p>
-          Los 3 fundadores son ingenieros en biotecnología graduados del Tec de Monterrey. El trabajo técnico parte de estabilidad, sinergia de activos, sensorial y seguridad. No solo llenamos frascos: diseñamos productos que puedan defender su promesa.
+          Los 3 fundadores son ingenieros en biotecnología graduados del Tec de Monterrey. Cada fórmula se desarrolla desde la interacción molecular de los activos: estabilidad, sinergia, eficacia comprobada. No copiamos formulaciones genéricas — las diseñamos. Sustituimos cada ingrediente cuestionable por alternativas más seguras y defendibles científicamente.
         </p>
         <div class="foot">↳ Investigación propia · Desarrollo constante</div>
       </div>
@@ -4596,7 +3950,7 @@ section[id],
         <div class="why-num">№ 02 · TRACK RECORD</div>
         <h3>Marca propia <em>en mercado</em></h3>
         <p>
-          Operamos The Skin Club desde 2021 — nuestra propia línea de skincare. Lo que ofrecemos a terceros ya lo tuvimos que resolver para nosotros: fórmula, costo, empaque, etiqueta, venta y reposición.
+          Operamos The Skin Club desde 2021: una línea propia de skincare formulada, producida y vendida por nosotros. Nos ha permitido probar fórmulas, costos, proveedores, empaque, etiquetado, reposición y venta directa en condiciones reales. Esa experiencia operativa es la base de lo que proponemos desarrollar para terceros.
         </p>
         <div class="foot">→ VER ECOMMERCE THE SKIN CLUB</div>
       </a>
@@ -4605,7 +3959,7 @@ section[id],
         <div class="why-num">№ 03 · COMPLIANCE</div>
         <h3>Permisos <em>COFEPRIS</em></h3>
         <p>
-          Instalaciones alineadas a NOM-259-SSA1-2022, NOM-141-SSA1/SCFI-2012 y NOM-089-SSA1-1994. Te guiamos para que etiqueta, claims y expediente no se vuelvan el freno del lanzamiento.
+          Instalaciones que cumplen NOM-259-SSA1-2022 (Buenas Prácticas de Fabricación), NOM-141-SSA1/SCFI-2012 (Etiquetado) y NOM-089-SSA1-1994 (Contenido microbiano). Te asesoramos en todo el cumplimiento regulatorio para que la marca pueda venderse legalmente en retail mexicano y exportarse vía USMCA.
         </p>
         <div class="foot">→ 3 NOMs · LISTOS PARA RETAIL Y EXPORT</div>
       </div>
@@ -4615,39 +3969,6 @@ section[id],
     <div class="caption fn2">
       Buenas Prácticas de Fabricación bajo NOM-259-SSA1-2022 implican validación de instalaciones, control microbiológico de cada lote, trazabilidad de materias primas y conservación documental por 5 años. Sin estos permisos, un producto no puede comercializarse legalmente en México.
     </div>
-
-    <div class="institution-grid reveal" style="margin-top:48px;">
-      <div class="institution-card">
-        <div class="inst-tag">Credencial técnica</div>
-        <strong>ITESM</strong>
-        <p>Fundadores con formación en biotecnología aplicada a formulación cosmética, estabilidad y activos.</p>
-      </div>
-      <div class="institution-card">
-        <div class="inst-tag">Operación</div>
-        <strong>NOM</strong>
-        <p>NOM-259, NOM-141 y NOM-089 como marco para fabricar, etiquetar y documentar con seriedad.</p>
-      </div>
-      <div class="institution-card">
-        <div class="inst-tag">Prueba propia</div>
-        <strong>TSC</strong>
-        <p>Marca propia en mercado desde 2021: sabemos formular y también vender al consumidor final.</p>
-      </div>
-      <div class="institution-card">
-        <div class="inst-tag">Velocidad</div>
-        <strong>18+</strong>
-      <p>Catálogo base para probar mercado sin inventar cada SKU desde cero.</p>
-      </div>
-      <div class="institution-card">
-        <div class="inst-tag">Control</div>
-        <strong>Lote</strong>
-        <p>Trazabilidad, documentación, repetibilidad y soporte para reposiciones de producción.</p>
-      </div>
-      <div class="institution-card">
-        <div class="inst-tag">Confidencialidad</div>
-        <strong>IP</strong>
-        <p>Podemos operar como laboratorio visible o detrás de la marca, según la estrategia comercial.</p>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -4656,25 +3977,29 @@ section[id],
   <div class="container">
     <div class="section-head reveal">
       <div class="section-num">
-        <span class="n">№ 09</span>
+        <span class="n">№ 05</span>
         <span class="lbl">La prueba</span>
         <span class="sub">Comparativa de mercado</span>
       </div>
       <div>
-        <h2 class="section-title">La calidad se ve mejor cuando la pones <em>contra el mercado</em>.</h2>
+        <h2 class="section-title">No competimos por discurso. Competimos por <em>formulación, costo y evidencia</em>.</h2>
         
       </div>
     </div>
 
-    <p class="proof-deck reveal">Comparamos productos vendidos en México contra <strong>The Skin Club</strong>, nuestra marca propia. La lectura no es decorativa: activos, precio por mililitro y calidad de fórmula frente a referencias reales.</p>
+    <p class="proof-deck reveal">Tomamos productos de referencia vendidos en México y los comparamos contra <strong>The Skin Club</strong>, la marca que nosotros mismos formulamos y operamos. La comparación no busca sonar mejor; muestra categoría, activos, precio por mililitro y puntos de formulación que sí se pueden revisar.</p>
 
     <div class="proof-tbl reveal">
 
       <div class="cat-head">
-        <div>Producto / Fórmula</div>
-        <div>Precio MXN</div>
-        <div>$ / mL</div>
-        <div>Observación</div>
+        <div>
+          <span class="cat-head-kicker">Fórmula TSC</span>
+          <strong>The Skin Club: producto propio</strong>
+        </div>
+        <div>
+          <span class="cat-head-kicker">Referencias retail</span>
+          <strong>Marcas comparables en México</strong>
+        </div>
       </div>
 
       <!-- Category I — HydroGlow -->
@@ -4816,57 +4141,23 @@ section[id],
   <div class="container">
     <div class="section-head reveal">
       <div class="section-num">
-        <span class="n">№ 10</span>
+        <span class="n">№ 06</span>
         <span class="lbl">Unit economics</span>
         <span class="sub">Margen real</span>
       </div>
       <div>
-        <h2 class="section-title">Antes de pedir lote, revisa si <em>el negocio cierra</em>.</h2>
+        <h2 class="section-title">Calcula <em>el margen real</em> de un lanzamiento.</h2>
         <p class="section-deck">
           
         </p>
       </div>
     </div>
 
-    <div class="decision-module reveal" id="diagnostic">
-      <div class="diagnostic-grid">
-        <button class="diagnostic-card is-active" type="button" data-route="desde-cero">
-          <div class="diag-tag">Diagnóstico 01</div>
-          <h3>Quiero lanzar desde cero.</h3>
-          <p>Necesito definir SKU, costo objetivo, muestra y primer lote viable.</p>
-        </button>
-        <button class="diagnostic-card" type="button" data-route="formula">
-          <div class="diag-tag">Diagnóstico 02</div>
-          <h3>Ya tengo fórmula.</h3>
-          <p>Necesito producción, expediente, envase, etiqueta y control de calidad.</p>
-        </button>
-        <button class="diagnostic-card" type="button" data-route="clinica">
-          <div class="diag-tag">Diagnóstico 03</div>
-          <h3>Soy clínica o tienda.</h3>
-          <p>Quiero línea propia para venta consultiva, post-servicio o retail especializado.</p>
-        </button>
-        <button class="diagnostic-card" type="button" data-route="blanca">
-          <div class="diag-tag">Diagnóstico 04</div>
-          <h3>Quiero marca blanca.</h3>
-          <p>Busco salir rápido con bases probadas y ajustes mínimos.</p>
-        </button>
-      </div>
-      <div class="diagnostic-output">
-        <div>
-          <div class="proof-kicker">Ruta recomendada</div>
-          <div class="route-name" id="diagRouteName">Formulación desde cero</div>
-        </div>
-        <div>
-          <p id="diagRouteCopy">Arrancamos con diagnóstico comercial, elegimos SKU hero, costo objetivo y promesa posible. Después pasamos a muestra, ajustes y primer lote.</p>
-        </div>
-      </div>
-    </div>
-
     <div class="calc-wrapper reveal">
       <div class="calc-inner">
         <div class="calc-header">
-          <h3>Simula volumen, canal y precio<br><em>antes de cotizar a ciegas.</em></h3>
-          <p>La calculadora usa costos TSC, tarifa menudeo/mayoreo según volumen, descuento por canal, envase opcional e IVA 16% deducido. No reemplaza cotización; ayuda a decidir si el lanzamiento tiene sentido.</p>
+          <h3>Proyecta los <em>números reales</em><br>de tu primer lanzamiento.</h3>
+          <p>Unit economics honesto: catálogo completo de 20 SKUs con precios reales TSC (menudeo vs mayoreo se aplica automático según volumen), canal de venta con descuento de retailer, envase custom opcional, e IVA 16% deducido. Utilidad neta real.</p>
         </div>
 
         <div class="calc-grid">
@@ -4956,34 +4247,34 @@ section[id],
   <div class="container">
     <div class="section-head reveal">
       <div class="section-num">
-        <span class="n">№ 11</span>
+        <span class="n">№ 07</span>
         <span class="lbl">Quién aporta qué</span>
         <span class="sub">División de trabajo</span>
       </div>
       <div>
-        <h2 class="section-title">No tienes que montar el laboratorio. Tienes que dirigir bien <em>la oportunidad</em>.</h2>
+        <h2 class="section-title">No tienes que montar un laboratorio. Tienes que elegir al <em>laboratorio correcto</em>.</h2>
       </div>
     </div>
 
     <div class="division-grid reveal">
       <div class="division-card">
         <div class="label">→ LA PARTE COMERCIAL TRAE</div>
-        <h3>El <em>mercado</em>, el criterio y el canal.</h3>
+        <h3>La <em>idea</em>, el canal y el objetivo.</h3>
         <div class="division-list">
-          <div class="item">La lectura del cliente final: qué tendría permiso de existir y por qué alguien lo compraría.</div>
-          <div class="item">El acceso al canal: e-commerce, clínica, tienda, marketplace, distribución, retail, venta social o activaciones.</div>
+          <div class="item">La lectura del mercado: qué producto tendría permiso de existir, para quién se formula y por qué tendría sentido comprarlo.</div>
+          <div class="item">El acceso al cliente y a la distribución: venta directa, retail, clínica, ecommerce, activaciones o recomendación profesional.</div>
           <div class="item">Las señales comerciales: presupuesto, ticket objetivo, volumen inicial, calendario y ambición del lanzamiento.</div>
-          <div class="item">La dirección creativa cuando ya exista: nombre, tono, look, empaque o campaña. Si todavía no existe, la aterrizamos juntos.</div>
+          <div class="item">La dirección comercial cuando ya exista: nombre, tono, empaque, campaña o canal. Si todavía no existe, la aterrizamos juntos.</div>
         </div>
       </div>
       <div class="division-card">
         <div class="label">→ TSC LABS RESUELVE</div>
-        <h3>El <em>desarrollo</em>, el lote y la operación.</h3>
+        <h3>La <em>fórmula</em>, el producto y la operación.</h3>
         <div class="division-list">
-          <div class="item">Convertimos la oportunidad en brief: claim, SKU inicial, costo objetivo y ruta de lanzamiento.</div>
-          <div class="item">Desarrollamos desde cero o adaptamos +18 bases validadas, según tipo de piel, canal y ticket.</div>
-          <div class="item">Acompañamos narrativa, claims y empaque para que la marca se vea deseable sin prometer de más.</div>
-          <div class="item">Producimos, controlamos calidad, envasamos, etiquetamos y documentamos bajo normativa mexicana.</div>
+          <div class="item">Bajamos la oportunidad a un brief vendible: concepto de producto, claim, SKU inicial, costo objetivo y ruta de lanzamiento.</div>
+          <div class="item">Desarrollamos la fórmula desde cero o adaptamos +18 fórmulas ya validadas, según mercado, canal y ticket objetivo.</div>
+          <div class="item">Acompañamos narrativa, claims, empaque y materiales para que la marca se vea deseable sin prometer lo que la fórmula no puede sostener.</div>
+          <div class="item">Producimos, controlamos calidad, envasamos, etiquetamos y documentamos bajo normativa mexicana, con confidencialidad total.</div>
         </div>
       </div>
     </div>
@@ -4997,12 +4288,12 @@ section[id],
   <div class="container">
     <div class="section-head reveal">
       <div class="section-num">
-        <span class="n">№ 12</span>
+        <span class="n">№ 08</span>
         <span class="lbl">Catálogo base</span>
         <span class="sub">Fórmulas validadas</span>
       </div>
       <div>
-        <h2 class="section-title">Catálogo base: la ruta más corta para <em>validar mercado</em>.</h2>
+        <h2 class="section-title">+18 fórmulas <em>ya validadas</em> — listas para etiquetar, o reformular a la medida.</h2>
         <p class="section-deck">
           
         </p>
@@ -5081,7 +4372,7 @@ section[id],
         <div class="cat-num">№ 12</div>
         <h4>Reformulación a medida</h4>
         <div class="cat-variants">tu fórmula · 100% confidencial</div>
-        <div class="cat-actives">→ diseñamos desde cero según brief, objetivo comercial e investigación R&amp;D</div>
+        <div class="cat-actives">→ diseñamos desde cero según el brief del proyecto e investigación R&amp;D</div>
       </div>
     </div>
   </div>
@@ -5091,7 +4382,7 @@ section[id],
   <div class="container">
     <div class="section-head reveal">
       <div class="section-num">
-        <span class="n">№ 13</span>
+        <span class="n">№ 09</span>
         <span class="lbl">Lo que no usamos</span>
         <span class="sub">Tabla de exclusión</span>
       </div>
@@ -5101,7 +4392,7 @@ section[id],
       </div>
     </div>
 
-    <p class="blacklist-deck reveal">Muchas fórmulas masivas siguen usando ingredientes baratos asociados a alergias, irritación o daño ambiental solo porque <em>reducen el costo de fabricación</em>. Nosotros los sustituimos por alternativas más seguras y defendibles, sin negociar la calidad. Esto protege la reputación de la marca desde el primer lote.</p>
+    <p class="blacklist-deck reveal">Las grandes marcas siguen usando ingredientes baratos asociados a alergias, disrupción hormonal y daño ambiental — solo porque <em>reducen el costo de fabricación</em>. Nosotros los sustituimos por alternativas más seguras y defendibles, sin negociar la calidad. Esto protege la reputación de la marca desde el primer lote.</p>
 
     <div class="periodic reveal">
 
@@ -5225,66 +4516,17 @@ section[id],
   </div>
 </section>
 
-<!-- ============ V2 · PARA QUIÉN ES ============ -->
-<section class="paper" id="fit">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="section-num">
-        <span class="n">№ 14</span>
-        <span class="lbl">Para quién es</span>
-        <span class="sub">Encaje comercial</span>
-      </div>
-      <div>
-        <h2 class="section-title">Buen fit: clientes con canal, criterio y ambición de <em>recompra</em>.</h2>
-      </div>
-    </div>
-
-    <div class="fit-grid reveal">
-      <div class="fit-card">
-        <div class="fit-tag">Sí · marca nueva</div>
-        <h3>Emprendedores y marcas DTC.</h3>
-        <p>Para validar un SKU hero con margen, narrativa clara y recompra posible.</p>
-      </div>
-      <div class="fit-card">
-        <div class="fit-tag">Sí · canal profesional</div>
-        <h3>Clínicas, spas y dermatología.</h3>
-        <p>Para convertir confianza profesional en línea propia recomendada después del servicio.</p>
-      </div>
-      <div class="fit-card">
-        <div class="fit-tag">Sí · comercio</div>
-        <h3>Tiendas, distribuidores y e-commerce.</h3>
-        <p>Para sumar producto propio sin depender únicamente del margen de marcas externas.</p>
-      </div>
-      <div class="fit-card">
-        <div class="fit-tag">Sí · marca existente</div>
-        <h3>Equipos que ya venden.</h3>
-        <p>Para escalar producción, mejorar sensorial, abrir una categoría o ordenar documentación.</p>
-      </div>
-      <div class="fit-card">
-        <div class="fit-tag">Sí · comunidad</div>
-        <h3>Creadores con canal propio.</h3>
-        <p>Para convertir demanda existente en SKU tangible sin improvisar operación ni cumplimiento.</p>
-      </div>
-      <div class="fit-card" data-no="true">
-        <div class="fit-tag">No · bajo estándar</div>
-        <h3>No somos para “lo más barato”.</h3>
-        <p>Si el objetivo es solo llenar frascos al menor costo posible, TSC no es el proveedor correcto.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ============ § 05 — SERVICIOS ============ -->
 <section class="paper" id="services">
   <div class="container">
     <div class="section-head reveal">
       <div class="section-num">
-        <span class="n">№ 15</span>
+        <span class="n">№ 10</span>
         <span class="lbl">Modelos</span>
         <span class="sub">Modelos de colaboración</span>
       </div>
       <div>
-        <h2 class="section-title">Cuatro maneras de <em>contratarnos</em>.</h2>
+        <h2 class="section-title">Cuatro maneras de contratar <em>a TSC Labs</em>.</h2>
       </div>
     </div>
 
@@ -5294,8 +4536,8 @@ section[id],
         <div class="svc-num">01</div>
         <div class="svc-body">
           <h4><em>Marca</em> Blanca</h4>
-          <p>Seleccionas una base validada, definimos ajustes permitidos, elegimos presentación y producimos bajo tu marca. Es la opción más rápida para validar demanda.</p>
-          <div class="ideal"><strong>IDEAL PARA →</strong><span class="who">Marcas, clínicas o tiendas que quieren validar mercado rápido</span></div>
+          <p>Eliges productos directamente de nuestro catálogo de fórmulas validadas y los envasamos con tu marca. El camino más rápido al mercado: arrancas con fórmulas que ya sabemos que funcionan.</p>
+          <div class="ideal"><strong>IDEAL PARA →</strong><span class="who">Clientes que quieren validar mercado en 90 días</span></div>
         </div>
       </div>
 
@@ -5303,8 +4545,8 @@ section[id],
         <div class="svc-num">02</div>
         <div class="svc-body">
           <h4><em>Formulación</em> a medida</h4>
-          <p>Partimos de brief, consumidor, claim y costo objetivo. Creamos prototipos, iteramos sensorial y cerramos una fórmula propia para tu lanzamiento.</p>
-          <div class="ideal"><strong>IDEAL PARA →</strong><span class="who">Proyectos con concepto propio, diferenciación técnica o necesidades únicas</span></div>
+          <p>Diseñamos desde cero la fórmula exacta que el proyecto necesita: textura, activos, claims, tipo de piel. Investigación, prototipado e iteración hasta llegar al producto deseado.</p>
+          <div class="ideal"><strong>IDEAL PARA →</strong><span class="who">Clientes con concepto claro o necesidades únicas</span></div>
         </div>
       </div>
 
@@ -5312,8 +4554,8 @@ section[id],
         <div class="svc-num">03</div>
         <div class="svc-body">
           <h4><em>Maquila</em> exclusiva</h4>
-          <p>Ya tienes fórmula o muestra. Revisamos viabilidad, definimos proceso, producimos lote y documentamos sin hacer pública tu propiedad intelectual.</p>
-          <div class="ideal"><strong>IDEAL PARA →</strong><span class="who">Marcas con fórmula propia que necesitan escalar producción</span></div>
+          <p>Ya tienes la fórmula (propia o de un químico previo) y necesitas producirla con calidad y escala. Fabricamos respetando confidencialidad total y manteniendo nuestros estándares de calidad.</p>
+          <div class="ideal"><strong>IDEAL PARA →</strong><span class="who">Marcas con IP propia que escalan producción</span></div>
         </div>
       </div>
 
@@ -5321,8 +4563,8 @@ section[id],
         <div class="svc-num">04</div>
         <div class="svc-body">
           <h4><em>Envasado</em> integral</h4>
-          <p>Integramos envase, etiqueta, lote y salida final. Puede ser por litros, por piezas terminadas o por presentación lista para retail.</p>
-          <div class="ideal"><strong>IDEAL PARA →</strong><span class="who">Equipos que quieren producto terminado, etiquetado y listo para vender</span></div>
+          <p>Te entregamos cualquiera de los servicios anteriores ya envasado, etiquetado y listo para distribución. Por litros si manejas tu propio fulfillment, o por piezas individuales empacadas para retail.</p>
+          <div class="ideal"><strong>IDEAL PARA →</strong><span class="who">Lanzamientos end-to-end full service</span></div>
         </div>
       </div>
 
@@ -5332,17 +4574,17 @@ section[id],
       <div class="why-card">
         <div class="why-num">+ 01</div>
         <h3>Asesoramiento <em>integral</em></h3>
-        <p>Te ayudamos a elegir envase primario/secundario, revisar etiqueta y bajar el material visual a algo compatible con producción y NOM-141.</p>
+        <p>Te ayudamos con la búsqueda y selección de envases primarios y secundarios para que la marca sobresalga visualmente. Te asesoramos para el cumplimiento de la NOM-141 vigente de etiquetado, paso por paso.</p>
       </div>
       <div class="why-card">
         <div class="why-num">+ 02</div>
         <h3>Permisos <em>y normativa</em></h3>
-        <p>Operamos con marco NOM-259, NOM-141 y NOM-089. El objetivo es que el lanzamiento no se frene por etiqueta, expediente o control de lote.</p>
+        <p>Contamos con permisos vigentes de COFEPRIS e instalaciones que cumplen todos los requerimientos de la normativa mexicana (NOM-259, NOM-141, NOM-089). El producto puede salir a retail legalmente desde el día uno.</p>
       </div>
       <div class="why-card">
         <div class="why-num">+ 03</div>
         <h3>Confidencialidad <em>total</em></h3>
-        <p>Podemos aparecer como laboratorio visible o trabajar detrás de tu marca. Si el proyecto requiere propiedad de fórmula, se cotiza aparte con su alcance técnico.</p>
+        <p>Mantenemos exclusividad y confidencialidad absolutas durante toda la operación. Nuestro nombre puede o no aparecer en la historia de la marca, según prefieras posicionarla. La fórmula es desarrollada y resguardada por TSC LABS; si el proyecto requiere propiedad de fórmula, se cotiza aparte con su respectivo alcance técnico.</p>
       </div>
     </div>
   </div>
@@ -5353,12 +4595,12 @@ section[id],
   <div class="container">
     <div class="section-head reveal">
       <div class="section-num">
-        <span class="n">№ 16</span>
+        <span class="n">№ 11</span>
         <span class="lbl">El proceso</span>
         <span class="sub">Calendario operativo</span>
       </div>
       <div>
-        <h2 class="section-title">Después de la llamada, el avance se ve <em>así</em>.</h2>
+        <h2 class="section-title">De primera reunión a <em>producto en almacén</em>.</h2>
       </div>
     </div>
 
@@ -5367,31 +4609,31 @@ section[id],
         <div class="week">SEMANA 01</div>
         <div class="num">i</div>
         <h5>Reunión inicial</h5>
-        <p>Definimos objetivo, consumidor, canal, presupuesto, timing y restricciones del primer lote.</p>
+        <p>Brief del proyecto, posicionamiento, canal, objetivos comerciales, presupuesto y timing de lanzamiento.</p>
       </div>
       <div class="proc-step">
         <div class="week">SEMANA 01—03</div>
         <div class="num">ii</div>
         <h5>Investigación</h5>
-        <p>Propuesta técnica y comercial: activos, costo estimado, volumen recomendado y ruta de desarrollo.</p>
+        <p>Análisis de mercado y competencia. Propuesta de fórmula con activos, costos de producción y volúmenes recomendados.</p>
       </div>
       <div class="proc-step">
         <div class="week">SEMANA 03—07</div>
         <div class="num">iii</div>
         <h5>Prototipado</h5>
-        <p>Entregamos muestras físicas e iteramos textura, aroma, sensorial y costo hasta aprobación.</p>
+        <p>Entregamos muestras físicas. Iteramos textura, aroma, sensoriales y eficacia hasta tu visto bueno.</p>
       </div>
       <div class="proc-step">
         <div class="week">SEMANA 07—10</div>
         <div class="num">iv</div>
         <h5>Producción</h5>
-        <p>Fabricación, control de calidad, envasado y etiqueta bajo el estándar acordado.</p>
+        <p>Fabricación en lote, control de calidad, envasado con la marca, etiquetado bajo cumplimiento NOM.</p>
       </div>
       <div class="proc-step">
         <div class="week">SEMANA 10—12</div>
         <div class="num">v</div>
         <h5>Entrega</h5>
-        <p>Entrega en almacén o destino final, con soporte para reposición y siguientes SKUs.</p>
+        <p>Producto terminado en almacén o destino final. Soporte para reposiciones y ampliación de catálogo.</p>
       </div>
     </div>
   </div>
@@ -5402,12 +4644,12 @@ section[id],
   <div class="container">
     <div class="section-head reveal">
       <div class="section-num">
-        <span class="n">№ 17</span>
+        <span class="n">№ 12</span>
         <span class="lbl">Quién está detrás</span>
         <span class="sub">Quiénes formulan</span>
       </div>
       <div>
-        <h2 class="section-title">Tres ingenieros del ITESM que formulan, producen y venden <em>su propia marca</em>.</h2>
+        <h2 class="section-title">Tres ingenieros del ITESM con <em>marca propia validada</em> y un compromiso con la transparencia de la industria.</h2>
       </div>
     </div>
 
@@ -5453,7 +4695,7 @@ section[id],
   <div class="container">
     <div class="section-head reveal" style="margin-bottom: 0; padding-bottom: 0; border-bottom: 0;">
       <div class="section-num">
-        <span class="n">№ 18</span>
+        <span class="n">№ 13</span>
         <span class="lbl">Contacto</span>
         <span class="sub">Siguiente paso</span>
       </div>
@@ -5483,7 +4725,7 @@ section[id],
 
 <!-- ============ TICK ROW ============ -->
 <div class="tick-row" aria-hidden="true">
-  <span>FIN · TSC LABS · LABORATORIO COMERCIAL</span>
+  <span>FIN · DOSSIER № TSC-2026/01</span>
   <span>R-N-C-T-L</span>
   <span>VER. 1.0 · ABR 2026</span>
 </div>
@@ -5491,7 +4733,7 @@ section[id],
 <!-- ============ COLOPHON / FOOTER ============ -->
 <footer class="colophon">
   <div class="left"><strong>TSC LABS</strong> · Bocana 2692 · Zapopan, Jalisco · México</div>
-  <div class="right">FORMULACIÓN · MAQUILA · MARCA BLANCA</div>
+  <div class="right">DOSSIER № TSC-2026/01 · CONFIDENCIAL</div>
 </footer>
 
 
@@ -5520,43 +4762,8 @@ section[id],
 
   const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const MOBILE  = window.matchMedia('(max-width: 768px)').matches;
-
-  /* ========== Hash anchors — account for fixed topbar + late font layout ========== */
-  function scrollToHashTarget(hash, behavior = 'smooth') {
-    if (!hash || hash === '#') return;
-    const target = document.getElementById(decodeURIComponent(hash.slice(1)));
-    if (!target) return;
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        target.scrollIntoView({ block: 'start', inline: 'nearest', behavior });
-      });
-    });
-  }
-
-  document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener('click', (event) => {
-      const hash = link.getAttribute('href');
-      if (!hash || hash === '#') return;
-      if (!document.getElementById(decodeURIComponent(hash.slice(1)))) return;
-      event.preventDefault();
-      history.pushState(null, '', hash);
-      scrollToHashTarget(hash);
-    });
-  });
-
-  window.addEventListener('hashchange', () => scrollToHashTarget(window.location.hash));
-  window.addEventListener('load', () => {
-    if (!window.location.hash) return;
-    const settle = () => {
-      scrollToHashTarget(window.location.hash, 'auto');
-      setTimeout(() => scrollToHashTarget(window.location.hash, 'auto'), 260);
-      setTimeout(() => scrollToHashTarget(window.location.hash, 'auto'), 900);
-    };
-    if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(settle);
-    } else {
-      settle();
-    }
+  const markHeroReady = () => requestAnimationFrame(() => {
+    document.documentElement.classList.add('hero-ready');
   });
 
   /* ========== Reveal via IntersectionObserver (CSS transitions) ========== */
@@ -5596,39 +4803,17 @@ section[id],
       if (liquid) { liquid.setAttribute('y', y); liquid.setAttribute('height', h); }
       if (meniscus) { meniscus.setAttribute('y', y); }
     });
+    markHeroReady();
     return;
   }
 
   /* ========== GSAP setup ========== */
-  if (typeof gsap === 'undefined') return;
+  if (typeof gsap === 'undefined') { markHeroReady(); return; }
 
   if (window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
   if (window.DrawSVGPlugin) gsap.registerPlugin(DrawSVGPlugin);
   if (window.Flip) gsap.registerPlugin(Flip);
   if (window.SplitText) gsap.registerPlugin(SplitText);
-
-  /* ========== Hero h1 — SplitText only here, lines mask reveal ========== */
-  try {
-    const h1 = document.querySelector('.hero-title');
-    if (h1 && window.SplitText) {
-      const split = new SplitText(h1, { type: 'lines', linesClass: 'split-line' });
-      // wrap each line for mask
-      split.lines.forEach(line => {
-        const wrap = document.createElement('span');
-        wrap.style.display = 'block';
-        wrap.style.overflow = 'hidden';
-        line.parentNode.insertBefore(wrap, line);
-        wrap.appendChild(line);
-      });
-      gsap.from(split.lines, {
-        yPercent: 110,
-        duration: 1.0,
-        stagger: 0.08,
-        ease: 'power3.out',
-        delay: 0.15
-      });
-    }
-  } catch (e) { /* noop */ }
 
   /* ========== Hero annotation lines (DrawSVG) ========== */
   try {
@@ -5643,6 +4828,8 @@ section[id],
       }
     }
   } catch (e) { /* noop */ }
+
+  markHeroReady();
 
   /* ========== Cylinder fill — smooth rise, gentle meniscus ripple ========== */
   function animateCylinder(svg, delay) {
@@ -6813,92 +6000,6 @@ section[id],
   }
   calcInit();
 
-  /* ========== GENERAL V2 — diagnostic route selector feeding the calculator ========== */
-  function diagnosticInit() {
-    const cards = document.querySelectorAll('.diagnostic-card');
-    const name = document.getElementById('diagRouteName');
-    const copy = document.getElementById('diagRouteCopy');
-    if (!cards.length || !name || !copy) return;
-
-    const routes = {
-      'desde-cero': {
-        name: 'Formulación desde cero',
-        copy: 'Arrancamos con diagnóstico comercial, elegimos SKU hero, costo objetivo y promesa posible. Después pasamos a muestra, ajustes y primer lote.',
-        product: 'suero-hidr',
-        volume: 1000,
-        price: 520,
-        pkg: 24
-      },
-      formula: {
-        name: 'Maquila exclusiva',
-        copy: 'Tomamos tu fórmula o muestra, revisamos viabilidad, definimos proceso, lote, empaque y expediente. Ideal cuando la IP ya existe y el reto es producir bien.',
-        product: 'cg-normal',
-        volume: 1500,
-        price: 480,
-        pkg: 18
-      },
-      clinica: {
-        name: 'Línea profesional',
-        copy: 'Diseñamos un portafolio corto para recomendación, retail interno o venta post-servicio: limpieza, hidratación, reparación y mantenimiento.',
-        product: 'cg-rep',
-        volume: 800,
-        price: 650,
-        pkg: 20
-      },
-      blanca: {
-        name: 'Marca blanca rápida',
-        copy: 'Partimos de bases ya validadas, ajustamos sensorial o empaque si hace falta y pasamos a lote inicial. Es la ruta más corta para probar demanda real.',
-        product: 'suero-vitc',
-        volume: 400,
-        price: 450,
-        pkg: 12
-      }
-    };
-
-    function setCalc(route) {
-      const sel = document.getElementById('productSel');
-      const vol = document.getElementById('volume');
-      const price = document.getElementById('price');
-      const pkg = document.getElementById('pkg');
-      if (sel && route.product) { sel.value = route.product; sel.dispatchEvent(new Event('change', { bubbles: true })); }
-      if (vol && route.volume) { vol.value = String(route.volume); vol.dispatchEvent(new Event('input', { bubbles: true })); }
-      if (price && route.price) { price.value = String(route.price); price.dispatchEvent(new Event('input', { bubbles: true })); }
-      if (pkg && route.pkg !== undefined) { pkg.value = String(route.pkg); pkg.dispatchEvent(new Event('input', { bubbles: true })); }
-    }
-
-    cards.forEach(card => {
-      card.addEventListener('click', () => {
-        const route = routes[card.dataset.route] || routes['desde-cero'];
-        cards.forEach(c => c.classList.remove('is-active'));
-        card.classList.add('is-active');
-        name.textContent = route.name;
-        copy.textContent = route.copy;
-        setCalc(route);
-        if (window.gsap) {
-          gsap.fromTo([name, copy], { y: 8, opacity: 0 }, { y: 0, opacity: 1, duration: 0.32, stagger: 0.04, ease: 'power3.out' });
-        }
-      });
-    });
-  }
-  diagnosticInit();
-
-  /* ========== GENERAL V2 — premium entrance for new editorial modules ========== */
-  if (window.gsap && window.ScrollTrigger) {
-    gsap.utils.toArray('.route-card, .journey-node, .risk-card, .fit-card, .institution-card').forEach((el, i) => {
-      gsap.fromTo(el,
-        { opacity: 0, y: 24 },
-        { opacity: 1, y: 0, duration: 0.55, ease: 'power3.out',
-          scrollTrigger: { trigger: el, start: 'top 88%', once: true },
-          delay: (i % 4) * 0.04 }
-      );
-    });
-    gsap.fromTo('.bottle',
-      { y: 36, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.7, stagger: 0.12, ease: 'power3.out',
-        scrollTrigger: { trigger: '.visual-proof', start: 'top 72%', once: true } }
-    );
-  }
-
   /* ========== V2 only: VS layout (TSC dominant + mini competitors) in §03 ========== */
   function buildVsLayout() {
     if (!document.body.classList.contains('v2-mode')) return;
@@ -6918,35 +6019,53 @@ section[id],
       const grid = document.createElement('div');
       grid.className = 'vs-grid';
       grid.innerHTML = `
-        <div class="vs-tsc">
-          <div class="vs-badge">★ TSC LABS · The Skin Club</div>
-          <h4 class="vs-name">${txt(tscRow, '.brand').replace(/^The Skin Club\s*·\s*/, '')}</h4>
-          <p class="vs-desc">${txt(tscRow, '.desc')}</p>
-          <div class="vs-prices">
-            <span class="vs-price">${txt(tscRow, '.price')}</span>
-            <span class="vs-perml">${txt(tscRow, '.perml')}</span>
+        <div class="vs-lane">
+          <div class="vs-lane-label">Fórmula propia TSC</div>
+          <div class="vs-tsc">
+            <div class="vs-badge">★ TSC LABS · The Skin Club</div>
+            <h4 class="vs-name">${txt(tscRow, '.brand').replace(/^The Skin Club\s*·\s*/, '')}</h4>
+            <p class="vs-desc">${txt(tscRow, '.desc')}</p>
+            <div class="vs-prices">
+              <span class="vs-metric">
+                <span class="vs-metric-label">Precio público</span>
+                <span class="vs-price">${txt(tscRow, '.price')}</span>
+              </span>
+              <span class="vs-metric">
+                <span class="vs-metric-label">$ / mL</span>
+                <span class="vs-perml">${txt(tscRow, '.perml')}</span>
+              </span>
+            </div>
+            <div class="vs-claim">${txt(tscRow, '.verdict')}</div>
           </div>
-          <div class="vs-claim">${txt(tscRow, '.verdict')}</div>
         </div>
-        <div class="vs-competitors">
-          ${competitors.map(r => {
-            const verdict = txt(r, '.verdict');
-            const isWarn = WARN_RX.test(verdict);
-            return `
-              <div class="vs-mini${isWarn ? ' warn' : ''}">
-                <div class="vs-mini-head">
-                  <span class="vs-mini-brand">${txt(r, '.brand')}</span>
-                  <span class="vs-mini-flag">${isWarn ? '⚠' : '·'}</span>
+        <div class="vs-lane">
+          <div class="vs-lane-label">Referencias retail</div>
+          <div class="vs-competitors">
+            ${competitors.map(r => {
+              const verdict = txt(r, '.verdict');
+              const isWarn = WARN_RX.test(verdict);
+              return `
+                <div class="vs-mini${isWarn ? ' warn' : ''}">
+                  <div class="vs-mini-head">
+                    <span class="vs-mini-brand">${txt(r, '.brand')}</span>
+                    <span class="vs-mini-flag">${isWarn ? '⚠' : '·'}</span>
+                  </div>
+                  <div class="vs-mini-desc">${txt(r, '.desc')}</div>
+                  <div class="vs-mini-prices">
+                    <span class="vs-mini-metric">
+                      <span class="vs-mini-label">Precio</span>
+                      <span class="vs-mini-price">${txt(r, '.price')}</span>
+                    </span>
+                    <span class="vs-mini-metric">
+                      <span class="vs-mini-label">$ / mL</span>
+                      <span class="vs-mini-perml">${txt(r, '.perml')}</span>
+                    </span>
+                  </div>
+                  <div class="vs-mini-verdict">${verdict}</div>
                 </div>
-                <div class="vs-mini-desc">${txt(r, '.desc')}</div>
-                <div class="vs-mini-prices">
-                  <span class="vs-mini-price">${txt(r, '.price')}</span>
-                  <span class="vs-mini-perml">${txt(r, '.perml')}</span>
-                </div>
-                <div class="vs-mini-verdict">${verdict}</div>
-              </div>
-            `;
-          }).join('')}
+              `;
+            }).join('')}
+          </div>
         </div>
       `;
 

@@ -1519,7 +1519,13 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
   .hero-title { font-size: clamp(38px, 12vw, 60px); line-height: 0.98; }
   .hero-eyebrow { font-size: 10px; gap: 12px; margin-bottom: 24px; }
   .hero-eyebrow::before { width: 32px; }
-  .hero-abstract { font-size: 16px; }
+  .hero-abstract {
+    font-size: 16px;
+    text-align: left;
+    hyphens: none;
+    word-break: normal;
+    overflow-wrap: normal;
+  }
   .cyl-figure { font-size: clamp(32px, 9vw, 48px); }
   section.paper { padding: 56px 0; }
   .section-num .n { font-size: 40px; }
