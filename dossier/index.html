@@ -1497,7 +1497,7 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
   .hero-title { font-size: clamp(38px, 12vw, 60px); line-height: 0.98; }
   .hero-eyebrow { font-size: 10px; gap: 12px; margin-bottom: 24px; }
   .hero-eyebrow::before { width: 32px; }
-  .hero-abstract { font-size: 16px; }
+  .hero-abstract { font-size: 16px; text-align: left; hyphens: none; }
   .cyl-figure { font-size: clamp(32px, 9vw, 48px); }
   section.paper { padding: 56px 0; }
   .section-num .n { font-size: 40px; }
@@ -2852,6 +2852,70 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
   font-size: 8.5px;
   letter-spacing: 0.1em;
   color: var(--ink-faint);
+}
+
+@media (min-width: 981px) {
+  .v2-mode .hero {
+    padding: calc(var(--topbar-h) + 18px) 0 46px !important;
+  }
+  .v2-mode .hero .hero-grid {
+    grid-template-columns: minmax(0, 1.08fr) minmax(390px, 0.82fr) !important;
+    gap: 54px !important;
+    margin-top: 18px !important;
+  }
+  .v2-mode .hero h1 {
+    font-size: clamp(46px, 6.1vw, 88px) !important;
+  }
+  .v2-mode .hero-right {
+    gap: 0 !important;
+    align-self: start;
+  }
+  .v2-mode .cyl-card {
+    grid-template-columns: 50px minmax(0, 1.35fr) minmax(92px, 0.78fr) !important;
+    gap: 18px !important;
+    padding: 18px 0 !important;
+  }
+  .v2-mode .cyl-svg-wrap {
+    width: 50px !important;
+    height: 92px !important;
+  }
+  .v2-mode .cyl-svg {
+    width: 46px !important;
+    height: 92px !important;
+  }
+  .v2-mode .cyl-text {
+    gap: 8px !important;
+  }
+  .v2-mode .cyl-text > div:nth-child(2) {
+    gap: 4px 16px;
+    padding-top: 8px;
+  }
+  .v2-mode .cyl-figure {
+    font-size: clamp(38px, 3.9vw, 62px) !important;
+    margin-bottom: 6px;
+  }
+  .v2-mode .cyl-label {
+    font-size: 12.5px !important;
+    line-height: 1.32 !important;
+  }
+  .v2-mode .cyl-source {
+    font-size: 8px !important;
+    letter-spacing: 0.14em;
+  }
+  .v2-mode .cyl-extra {
+    gap: 6px;
+    padding-right: 0;
+  }
+  .v2-mode .extra-head {
+    font-size: 8px;
+    letter-spacing: 0.14em;
+  }
+  .v2-mode .bar-track {
+    height: 7px;
+  }
+  .v2-mode .bar-axis {
+    font-size: 7px;
+  }
 }
 
 /* Body paragraph fluidity */
