@@ -719,11 +719,22 @@ section.paper {
   letter-spacing: -0.045em;
   color: var(--rust);
   font-style: italic;
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
 }
-.proof-metric .num sup {
-  font-size: 0.34em;
-  position: relative;
-  top: -0.72em;
+.proof-metric .metric-unit {
+  display: inline-block;
+  margin-bottom: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-style: normal;
+  font-weight: 600;
+  white-space: nowrap;
 }
 .proof-metric .label {
   font-family: var(--mono);
@@ -3708,10 +3719,10 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
         <div class="proof-kicker">Prueba de mercado</div>
         <p class="proof-thesis">El valor no está en la idea. Está en llevarla a un <em>producto vendible</em>.</p>
         <div class="proof-metrics">
-          <div class="proof-metric"><div class="num">18<sup>+</sup></div><div class="label">Fórmulas base para marca blanca o reformulación</div></div>
-          <div class="proof-metric"><div class="num">400<sup>+</sup></div><div class="label">Unidades para tarifa mayoreo en producción inicial</div></div>
-          <div class="proof-metric"><div class="num">12<sup>sem</sup></div><div class="label">Ruta típica de brief a producto terminado</div></div>
-          <div class="proof-metric"><div class="num">$17.6<sup>B</sup></div><div class="label">Mercado mexicano de belleza · proyección 2026</div></div>
+          <div class="proof-metric"><div class="num">18<span class="metric-unit">+ fórmulas</span></div><div class="label">Fórmulas base para marca blanca o reformulación</div></div>
+          <div class="proof-metric"><div class="num">400<span class="metric-unit">+ uds</span></div><div class="label">Unidades para tarifa mayoreo en producción inicial</div></div>
+          <div class="proof-metric"><div class="num">12<span class="metric-unit">sem</span></div><div class="label">Ruta típica de brief a producto terminado</div></div>
+          <div class="proof-metric"><div class="num">$17.6<span class="metric-unit">B USD</span></div><div class="label">Mercado mexicano de belleza · proyección 2026</div></div>
         </div>
         <p class="proof-footnote">La oportunidad: convertir intención comercial en producto propio, formulado y producido con estándar de laboratorio.</p>
       </aside>
@@ -3766,7 +3777,7 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
         <span class="sub">Qué sí se repite</span>
       </div>
       <div>
-        <h2 class="section-title">Las marcas que ganan tienen algo en común: <em>producto</em>, no solo branding.</h2>
+        <h2 class="section-title">Las marcas que escalan tienen algo en común: <em>producto</em>, no solo branding.</h2>
       </div>
     </div>
 
@@ -3781,7 +3792,7 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
       <div class="tbl-row"><div><div class="brand">Marca blanca bien hecha</div><div class="case-founder">Velocidad + control</div></div><div class="price">—</div><div class="case-value">Ruta viable</div><div class="verdict">Una fórmula validada permite probar mercado más rápido. La clave es elegir el SKU correcto, ajustar sensoriales y documentar todo desde el primer lote.</div></div>
     </div>
 
-    <p class="proof-deck reveal" style="margin-top:40px;"><em>Las marcas que ganan</em> tienen un laboratorio detrás que puede defender cada fórmula. Concepto comercial + canal claro + buen laboratorio es la combinación reproducible. Eso es lo que → TSC LABS APORTA.</p>
+    <p class="proof-deck reveal" style="margin-top:40px;">El patrón se repite: concepto claro, canal de venta definido y una fórmula que pueda defenderse lote tras lote. Ahí es donde el laboratorio importa: reduce incertidumbre técnica, controla costo y documenta el producto desde el primer lote.</p>
   </div>
 </section>
 
@@ -3815,7 +3826,7 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
         <div class="why-num">№ 02 · TRACK RECORD</div>
         <h3>Marca propia <em>en mercado</em></h3>
         <p>
-          Operamos The Skin Club desde 2021 — nuestra propia línea de skincare que compite directamente con Kiehl&apos;s, Clinique, L&apos;Oréal y The Ordinary, ganándoles en formulación y precio. <strong>Lo que proponemos para tu marca, ya lo demostramos con nosotros mismos.</strong> No es teoría: es producto que se vende cada día.
+          Operamos The Skin Club desde 2021: una línea propia de skincare formulada, producida y vendida por nosotros. Nos ha permitido probar fórmulas, costos, proveedores, empaque, etiquetado, reposición y venta directa en condiciones reales. Esa experiencia operativa informa cada proyecto que desarrollamos para terceros.
         </p>
         <div class="foot">→ VER ECOMMERCE THE SKIN CLUB</div>
       </a>
@@ -3847,12 +3858,12 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
         <span class="sub">Comparativa de mercado</span>
       </div>
       <div>
-        <h2 class="section-title">No te lo decimos. Te lo <em>demostramos</em>.</h2>
+        <h2 class="section-title">No competimos por discurso. Competimos por <em>formulación, costo y evidencia</em>.</h2>
         
       </div>
     </div>
 
-    <p class="proof-deck reveal">Tomamos productos estrella de marcas vendidas en México y los comparamos contra <strong>The Skin Club</strong> — la marca que nosotros mismos formulamos y vendemos al consumidor final. Mismas categorías, activos comparables y mejor lectura de costo por mililitro. <em>Esta es la calidad de fórmula que podemos desarrollar para una marca externa.</em></p>
+    <p class="proof-deck reveal">Tomamos productos de referencia vendidos en México y los comparamos contra <strong>The Skin Club</strong>, la marca que nosotros mismos formulamos y operamos. La comparación muestra categoría, activos, precio por mililitro y puntos de formulación que sí se pueden revisar.</p>
 
     <div class="proof-tbl reveal">
 

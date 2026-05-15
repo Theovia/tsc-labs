@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;700;900&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
 
 <style>
 /* ============================================================
@@ -58,6 +59,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   position: relative;
+}
+
+html.js body.v2-mode .hero .hero-grid,
+html.js body.v2-mode .hero .hero-doc-stamp {
+  opacity: 0;
+}
+html.js.hero-ready body.v2-mode .hero .hero-grid,
+html.js.hero-ready body.v2-mode .hero .hero-doc-stamp {
+  opacity: 1;
+  transition: opacity 0.32s ease;
 }
 
 /* ============ FILM GRAIN OVERLAY (perf-friendly: no blend mode) ============ */
@@ -143,6 +154,132 @@ a { color: inherit; text-decoration: none; }
   transform: translateY(-2px);
   background: var(--rust);
   border-color: var(--rust);
+}
+
+/* ============ Floating discovery CTA ============ */
+.discovery-float {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 92;
+  width: 174px;
+  min-height: 34px;
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px 6px 8px;
+  color: var(--ink);
+  text-decoration: none;
+  background: color-mix(in srgb, var(--paper) 82%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ink) 18%, transparent);
+  border-radius: 4px;
+  box-shadow: none;
+  backdrop-filter: blur(7px) saturate(120%);
+  -webkit-backdrop-filter: blur(7px) saturate(120%);
+  overflow: hidden;
+  transform: translateZ(0);
+  opacity: 0.82;
+}
+.discovery-float::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--rust);
+  opacity: 0.7;
+}
+.discovery-float:hover {
+  opacity: 1;
+  border-color: color-mix(in srgb, var(--rust) 34%, var(--line));
+  background: color-mix(in srgb, var(--paper) 94%, transparent);
+}
+.float-lab {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+}
+.float-lab svg {
+  width: 22px;
+  height: 28px;
+  overflow: visible;
+}
+.float-glass {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.1;
+  opacity: 0.66;
+  vector-effect: non-scaling-stroke;
+}
+.float-liquid {
+  fill: color-mix(in srgb, #78aecd 70%, var(--paper));
+  opacity: 0.40;
+}
+.float-wave {
+  fill: none;
+  stroke: color-mix(in srgb, #3d83aa 70%, var(--ink));
+  stroke-width: 0.9;
+  opacity: 0.35;
+}
+.float-bubble {
+  fill: var(--rust);
+  opacity: 0.28;
+}
+.discovery-copy {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.discovery-kicker {
+  display: none;
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--rust);
+  font-weight: 700;
+}
+.discovery-line {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  line-height: 1.25;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.discovery-micro {
+  display: none;
+  font-family: var(--mono);
+  font-size: 8.5px;
+  line-height: 1.35;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+@media (max-width: 640px) {
+  .discovery-float {
+    right: 10px;
+    bottom: 10px;
+    width: 148px;
+    min-height: 32px;
+    grid-template-columns: 20px minmax(0, 1fr);
+    gap: 7px;
+    padding: 5px 8px 5px 7px;
+  }
+  .float-lab { width: 20px; height: 20px; }
+  .float-lab svg { width: 20px; height: 25px; }
+  .discovery-line { font-size: 8px; letter-spacing: 0.12em; }
 }
 
 /* ============ LAYOUT GRID ============ */
@@ -719,11 +856,22 @@ section.paper {
   letter-spacing: -0.045em;
   color: var(--rust);
   font-style: italic;
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
 }
-.proof-metric .num sup {
-  font-size: 0.34em;
-  position: relative;
-  top: -0.72em;
+.proof-metric .metric-unit {
+  display: inline-block;
+  margin-bottom: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-style: normal;
+  font-weight: 600;
+  white-space: nowrap;
 }
 .proof-metric .label {
   font-family: var(--mono);
@@ -2855,6 +3003,63 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
   color: var(--ink-faint);
 }
 
+@media (min-width: 981px) {
+  .v2-mode .hero .hero-grid {
+    grid-template-columns: minmax(0, 1.08fr) minmax(390px, 0.82fr);
+    gap: 54px !important;
+  }
+  .v2-mode .hero-right {
+    gap: 0 !important;
+    align-self: start;
+  }
+  .v2-mode .cyl-card {
+    grid-template-columns: 50px minmax(0, 1.35fr) minmax(92px, 0.78fr) !important;
+    gap: 18px !important;
+    padding: 18px 0 !important;
+  }
+  .v2-mode .cyl-svg-wrap {
+    width: 50px !important;
+    height: 92px !important;
+  }
+  .v2-mode .cyl-svg {
+    width: 46px !important;
+    height: 92px !important;
+  }
+  .v2-mode .cyl-text {
+    gap: 8px !important;
+  }
+  .v2-mode .cyl-text > div:nth-child(2) {
+    gap: 4px 16px;
+    padding-top: 8px;
+  }
+  .v2-mode .cyl-figure {
+    font-size: clamp(38px, 3.9vw, 62px) !important;
+    margin-bottom: 6px;
+  }
+  .v2-mode .cyl-label {
+    font-size: 12.5px !important;
+    line-height: 1.32 !important;
+  }
+  .v2-mode .cyl-source {
+    font-size: 8px !important;
+    letter-spacing: 0.14em;
+  }
+  .v2-mode .cyl-extra {
+    gap: 6px;
+    padding-right: 0;
+  }
+  .v2-mode .extra-head {
+    font-size: 8px;
+    letter-spacing: 0.14em;
+  }
+  .v2-mode .bar-track {
+    height: 7px;
+  }
+  .v2-mode .bar-axis {
+    font-size: 7px;
+  }
+}
+
 /* Body paragraph fluidity */
 .v2-mode .opening,
 .v2-mode .opening p,
@@ -3193,6 +3398,13 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
   margin-bottom: 12px !important;
 }
 .v2-mode .cat-title::before { content: none; }
+.v2-mode .proof-tbl {
+  border-top: none !important;
+  border-bottom: none !important;
+}
+.v2-mode .cat-head {
+  display: none !important;
+}
 
 /* §03 VS layout — TSC dominant card + competitor mini cards */
 .v2-mode .tbl-row.vs-hidden { display: none !important; }
@@ -3203,6 +3415,19 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
   margin-top: 16px;
   align-items: stretch;
 }
+.v2-mode .vs-lane {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.v2-mode .vs-lane-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
 .v2-mode .vs-tsc {
   background: color-mix(in srgb, var(--rust) 7%, var(--paper));
   border: 1px solid color-mix(in srgb, var(--rust) 35%, transparent);
@@ -3212,6 +3437,7 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
   display: flex;
   flex-direction: column;
   justify-content: center;
+  flex: 1;
 }
 .v2-mode .vs-badge {
   font-family: var(--mono);
@@ -3240,12 +3466,25 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
   line-height: 1.5;
 }
 .v2-mode .vs-prices {
-  display: flex;
-  align-items: baseline;
-  gap: 14px;
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: end;
+  gap: 24px;
   margin-bottom: 16px;
   border-top: 1px solid color-mix(in srgb, var(--rust) 25%, transparent);
   padding-top: 16px;
+}
+.v2-mode .vs-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.v2-mode .vs-metric-label {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
 }
 .v2-mode .vs-price {
   font-family: var(--serif-disp);
@@ -3274,6 +3513,7 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
   display: flex;
   flex-direction: column;
   gap: 10px;
+  flex: 1;
 }
 .v2-mode .vs-mini {
   background: var(--paper-deep);
@@ -3321,8 +3561,20 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
 .v2-mode .vs-mini-prices {
   display: flex;
   align-items: baseline;
-  gap: 10px;
+  gap: 16px;
   margin-bottom: 6px;
+}
+.v2-mode .vs-mini-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.v2-mode .vs-mini-label {
+  font-family: var(--mono);
+  font-size: 7px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
 }
 .v2-mode .vs-mini-price {
   font-family: var(--serif-disp);
@@ -3349,6 +3601,8 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
 @media (max-width: 720px) {
   .v2-mode .vs-grid { grid-template-columns: 1fr; gap: 18px; }
   .v2-mode .vs-tsc { padding: 22px 20px 24px; }
+  .v2-mode .cat-head { grid-template-columns: 1fr !important; gap: 14px !important; }
+  .v2-mode .vs-prices { grid-template-columns: 1fr 1fr; gap: 16px; }
 }
 .v2-mode .cat-block {
   border-bottom: none !important;
@@ -3478,6 +3732,34 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
   </div>
 </header>
 
+<a class="discovery-float" href="#contact" aria-label="Agenda tu sesión de descubrimiento con TSC Labs">
+  <span class="float-lab" aria-hidden="true">
+    <svg viewBox="0 0 72 96" role="img">
+      <defs>
+        <clipPath id="discovery-beaker-clip">
+          <path d="M22 15h28v16l11 39c2.4 8.4-2.3 15-11 15H22c-8.7 0-13.4-6.6-11-15l11-39V15Z"/>
+        </clipPath>
+      </defs>
+      <path class="float-glass" d="M22 15h28v16l11 39c2.4 8.4-2.3 15-11 15H22c-8.7 0-13.4-6.6-11-15l11-39V15Z"/>
+      <line x1="18" y1="15" x2="54" y2="15" class="float-glass"/>
+      <g clip-path="url(#discovery-beaker-clip)">
+        <rect class="float-liquid" x="12" y="58" width="48" height="28" rx="4"/>
+        <path class="float-wave" d="M10 58 C19 54 27 62 36 58 S53 54 62 58"/>
+      </g>
+      <g class="float-bubbles">
+        <circle class="float-bubble" cx="27" cy="50" r="2.2"/>
+        <circle class="float-bubble" cx="42" cy="45" r="1.7"/>
+        <circle class="float-bubble" cx="36" cy="36" r="1.4"/>
+      </g>
+    </svg>
+  </span>
+  <span class="discovery-copy">
+    <span class="discovery-kicker">Contacto</span>
+    <span class="discovery-line" data-discovery-line>Agenda sesión</span>
+    <span class="discovery-micro" data-discovery-micro>Sesión de descubrimiento</span>
+  </span>
+</a>
+
 <!-- ============ HERO · § 01 ============ -->
 <section class="hero">
 
@@ -3560,7 +3842,7 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
           </svg>
         </div>
         <div class="cyl-text">
-          <div class="cyl-figure"><span class="counter" data-target="17.6" data-decimals="1" data-prefix="$">$0.0</span><span class="unit">B</span></div>
+          <div class="cyl-figure"><span class="counter" data-target="17.6" data-decimals="1" data-prefix="$">$17.6</span><span class="unit">B</span></div>
           <div>
             <div class="cyl-label">Mercado mexicano de belleza 2026: suficiente tamaño para lanzar por venta directa antes de escalar a retail.</div>
             <div class="cyl-source">FUENTE / MORDOR INTELLIGENCE</div>
@@ -3602,9 +3884,9 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
           </svg>
         </div>
         <div class="cyl-text">
-          <div class="cyl-figure"><span class="counter" data-target="2.7" data-decimals="1" data-prefix="$">$0.0</span><span class="unit">B</span></div>
+          <div class="cyl-figure"><span class="counter" data-target="2.7" data-decimals="1" data-prefix="$">$2.7</span><span class="unit">B</span></div>
           <div>
-            <div class="cyl-label">Rare Beauty y Rhode prueban el upside: producto propio puede valer más que años de deals.</div>
+            <div class="cyl-label">Rare Beauty y Rhode muestran que la propiedad del producto puede valer más que años de campañas.</div>
             <div class="cyl-source">FUENTE / BEAUTY INDUSTRY REPORTS</div>
           </div>
         </div>
@@ -3644,7 +3926,7 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
           </svg>
         </div>
         <div class="cyl-text">
-          <div class="cyl-figure"><span class="counter" data-target="57.8" data-decimals="1" data-prefix="+">+0.0</span><span class="unit">%</span></div>
+          <div class="cyl-figure"><span class="counter" data-target="57.8" data-decimals="1" data-prefix="+">+57.8</span><span class="unit">%</span></div>
           <div>
             <div class="cyl-label">Las marcas con figura detrás crecen más rápido cuando la fórmula sostiene la promesa.</div>
             <div class="cyl-source">FUENTE / BEAUTY INDUSTRY REPORTS</div>
@@ -3702,19 +3984,19 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
     <div class="opportunity-layout reveal">
       <div class="opportunity-copy">
         <p>Las figuras que ya representas tienen acceso a una audiencia, una estética y una credibilidad que las grandes marcas pagan millones por construir desde cero. Esa misma credibilidad — la que tú ayudaste a construir con cada deal y cada decisión de carrera — puede convertirse en una marca propia.</p>
-        <p><strong>Rhode</strong> se vendió a e.l.f. por mil millones de dólares en 2025. <strong>Rare Beauty</strong> está valuada en $2.7 mil millones. <strong>Fenty</strong> redefinió Sephora. Las marcas celebrity-led crecen seis veces más rápido que el mercado general.</p>
-        <p>Lo que esos casos comprobaron es que <em>cuando una figura es dueña de la marca</em>, el upside ya no se compara con un brand deal puntual. Y la conversación con su audiencia cambia: deja de ser embajadora pagada y se vuelve fundadora.</p>
+        <p><strong>Rhode</strong> se vendió a e.l.f. por mil millones de dólares en 2025. <strong>Rare Beauty</strong> está valuada en $2.7 mil millones. <strong>Fenty</strong> amplió el estándar de inclusión en retail. En belleza, las marcas asociadas a figuras han crecido por encima del mercado general.</p>
+        <p>La lectura es sencilla: cuando la figura participa en la propiedad de la marca, el valor potencial deja de limitarse a una campaña. La audiencia no solo recibe una recomendación externa; puede comprar un producto propio, con margen, reposición y continuidad.</p>
       </div>
       <aside class="opportunity-proof" aria-label="Prueba de oportunidad comercial">
         <div class="proof-kicker">Prueba de mercado</div>
-        <p class="proof-thesis">El valor no está en una publicación. Está en crear un <em>activo vendible</em>.</p>
+        <p class="proof-thesis">El valor no está en una mención aislada. Está en construir <em>propiedad sobre el producto</em>.</p>
         <div class="proof-metrics">
-          <div class="proof-metric"><div class="num">$1<sup>B</sup></div><div class="label">Exit de Rhode a e.l.f. Beauty · 2025</div></div>
-          <div class="proof-metric"><div class="num">$2.7<sup>B</sup></div><div class="label">Valuación Rare Beauty · Selena Gomez · 2025</div></div>
-          <div class="proof-metric"><div class="num">5.2<sup>×</sup></div><div class="label">Crecimiento celebrity beauty vs mercado general</div></div>
-          <div class="proof-metric"><div class="num">$17.6<sup>B</sup></div><div class="label">Mercado mexicano de belleza · proyección 2026</div></div>
+          <div class="proof-metric"><div class="num">$1<span class="metric-unit">B USD</span></div><div class="label">Venta de Rhode a e.l.f. Beauty · 2025</div></div>
+          <div class="proof-metric"><div class="num">$2.7<span class="metric-unit">B USD</span></div><div class="label">Valuación reportada de Rare Beauty · 2025</div></div>
+          <div class="proof-metric"><div class="num">5.2<span class="metric-unit">veces</span></div><div class="label">Crecimiento relativo de celebrity beauty vs. mercado general</div></div>
+          <div class="proof-metric"><div class="num">$17.6<span class="metric-unit">B USD</span></div><div class="label">Mercado mexicano de belleza · proyección 2026</div></div>
         </div>
-        <p class="proof-footnote">La oportunidad: convertir atención ya existente en producto propio, formulado y producido con estándar de laboratorio.</p>
+        <p class="proof-footnote">Lectura: audiencia existente + producto propio + operación técnica reducen el costo de construir una marca desde cero.</p>
       </aside>
     </div>
   </div>
@@ -3738,7 +4020,7 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
       <div class="why-card">
         <div class="why-num">→ MERCADO</div>
         <h3>El consumidor mexicano ha <em>elevado su estándar</em>.</h3>
-        <p>El mercado de belleza en México pasó de $11.3B en 2024 a un proyectado $17.6B en 2026. Las ventas de skincare en MX crecieron 17% en 2023. La consumidora mexicana ya no acepta cualquier producto: lee etiquetas, busca activos específicos (ácido hialurónico, niacinamida, péptidos, ceramidas), y exige claims de fórmulas limpias, activos claros y seguridad dermatológica.</p>
+        <p>El mercado de belleza en México pasó de $11.3B en 2024 a un proyectado $17.6B en 2026. Las ventas de skincare en MX crecieron 17% en 2023. El consumidor mexicano ya no acepta cualquier producto: lee etiquetas, busca activos específicos (ácido hialurónico, niacinamida, péptidos, ceramidas) y pide evidencia que respalde la promesa de fórmula, seguridad y resultado.</p>
         <div class="foot">→ FUENTE: MORDOR INTELLIGENCE 2024–26</div>
       </div>
       <div class="why-card">
@@ -3771,7 +4053,7 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
       </div>
     </div>
 
-    <p class="proof-deck reveal">Cada una de estas marcas existe porque una figura tuvo detrás un equipo de formulación capaz de convertir demanda en producto. La diferencia entre las que valen miles de millones y las que cerraron no fue la fama — fue la <em>calidad de la formulación</em> y el momento del lanzamiento. Este es el patrón que estamos replicando para el mercado mexicano.</p>
+    <p class="proof-deck reveal">Los casos relevantes no se explican solo por fama. Se explican por timing, selección de categoría, fórmula defendible, precio coherente y capacidad de sostener la calidad después del lanzamiento. Esa es la parte replicable para el mercado mexicano.</p>
 
     <div class="proof-tbl case-table reveal">
       <div class="cat-head"><div>↳ Marca / Fundadora</div><div>↳ Año</div><div>↳ Status 2026</div><div>↳ Aprendizaje</div></div>
@@ -3782,7 +4064,7 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
       <div class="tbl-row"><div><div class="brand">Gxve Beauty</div><div class="case-founder">Gwen Stefani</div></div><div class="price">2022</div><div class="case-value">Cerrada</div><div class="verdict">Cerrada en 2025. Producto sin claims defendibles. Lanzamiento agresivo sin sustento técnico — el mercado castiga lanzamientos sin diferenciación real.</div></div>
     </div>
 
-    <p class="proof-deck reveal" style="margin-top:40px;"><em>La ventaja de TSC Labs</em> no es solo producir: es formular con criterio técnico y fabricar con capacidad operativa. Detrás hay ingenieros en biotecnología, procesos documentados, control de calidad y cumplimiento normativo mexicano. Para una figura con audiencia, eso cambia el riesgo: la marca no descansa solo en su alcance, sino en un producto bien formulado, repetible y listo para sostener crecimiento.</p>
+    <p class="proof-deck reveal" style="margin-top:40px;">La función de TSC Labs es reducir el riesgo técnico del lanzamiento: formular con criterio, producir con capacidad operativa, documentar cada lote y cumplir normativa mexicana. Para una figura con audiencia, eso cambia el punto de partida: la marca no depende solo del alcance, sino de un producto consistente, repetible y defendible.</p>
   </div>
 </section>
 
@@ -3816,7 +4098,7 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
         <div class="why-num">№ 02 · TRACK RECORD</div>
         <h3>Marca propia <em>en mercado</em></h3>
         <p>
-          Operamos The Skin Club desde 2021 — nuestra propia línea de skincare que compite con Kiehl&apos;s, Clinique, L&apos;Oréal y The Ordinary con una propuesta más eficiente en formulación, precio y transparencia. <strong>Lo que proponemos para una figura, ya lo demostramos con nosotros mismos.</strong> Es experiencia operativa propia, no una promesa externa.
+          Operamos The Skin Club desde 2021: una línea propia de skincare formulada, producida y vendida por nosotros. Nos ha permitido probar fórmulas, costos, proveedores, empaque, etiquetado, reposición y venta directa en condiciones reales. Esa experiencia operativa es la base de lo que proponemos desarrollar para terceros.
         </p>
         <div class="foot">→ VER ECOMMERCE THE SKIN CLUB</div>
       </a>
@@ -3853,15 +4135,19 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
       </div>
     </div>
 
-    <p class="proof-deck reveal">Tomamos los productos estrella de las marcas más vendidas en México y los comparamos contra <strong>The Skin Club</strong> — la marca que nosotros mismos formulamos y vendemos al consumidor final. Mismas categorías. Mismos activos. Mejores resultados. <em>Esta es la calidad de fórmula que podemos hacer para una figura con audiencia.</em></p>
+    <p class="proof-deck reveal">Tomamos productos de referencia vendidos en México y los comparamos contra <strong>The Skin Club</strong>, la marca que nosotros mismos formulamos y operamos. La comparación no busca sonar mejor; muestra categoría, activos, precio por mililitro y puntos de formulación que sí se pueden revisar.</p>
 
     <div class="proof-tbl reveal">
 
       <div class="cat-head">
-        <div>Producto / Fórmula</div>
-        <div>Precio MXN</div>
-        <div>$ / mL</div>
-        <div>Observación</div>
+        <div>
+          <span class="cat-head-kicker">Fórmula TSC</span>
+          <strong>The Skin Club: producto propio</strong>
+        </div>
+        <div>
+          <span class="cat-head-kicker">Referencias retail</span>
+          <strong>Marcas comparables en México</strong>
+        </div>
       </div>
 
       <!-- Category I — HydroGlow -->
@@ -4624,6 +4910,9 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
 
   const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const MOBILE  = window.matchMedia('(max-width: 768px)').matches;
+  const markHeroReady = () => requestAnimationFrame(() => {
+    document.documentElement.classList.add('hero-ready');
+  });
 
   /* ========== Reveal via IntersectionObserver (CSS transitions) ========== */
   const reveals = document.querySelectorAll('.reveal');
@@ -4662,39 +4951,80 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
       if (liquid) { liquid.setAttribute('y', y); liquid.setAttribute('height', h); }
       if (meniscus) { meniscus.setAttribute('y', y); }
     });
+    markHeroReady();
     return;
   }
 
   /* ========== GSAP setup ========== */
-  if (typeof gsap === 'undefined') return;
+  if (typeof gsap === 'undefined') { markHeroReady(); return; }
 
   if (window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
   if (window.DrawSVGPlugin) gsap.registerPlugin(DrawSVGPlugin);
   if (window.Flip) gsap.registerPlugin(Flip);
   if (window.SplitText) gsap.registerPlugin(SplitText);
 
-  /* ========== Hero h1 — SplitText only here, lines mask reveal ========== */
-  try {
-    const h1 = document.querySelector('.hero-title');
-    if (h1 && window.SplitText) {
-      const split = new SplitText(h1, { type: 'lines', linesClass: 'split-line' });
-      // wrap each line for mask
-      split.lines.forEach(line => {
-        const wrap = document.createElement('span');
-        wrap.style.display = 'block';
-        wrap.style.overflow = 'hidden';
-        line.parentNode.insertBefore(wrap, line);
-        wrap.appendChild(line);
-      });
-      gsap.from(split.lines, {
-        yPercent: 110,
-        duration: 1.0,
-        stagger: 0.08,
-        ease: 'power3.out',
-        delay: 0.15
+  /* ========== Floating discovery CTA — subtle lab signal ========== */
+  function initDiscoveryFloat() {
+    const beacon = document.querySelector('.discovery-float');
+    if (!beacon) return;
+
+    const liquid = beacon.querySelector('.float-liquid');
+    const wave = beacon.querySelector('.float-wave');
+    const bubbles = beacon.querySelectorAll('.float-bubble');
+    const line = beacon.querySelector('[data-discovery-line]');
+    const micro = beacon.querySelector('[data-discovery-micro]');
+    const copyPairs = [
+      ['Agenda sesión', 'Sesión de descubrimiento'],
+      ['Revisar brief', 'Categoría, fórmula y costo'],
+      ['Aterrizar SKU', 'Primer lote y tiempos'],
+      ['Contacto TSC', 'Agenda una llamada']
+    ];
+
+    gsap.set(beacon, { autoAlpha: 0, y: 4 });
+    gsap.to(beacon, { autoAlpha: 0.82, y: 0, duration: 0.45, delay: 1.1, ease: 'power2.out' });
+    gsap.to(beacon, { y: -1.5, duration: 4.6, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1.8 });
+
+    if (liquid) {
+      gsap.to(liquid, {
+        attr: { y: 55, height: 31 },
+        duration: 5.8,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut'
       });
     }
-  } catch (e) { /* noop */ }
+    if (wave) {
+      gsap.to(wave, { x: -4, duration: 4.8, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+    }
+    if (bubbles.length) {
+      gsap.fromTo(bubbles,
+        { y: 6, opacity: 0.08, scale: 0.85 },
+        { y: -10, opacity: 0, scale: 1.05, duration: 4.2, stagger: 0.9, repeat: -1, ease: 'power1.out' }
+      );
+    }
+
+    if (line && micro) {
+      let idx = 0;
+      gsap.timeline({ repeat: -1, repeatDelay: 5.4 })
+        .to([line, micro], {
+          opacity: 0,
+          y: -2,
+          duration: 0.18,
+          delay: 4.6,
+          ease: 'power2.in',
+          onComplete: () => {
+            idx = (idx + 1) % copyPairs.length;
+            line.textContent = copyPairs[idx][0];
+            micro.textContent = copyPairs[idx][1];
+          }
+        })
+        .fromTo([line, micro],
+          { opacity: 0, y: 3 },
+          { opacity: 1, y: 0, duration: 0.26, ease: 'power2.out', stagger: 0.02, immediateRender: false }
+        );
+    }
+  }
+  initDiscoveryFloat();
 
   /* ========== Hero annotation lines (DrawSVG) ========== */
   try {
@@ -4709,6 +5039,8 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
       }
     }
   } catch (e) { /* noop */ }
+
+  markHeroReady();
 
   /* ========== Cylinder fill — smooth rise, gentle meniscus ripple ========== */
   function animateCylinder(svg, delay) {
@@ -4789,20 +5121,8 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
       el.textContent = prev;
     };
     const startAnim = () => {
-      const obj = { v: 0 };
-      el.textContent = fmt(0);
-      // Snap step: int=1, 1dec=0.1, 2dec=0.05 — feels like discrete ticks not rolling decimals
-      const snapStep = dec === 0 ? 1 : (dec === 1 ? 0.1 : 0.05);
-      // Subtle opacity fade-in only — no Y translate (caused perceived layout shift)
-      gsap.fromTo(el, { opacity: 0 }, { opacity: 1, duration: 0.4, delay, ease: 'power2.out' });
-      gsap.to(obj, {
-        v: target,
-        duration: 1.4,
-        delay: delay + 0.15,
-        ease: 'power3.out',
-        snap: { v: snapStep },
-        onUpdate: () => { el.textContent = fmt(obj.v); }
-      });
+      el.textContent = fmt(target);
+      gsap.fromTo(el, { opacity: 0.35 }, { opacity: 1, duration: 0.35, delay, ease: 'power2.out' });
     };
     // Lock width first (sync if fonts ready, async otherwise), then start the
     // animation. If we ran them in parallel, gsap would overwrite the candidate
@@ -5910,35 +6230,53 @@ footer.colophon .right { color: var(--rust); font-weight: 600; text-align: right
       const grid = document.createElement('div');
       grid.className = 'vs-grid';
       grid.innerHTML = `
-        <div class="vs-tsc">
-          <div class="vs-badge">★ TSC LABS · The Skin Club</div>
-          <h4 class="vs-name">${txt(tscRow, '.brand').replace(/^The Skin Club\s*·\s*/, '')}</h4>
-          <p class="vs-desc">${txt(tscRow, '.desc')}</p>
-          <div class="vs-prices">
-            <span class="vs-price">${txt(tscRow, '.price')}</span>
-            <span class="vs-perml">${txt(tscRow, '.perml')}</span>
+        <div class="vs-lane">
+          <div class="vs-lane-label">Fórmula propia TSC</div>
+          <div class="vs-tsc">
+            <div class="vs-badge">★ TSC LABS · The Skin Club</div>
+            <h4 class="vs-name">${txt(tscRow, '.brand').replace(/^The Skin Club\s*·\s*/, '')}</h4>
+            <p class="vs-desc">${txt(tscRow, '.desc')}</p>
+            <div class="vs-prices">
+              <span class="vs-metric">
+                <span class="vs-metric-label">Precio público</span>
+                <span class="vs-price">${txt(tscRow, '.price')}</span>
+              </span>
+              <span class="vs-metric">
+                <span class="vs-metric-label">$ / mL</span>
+                <span class="vs-perml">${txt(tscRow, '.perml')}</span>
+              </span>
+            </div>
+            <div class="vs-claim">${txt(tscRow, '.verdict')}</div>
           </div>
-          <div class="vs-claim">${txt(tscRow, '.verdict')}</div>
         </div>
-        <div class="vs-competitors">
-          ${competitors.map(r => {
-            const verdict = txt(r, '.verdict');
-            const isWarn = WARN_RX.test(verdict);
-            return `
-              <div class="vs-mini${isWarn ? ' warn' : ''}">
-                <div class="vs-mini-head">
-                  <span class="vs-mini-brand">${txt(r, '.brand')}</span>
-                  <span class="vs-mini-flag">${isWarn ? '⚠' : '·'}</span>
+        <div class="vs-lane">
+          <div class="vs-lane-label">Referencias retail</div>
+          <div class="vs-competitors">
+            ${competitors.map(r => {
+              const verdict = txt(r, '.verdict');
+              const isWarn = WARN_RX.test(verdict);
+              return `
+                <div class="vs-mini${isWarn ? ' warn' : ''}">
+                  <div class="vs-mini-head">
+                    <span class="vs-mini-brand">${txt(r, '.brand')}</span>
+                    <span class="vs-mini-flag">${isWarn ? '⚠' : '·'}</span>
+                  </div>
+                  <div class="vs-mini-desc">${txt(r, '.desc')}</div>
+                  <div class="vs-mini-prices">
+                    <span class="vs-mini-metric">
+                      <span class="vs-mini-label">Precio</span>
+                      <span class="vs-mini-price">${txt(r, '.price')}</span>
+                    </span>
+                    <span class="vs-mini-metric">
+                      <span class="vs-mini-label">$ / mL</span>
+                      <span class="vs-mini-perml">${txt(r, '.perml')}</span>
+                    </span>
+                  </div>
+                  <div class="vs-mini-verdict">${verdict}</div>
                 </div>
-                <div class="vs-mini-desc">${txt(r, '.desc')}</div>
-                <div class="vs-mini-prices">
-                  <span class="vs-mini-price">${txt(r, '.price')}</span>
-                  <span class="vs-mini-perml">${txt(r, '.perml')}</span>
-                </div>
-                <div class="vs-mini-verdict">${verdict}</div>
-              </div>
-            `;
-          }).join('')}
+              `;
+            }).join('')}
+          </div>
         </div>
       `;
 
